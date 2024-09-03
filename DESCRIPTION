@@ -1,4 +1,4 @@
-Package: StatsEdSimData
+Package: edsamplr
 Title: First Semester Statistics Course Data Simulator
 Version: 0.0.0.9000
 Authors@R: c(
@@ -16,10 +16,15 @@ Description: A tool for statistics educators to generate simulated data for all
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     dplyr (>= 1.1.4),
+    magrittr,
+    MASS,
     psych (>= 2.4.3),
-    SimMultiCorrData (>= 0.2.2),
+    purrr,
+    rlang,
     stats (>= 4.3.3),
-    tibble (>= 3.2.1)
+    tidyr,
+    tidyselect,
+    VGAM
