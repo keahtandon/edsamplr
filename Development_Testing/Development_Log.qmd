@@ -3,6 +3,20 @@ title: "Development Log"
 format: html
 ---
 
+### 3 September 2024
+
+Keah
+
+- make actual notes of what I have done throughout the process (including the changes of Headrick's method code)
+
+- documentation
+
+Mike
+
+- find out about creating packages/repos
+
+- revise manuscript
+
 ### 2 September 2024
 
 - renamed files
