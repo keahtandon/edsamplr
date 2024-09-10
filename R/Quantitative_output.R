@@ -4,9 +4,9 @@
 # This is a data generation and processing function that uses rHeadrick.
 # It exports to k_quantitative_H and provides summary statistics.
 
-quant_with_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
+quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
                                use_effect_size, group_names, decimals, replication) {
-  moments <- moment_fill(samples, mean, var, skew, kurt,
+  moments <- moment_fill(k, mean, var, skew, kurt,
     slope = NA, r = NA,
     effect_size, use_effect_size, use_slope = FALSE
   )
@@ -16,7 +16,7 @@ quant_with_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
 
     for (i in 1:replication) {
       dist <- headrick_method(
-        k = samples, n = n,
+        k = k, n = n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
         skew = as.vector(moments$moments$skew),
@@ -25,9 +25,9 @@ quant_with_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
         gam3 = NaN, gam4 = NaN
       )
 
-      stats <- q_stats(samples, moments$moments, dist)
+      stats <- q_stats(k, moments$moments, dist)
 
-      dist <- data_restructure(samples, dist, group_names)
+      dist <- data_restructure(k, dist, group_names)
 
       inter_output <- list(summary = stats, sample = dist)
 
@@ -35,7 +35,7 @@ quant_with_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
     }
   } else {
     dist <- headrick_method(
-      k = samples, n = n,
+      k = k, n = n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
       skew = as.vector(moments$moments$skew),
@@ -44,9 +44,9 @@ quant_with_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
       gam3 = NaN, gam4 = NaN
     )
 
-    stats <- q_stats(samples, moments$moments, dist)
+    stats <- q_stats(k, moments$moments, dist)
 
-    dist <- data_restructure(samples, dist, group_names)
+    dist <- data_restructure(k, dist, group_names)
 
     output <- list(summary = stats, sample = dist)
   }
@@ -57,9 +57,9 @@ quant_with_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
 # This is a data generation and processing function that uses rHeadrick.
 # It exports to k_quantitative_H with just the sample data.
 
-quant_no_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
+quant_no_summary <- function(k, n, mean, var, skew, kurt, effect_size,
                              use_effect_size, group_names, decimals, replication) {
-  moments <- moment_fill(samples, mean, var, skew, kurt,
+  moments <- moment_fill(k, mean, var, skew, kurt,
     slope = NA, r = NA,
     effect_size, use_effect_size, use_slope = FALSE
   )
@@ -69,7 +69,7 @@ quant_no_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
 
     for (i in 1:replication) {
       dist <- headrick_method(
-        k = samples, n = n,
+        k = k, n = n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
         skew = as.vector(moments$moments$skew),
@@ -78,13 +78,13 @@ quant_no_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
         gam3 = NaN, gam4 = NaN
       )
 
-      inter_output <- data_restructure(samples, dist, group_names)
+      inter_output <- data_restructure(k, dist, group_names)
 
       output[[i]] <- inter_output
     }
   } else {
     dist <- headrick_method(
-      k = samples, n = n,
+      k = k, n = n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
       skew = as.vector(moments$moments$skew),
@@ -93,7 +93,7 @@ quant_no_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
       gam3 = NaN, gam4 = NaN
     )
 
-    output <- data_restructure(samples, dist, group_names)
+    output <- data_restructure(k, dist, group_names)
   }
 
   return(output)
@@ -105,7 +105,7 @@ quant_no_summary <- function(samples, n, mean, var, skew, kurt, effect_size,
 matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
                                  use_effect_size, decimals, replication) {
   moments <- moment_fill(
-    samples = 2, mean, var, skew, kurt, slope = NA, r,
+    k = 2, mean, var, skew, kurt, slope = NA, r,
     effect_size, use_effect_size, use_slope = FALSE
   )
 
@@ -114,7 +114,7 @@ matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
 
     for (i in 1:replication) {
       dist <- headrick_method(
-        k = .data$samples, n = n,
+        k = .data$k, n = n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
         skew = as.vector(moments$moments$skew),
@@ -136,7 +136,7 @@ matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
     }
   } else {
     dist <- headrick_method(
-      k = .data$samples, n = n,
+      k = .data$k, n = n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
       skew = as.vector(moments$moments$skew),
@@ -164,7 +164,7 @@ matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
 matched_no_summary <- function(n, mean, var, skew, kurt, effect_size,
                                r, use_effect_size, decimals, replication) {
   moments <- moment_fill(
-    samples = 2, mean, var, skew, kurt, slope = NA, r,
+    k = 2, mean, var, skew, kurt, slope = NA, r,
     effect_size, use_effect_size, use_slope = FALSE
   )
 
@@ -173,7 +173,7 @@ matched_no_summary <- function(n, mean, var, skew, kurt, effect_size,
 
     for (i in 1:replication) {
       dist <- headrick_method(
-        k = .data$samples, n = n,
+        k = .data$k, n = n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
         skew = as.vector(moments$moments$skew),
@@ -189,7 +189,7 @@ matched_no_summary <- function(n, mean, var, skew, kurt, effect_size,
     }
   } else {
     dist <- headrick_method(
-      k = .data$samples, n = n,
+      k = .data$k, n = n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
       skew = as.vector(moments$moments$skew),
@@ -211,7 +211,7 @@ matched_no_summary <- function(n, mean, var, skew, kurt, effect_size,
 slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
                                replication) {
   moments <- moment_fill(
-    samples = 2, mean, var, skew, kurt, slope, r,
+    k = 2, mean, var, skew, kurt, slope, r,
     use_effect_size = FALSE, use_slope = TRUE
   )
 
@@ -228,7 +228,7 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
         gam3 = NaN, gam4 = NaN
       )
 
-      stats <- q_stats(samples = 2, moments$moments, dist)
+      stats <- q_stats(k = 2, moments$moments, dist)
 
       cor <- round(cor(dist$X1, dist$X2), decimals)
 
@@ -250,7 +250,7 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
       gam3 = NaN, gam4 = NaN
     )
 
-    stats <- q_stats(samples = 2, moments$moments, dist)
+    stats <- q_stats(k = 2, moments$moments, dist)
 
     cor <- round(cor(dist$X1, dist$X2), decimals)
 
@@ -270,7 +270,7 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
 slope_no_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
                              replication) {
   moments <- moment_fill(
-    samples = 2, mean, var, skew, kurt, slope, r,
+    k = 2, mean, var, skew, kurt, slope, r,
     use_effect_size = FALSE, use_slope = TRUE
   )
 

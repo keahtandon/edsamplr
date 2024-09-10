@@ -27,7 +27,7 @@ find_intercorr <- function(k, coeff, corr) {
 
       opt <- stats::nlminb(
         start = rhoY,
-        objective = .data$Headrick_rho_eq,
+        objective = headrick_rho_eq,
         scale = 10,
         lower = -1,
         upper = 1,
@@ -63,7 +63,7 @@ find_intercorr <- function(k, coeff, corr) {
 
 solve_intercorr <- function(k, coeff, corr) {
   if (k > 1) {
-    corr.match <- .data$Headrick_intermediate_corr(k, coeff, corr)
+    corr.match <- find_intercorr(k, coeff, corr)
     inter.corr <- corr.match$inter.corr
     obj.corr.match <- corr.match$matrix
 

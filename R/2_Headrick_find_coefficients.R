@@ -1,5 +1,8 @@
-#' @export
-
+#' Find initial constants using Headrick's fifth-order polynomial method
+#'
+#' `find_coefficients()` uses specified values of skew, kurtosis, and the
+#' fifth and sixth moments to determine the constants necessary to obtain
+#' the expected values of Y.
 
 find_coefficients <- function(gam1, gam2, gam3, gam4,
                               max.ntry = 10,
