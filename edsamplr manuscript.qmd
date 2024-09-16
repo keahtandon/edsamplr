@@ -1,0 +1,59 @@
+---
+format: typst
+---
+
+```{=typst}
+#align(center, text(17pt)[
+  *_edsamplr_: A Data Generation Tool for Discipline-Based Introductory Statistics Courses*
+])
+
+#grid(
+  columns: (1fr, 1fr),
+  align(center)[
+    Keah Tandon \
+    University of South Carolina \
+    #link("mailto:tandonk@mailbox.sc.edu")
+  ],
+  align(center)[
+    Michael A. Seaman \
+    University of South Carolina \
+    #link("mailto:mseaman@sc.edu")
+  ]
+)
+
+Data analysis is at the core of quantitative research. Learning how to analyze data is at the core of statistical instruction. Consequently, an important task to be embraced by statistics instructors is finding and selecting data sets that can be used for demonstrating data analysis and related concepts, and for providing to students so that they can practice newly acquired data analytic skills.
+
+The purposes of this manuscript are (1) to introduce an R package, _edsamplr_, that instructors can use to generate data and (2) to discuss a potential workflow that can leverage both existing research and generated data to provide students in discipline-based statistics courses with an authentic learning experience that includes analyzing data that links to existing research studies. The time that instructors must spend to develop such real-world practice opportunities can be substantial, so having a tool that can support expediting this development may mean the difference between an instructor opting to teach a traditional textbook-based course utilizing practice examples from the book or a course that draws on published research and the analysis of associated data as core to the student experience.
+
+== Sources of Data Sets
+
+There are at least four sources of data sets for these purposes and each comes with both advantages and disadvantages.
+
+=== Statistics Textbooks
+
+Statistics textbooks include data sets that are used in examples and for student exercises. The obvious advantages to such data is the alignment with the text to address the learning goals and the fact that the work of finding data has been taken care of without involving the instructor. There are several disadvantages. There is a presumption that the instructor will rely on the concepts presented in the textbook so that the included data match the learning goals chosen by the instructor. The topics of textbook data sets will not necessarily match with the disciplines of the students enrolled in the class. Textbook data sets tend to be smaller than the “real world” data sets that students will encounter when they conduct their own research. Textbook data sets also are “clean” in that they have been prepared for analysis and meet the conditions that are necessary for valid inference, again providing for straightforward analysis yet failing to provide students the opportunity to address the kind of real-world issues they will encounter in their own research.
+
+=== Public Domain
+
+A large number of data sets have been put in the public domain, often by government agencies and other organizations. Still others are available from individual researchers through public data sharing venues, such as GitHub. The advantages of such data sets are that they tend to be readily available on the web and are often messy, thus more aligned with the types of problems researchers frequently encounter. An obvious disadvantage is that an instructor must work to find and extract these data based on specific instructional goals. This search can be time intensive and there is no guarantee of finding data that closely aligns with the instructor’s learning objectives for a particular topic. The integrity of data in such datasets can be questionable. Though the data are “real world” data, the issues presented by the dataset may go beyond the instructor’s intent. For example, there may be missing data for a topic in which the instructor wants complete data and does not want to include missing data as an instructional objective.
+
+=== Published Research
+
+A growing number of professional organizations and journals mandate that researchers make data available upon request <reference>. These data are the source of published research and as such the documentation can be much more extensive with greater evidence of validity than one might expect from a free-standing data set. Another advantage is that the associated article provides students with a real research example to correspond with the data analytic methods being taught. A disadvantage is that, like with free-standing data sets, the time involved in finding a good match for the instructional objectives can be prohibitive. Another disadvantage is that finding a research article with content and analytic methods that match well with instructional objectives does not guarantee ready access to the associated data. Despite scientific and professional organization recommendations to make data available to researchers, not all authors do so and even those that might make these available only do so on request. A survey of researchers found that [find results about researchers not being able to produce data]. Though it is becoming more common for authors to provide data as well as the analysis code, this type of access is still rare in many disciplines. Also, like with larger published data sets, the data that accompanies a research article is not likely to naturally align with all instructional objectives.
+
+=== Simulated Data
+
+The primary advantage of simulating data is that specifications can be set to match with the instructional objectives. This is more likely to be true than with any of the other sources of data listed above, though there is a presumption that the data generator includes options to align the simulation with instructional objectives. For example, a readily accessible data generator such as the rnorm() function found in Base R <ref> will only generate normally distributed data so that other distributional shapes require either other functions or specialized coding. Another advantage of simulating data is that time savings. Simulations do not require a literature search or data requests and they do not need to be “cleaned” to address instructional specifications. A corresponding disadvantage is that simulated data is not naturally attached to research content, so hypothetical sample content must be invented to create a match of simulated data to a research question. Such contrived research content is unlikely to have the same impact with learners as published research.
+
+All four methods of obtaining data for instruction are associated with advantages and disadvantages. The method an instructor employs will depend on a set of priorities. The priorities are recognized in the answers to questions such as those listed below.
+
+How much time does the instructor have to search for optimal examples?
+What is the solution when such examples cannot be found?
+How important is it that the data are real?
+How important is it that the data come from a specific research context?
+How many data sets are needed to cover the breadth of subtopics associated with a single topic (e.g. conditions for valid inference)?
+
+No single data set, regardless of the source, is likely to meet all of the potential instructional objectives. Indeed, we propose that many topics in data analysis, such as the influence of skew or heterogeneity of variance, might be mentioned in introductory classes, yet without illustration because preparing data for such a wide variety of scenarios could be a daunting task. It is probably more common to discuss, rather than illustrate, these and related issues given the time and difficulty associated with preparing such illustrations. Yet it is difficult to imagine any thoughtful research methods instructor designating such topics as unimportant. Instead, the choice to limit the discussion is more likely to be one necessitated by constraints in time for instructional preparation.
+```
+
+
