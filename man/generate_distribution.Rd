@@ -29,7 +29,7 @@ generate_distribution(
 \arguments{
 \item{distribution}{A character vector to identify which distributional shape to sample. Options include \verb{beta,} \verb{cauchy,} \verb{chi-squared,} \verb{exponential,} \verb{f,} \verb{gamma,} \verb{laplace,} \verb{logistic,} \verb{log normal,} \verb{normal,} \verb{t,} \verb{triangular,} \verb{uniform,} and \code{weibull.}}
 
-\item{n}{A numeric vector for the sample size. The default value is 100}
+\item{n}{A numeric vector for the sample size. The default value is 100.}
 
 \item{seed}{An optional numeric vector to use in set.seed()}
 
@@ -68,4 +68,8 @@ A list of \verb{data:} a vector of length n containing the generated values, and
 generate_distribution() is a wrapper function for generating sample data from named continuous distributions.
 
 The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull.
+}
+\examples{
+# example code
+
 }

@@ -1,12 +1,22 @@
 #' Generate samples of binary data
 #'
+#' @description
+#' generate_binary() is function to generate sample binary data.
+#'
+#' @param k A numeric vector for the number of number of samples. The default value is 1.
+#' @param n A numeric vector for the sample size. The default value is 100.
+#' @param p A numeric vector for the proportion of successes. The default value is 0.5. If k>1, you can provide separate proportion values for each k.
+#' @param group_names An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.
+#' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
+#'
+#' @return xx
+#'
+#' @examples
+#' # example code
 #'
 
 
 
-# This is a function to generate a sample of proportions.
-# You must enter the total sample size. You may enter either the number of successes or the proportion of successes.
-# You may also name the successes and failures.
 
 #' @export
 

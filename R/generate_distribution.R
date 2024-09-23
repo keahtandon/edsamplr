@@ -6,7 +6,7 @@
 #' The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull.
 #'
 #' @param distribution A character vector to identify which distributional shape to sample. Options include `beta,` `cauchy,` `chi-squared,` `exponential,` `f,` `gamma,` `laplace,` `logistic,` `log normal,` `normal,` `t,` `triangular,` `uniform,` and `weibull.`
-#' @param n A numeric vector for the sample size. The default value is 100
+#' @param n A numeric vector for the sample size. The default value is 100.
 #' @param seed An optional numeric vector to use in set.seed()
 #' @param alpha_shape A non-negative numeric vector required for the shape of the beta, gamma, and Weibull distributions.
 #' @param beta_shape A non-negative numeric vector required for the shape of the beta distribution.

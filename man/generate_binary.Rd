@@ -6,6 +6,24 @@
 \usage{
 generate_binary(k = 1, n = 100, p = 0.5, group_names = c(1:0), replication = 1)
 }
+\arguments{
+\item{k}{A numeric vector for the number of number of samples. The default value is 1.}
+
+\item{n}{A numeric vector for the sample size. The default value is 100.}
+
+\item{p}{A numeric vector for the proportion of successes. The default value is 0.5. If k>1, you can provide separate proportion values for each k.}
+
+\item{group_names}{An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.}
+
+\item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
+}
+\value{
+xx
+}
 \description{
-Generate samples of binary data
+generate_binary() is function to generate sample binary data.
+}
+\examples{
+# example code
+
 }
