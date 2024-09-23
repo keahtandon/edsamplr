@@ -1,3 +1,34 @@
+#' Generate sample data from named distributions
+#'
+#' @description
+#' generate_distribution() is a wrapper function for generating sample data from named continuous distributions.
+#'
+#' The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull.
+#'
+#' @param distribution A character vector to identify which distributional shape to sample. Options include `beta,` `cauchy,` `chi-squared,` `exponential,` `f,` `gamma,` `laplace,` `logistic,` `log normal,` `normal,` `t,` `triangular,` `uniform,` and `weibull.`
+#' @param n A numeric vector for the sample size. The default value is 100
+#' @param seed An optional numeric vector to use in set.seed()
+#' @param alpha_shape A non-negative numeric vector required for the shape of the beta, gamma, and Weibull distributions.
+#' @param beta_shape A non-negative numeric vector required for the shape of the beta distribution.
+#' @param location A numeric vector for the location of the Cauchy, Laplace, and logistic distributions. The default value is 0.
+#' @param scale A numeric vector for the scale of the Cauchy, Laplace, logistic, and Weibull distributions. The default value is 1.
+#' @param df A numeric vector required for the degrees of freedom of the chi-squared, F, and t distributions.
+#' @param df2 A numeric vector required for the degrees of freedom of the F distribution.
+#' @param rate A numeric vector for the rate of the exponential and gamma distributions. The default value is 1.
+#' @param mean_log A numeric vector for the mean (on the log scale) of the log normal distribution. The default value is 0.
+#' @param sd_log A numeric vector for the standard deviation (on the log scale) of the log normal distribution. The default value is 1.
+#' @param mean A numeric vector for the mean of the normal distribution. The default value is 0.
+#' @param sd A numeric vector for the standard deviation of the normal distribution. The default value is 1.
+#' @param theta A numeric vector required for the theta of the triangular distribution.
+#' @param min A numeric vector for the minimum value of the triangular and uniform distributions. The default value is 0.
+#' @param max A numeric vector for the maximum value of the triangular and uniform distributions. The default value is 1.
+#'
+#' @return A list of `data:` a vector of length n containing the generated values, and `summary:` a descriptive matrix of input and sample values of the specified distribution's parameters.
+#'
+#' @examples
+#' # example code
+#'
+
 #' @export
 
 generate_distribution <- function(distribution = c(
@@ -31,8 +62,7 @@ generate_distribution <- function(distribution = c(
                                   sd = NULL,
                                   theta = NULL,
                                   min = NULL,
-                                  max = NULL,
-                                  mode = NULL) {
+                                  max = NULL) {
   if (is.null(distribution)) {
     stop("Please provide the distribution.")
   }

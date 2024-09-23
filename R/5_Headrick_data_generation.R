@@ -1,5 +1,3 @@
-#' @export
-
 generate_data_summary <- function(k, n, mean, sd, coeff, inter.corr) {
   # separating out the coefficients
 

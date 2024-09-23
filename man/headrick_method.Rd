@@ -52,8 +52,11 @@ values of Y and generate a sample of the specified distribution.
 }
 \examples{
 headrick_method(1, 100, 0, 1, 0, 0)
+
 headrick_method(2, 100, c(0,0), c(1,1), c(0,0), c(0,0))
-headrick_method(2, 100, c(0,0), c(1,1), c(0,0), c(0,0), corr = matrix(c(1, .7, .7, 1), byrow = TRUE, nrow = 2))
+
+corr <- matrix(c(1, .7, .7, 1), byrow = TRUE, nrow = 2)
+headrick_method(2, 100, c(0,0), c(1,1), c(0,0), c(0,0), corr = corr)
 
 }
 \references{

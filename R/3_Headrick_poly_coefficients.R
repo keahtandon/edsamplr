@@ -1,5 +1,3 @@
-#' @export
-
 find_poly_coefficients <- function(k, skewness, kurtosis,
                                    gam3 = NaN, gam4 = NaN,
                                    max.ntry = 5, obj.tol = 1e-10, n.valid.sol = 1) {

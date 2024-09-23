@@ -1,3 +1,9 @@
+#' Generate samples of binary data
+#'
+#'
+
+
+
 # This is a function to generate a sample of proportions.
 # You must enter the total sample size. You may enter either the number of successes or the proportion of successes.
 # You may also name the successes and failures.
