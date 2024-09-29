@@ -81,32 +81,65 @@ cat_group_names <- function(group_names, sample_group_rep, groups, k) {
 cat_group_prop_division <- function(group_prop, groups, k) {
   group_prop_division <- NULL
 
-  if (length(group_prop) == 1 & length(groups) == 1) {
-    group_prop_division <- 1 / groups
+  if (length(group_prop) == 1) {
 
-    group_prop <- rep(group_prop_division, groups)
+    if (group_prop != "equal") {
+      stop("Please ensure that the proportions are listed for each group.")
+    } else if (group_prop == "equal" & length(groups) == 1) {
+        group_prop_division <- 1 / groups
 
-    sample_group_prop <- matrix(rep(group_prop, k), nrow = k, byrow = TRUE)
-  } else if (length(group_prop) == 1 & length(groups) == k) {
-    group_prop <- rep(1 / groups, times = groups)
+        group_prop <- rep(group_prop_division, groups)
 
-    total_elements <- max(groups) * k
+        sample_group_prop <- matrix(rep(group_prop, k), nrow = k, byrow = TRUE)
+    } else if (group_prop == "equal" & length(groups) == k) {
+        group_prop <- rep(1 / groups, times = groups)
 
-    sample_group_prop <- as.numeric(rep(NA, total_elements))
+        total_elements <- max(groups) * k
 
-    final_counter <- 1
+        sample_group_prop <- as.numeric(rep(NA, total_elements))
 
-    mid_counter <- 1
+        final_counter <- 1
 
-    for (i in 1:length(groups)) {
-      sample_group_prop[final_counter:(final_counter + groups[i] - 1)] <- group_prop[mid_counter:(mid_counter + groups[i] - 1)]
-      final_counter <- final_counter + max(groups)
-      mid_counter <- mid_counter + groups[i]
+        mid_counter <- 1
+
+        for (i in 1:length(groups)) {
+          sample_group_prop[final_counter:(final_counter + groups[i] - 1)] <- group_prop[mid_counter:(mid_counter + groups[i] - 1)]
+          final_counter <- final_counter + max(groups)
+          mid_counter <- mid_counter + groups[i]
+        }
+
+        sample_group_prop <- matrix(sample_group_prop, nrow = k, ncol = max(groups), byrow = TRUE)
     }
+  }  else if (length(group_prop) == sum(groups) &
+             length(groups) %in% c(1, k) & sum(group_prop) == length(groups)) {
 
+               if (length(groups) == 1) {
+
+                 if (length(group_prop) == groups) {
+                   group_prop <- rep(group_prop, max(groups, k))
+                 }
+                  groups <- sample_group_rep(groups, k)
+               }
+
+      total_elements <- max(groups) * k
+
+      sample_group_prop <- as.numeric(rep(NA, total_elements))
+
+      final_counter <- 1
+
+      mid_counter <- 1
+
+      for (i in 1:length(groups)) {
+        sample_group_prop[final_counter:(final_counter + groups[i] - 1)] <- group_prop[mid_counter:(mid_counter + groups[i] - 1)]
+        final_counter <- final_counter + max(groups)
+        mid_counter <- mid_counter + groups[i]
+      }
 
     sample_group_prop <- matrix(sample_group_prop, nrow = k, ncol = max(groups), byrow = TRUE)
-  } else {
+  }
+
+
+  else {
     stop("Please ensure that the proportions are listed for each group.")
   }
 }

@@ -7,7 +7,7 @@
 generate_binary(k = 1, n = 100, p = 0.5, group_names = c(1:0), replication = 1)
 }
 \arguments{
-\item{k}{A numeric vector for the number of number of samples. The default value is 1.}
+\item{k}{A numeric vector for the number of variables. The default value is 1.}
 
 \item{n}{A numeric vector for the sample size. The default value is 100.}
 
@@ -25,5 +25,6 @@ generate_binary() is function to generate sample binary data.
 }
 \examples{
 # example code
+
 
 }

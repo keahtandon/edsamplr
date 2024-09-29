@@ -56,6 +56,8 @@ proportions_loop <- function(sample_rep, sample_n, sample_p,
       )
 
       inter_output <- list(summary = summary, sample = data, freq.table = freq)
+
+      output[[j]] <- inter_output
     }
   } else {
     data <- NULL
@@ -178,7 +180,7 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
         summary[sample_counter, ] <- sample_row
 
-        summary_rownames <- c(summary_rownames, paste("input", i), paste("sample", i))
+        summary_rownames <- c(summary_rownames, paste("input k", i), paste("sample k", i))
 
         input_counter <- input_counter + 2
         sample_counter <- sample_counter + 2
@@ -253,7 +255,7 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
       summary[sample_counter, ] <- sample_row
 
-      summary_rownames <- c(summary_rownames, paste("input", i), paste("sample", i))
+      summary_rownames <- c(summary_rownames, paste("input k", i), paste("sample k", i))
 
       input_counter <- input_counter + 2
       sample_counter <- sample_counter + 2
