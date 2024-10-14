@@ -8,7 +8,7 @@ generate_distribution(
   distribution = c("beta", "cauchy", "chi-squared", "exponential", "f", "gamma",
     "laplace", "logistic", "log normal", "normal", "t", "triangular", "uniform",
     "weibull"),
-  n = 100,
+  n = 1000,
   seed = NULL,
   alpha_shape = NULL,
   beta_shape = NULL,
@@ -29,7 +29,7 @@ generate_distribution(
 \arguments{
 \item{distribution}{A character vector to identify which distributional shape to sample. Options include \verb{beta,} \verb{cauchy,} \verb{chi-squared,} \verb{exponential,} \verb{f,} \verb{gamma,} \verb{laplace,} \verb{logistic,} \verb{log normal,} \verb{normal,} \verb{t,} \verb{triangular,} \verb{uniform,} and \code{weibull.}}
 
-\item{n}{A numeric vector for the sample size. The default value is 100.}
+\item{n}{A numeric vector for the sample size. The default value is 1000.}
 
 \item{seed}{An optional numeric vector to use in set.seed()}
 

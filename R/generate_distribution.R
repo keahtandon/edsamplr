@@ -6,7 +6,7 @@
 #' The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull.
 #'
 #' @param distribution A character vector to identify which distributional shape to sample. Options include `beta,` `cauchy,` `chi-squared,` `exponential,` `f,` `gamma,` `laplace,` `logistic,` `log normal,` `normal,` `t,` `triangular,` `uniform,` and `weibull.`
-#' @param n A numeric vector for the sample size. The default value is 100.
+#' @param n A numeric vector for the sample size. The default value is 1000.
 #' @param seed An optional numeric vector to use in set.seed()
 #' @param alpha_shape A non-negative numeric vector required for the shape of the beta, gamma, and Weibull distributions.
 #' @param beta_shape A non-negative numeric vector required for the shape of the beta distribution.
@@ -85,7 +85,7 @@ generate_distribution <- function(distribution = c(
                                     "uniform",
                                     "weibull"
                                   ),
-                                  n = 100,
+                                  n = 1000,
                                   seed = NULL,
                                   alpha_shape = NULL,
                                   beta_shape = NULL,
@@ -153,7 +153,7 @@ generate_distribution <- function(distribution = c(
 
     scale <- dplyr::if_else(is.null(scale), 1, scale_correction)
 
-    sample <- supressWarnings(stats::rcauchy(n = n, location = location, scale = scale))
+    sample <- suppressWarnings(stats::rcauchy(n = n, location = location, scale = scale))
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "cauchy"))
 
@@ -174,7 +174,7 @@ generate_distribution <- function(distribution = c(
       stop("Please provide the degrees of freedom (df).")
     }
 
-    sample <- supressWarnings(stats::rchisq(n = n, df = df))
+    sample <- suppressWarnings(stats::rchisq(n = n, df = df))
 
     neg_log_likelihood <- function(df, data) {
       -sum(stats::dchisq(data, df, log = TRUE))
@@ -260,13 +260,6 @@ generate_distribution <- function(distribution = c(
 
   if (distribution == "laplace") {
 
-    if (!requireNamespace("fitdistrplus", quietly = TRUE)) {
-      stop(
-        "Package \"fitdistrplus\" must be installed to use this function.",
-        call. = FALSE
-      )
-    }
-
     location_correction <- if (is.null(location)) NA_real_ else location
 
     location <- dplyr::if_else(is.null(location), 0, location_correction)
@@ -277,7 +270,8 @@ generate_distribution <- function(distribution = c(
 
     sample <- suppressWarnings(VGAM::rlaplace(n = n, location = location, scale = scale))
 
-    stats <- suppressWarnings(fitdistrplus::fitdist(sample, distr = "laplace", start = list(location = location, scale = scale)))
+    stats <- suppressWarnings(MASS::fitdistr(sample, VGAM::dlaplace,
+                                             start = list(location = location, scale = scale)))
 
     summary <- matrix(
       c(
