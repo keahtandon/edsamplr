@@ -70,6 +70,32 @@ generate_distribution() is a wrapper function for generating sample data from na
 The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull.
 }
 \examples{
-# example code
+generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
+
+generate_distribution(distribution = "cauchy")
+
+generate_distribution(distribution = "chi-squared", df = 3)
+
+generate_distribution(distribution = "exponential")
+
+generate_distribution(distribution = "f", df = 4, df2 = 30)
+
+generate_distribution(distribution = "gamma", alpha_shape = 3)
+
+generate_distribution(distribution = "laplace")
+
+generate_distribution(distribution = "logistic")
+
+generate_distribution(distribution = "log normal")
+
+generate_distribution(distribution = "normal")
+
+generate_distribution(distribution = "t", df = 2)
+
+generate_distribution(distribution = "triangular", theta = 1, min = 0, max = 2)
+
+generate_distribution(distribution = "uniform")
+
+generate_distribution(distribution = "weibull", alpha_shape = 1)#'
 
 }

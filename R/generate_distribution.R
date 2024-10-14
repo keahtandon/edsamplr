@@ -26,9 +26,47 @@
 #' @return A list of `data:` a vector of length n containing the generated values, and `summary:` a descriptive matrix of input and sample values of the specified distribution's parameters.
 #'
 #' @examples
-#' # example code
+#' generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
 #'
-
+#' @examples
+#' generate_distribution(distribution = "cauchy")
+#'
+#' @examples
+#' generate_distribution(distribution = "chi-squared", df = 3)
+#'
+#' @examples
+#' generate_distribution(distribution = "exponential")
+#'
+#' @examples
+#' generate_distribution(distribution = "f", df = 4, df2 = 30)
+#'
+#' @examples
+#' generate_distribution(distribution = "gamma", alpha_shape = 3)
+#'
+#' @examples
+#' generate_distribution(distribution = "laplace")
+#'
+#' @examples
+#' generate_distribution(distribution = "logistic")
+#'
+#' @examples
+#' generate_distribution(distribution = "log normal")
+#'
+#' @examples
+#' generate_distribution(distribution = "normal")
+#'
+#' @examples
+#' generate_distribution(distribution = "t", df = 2)
+#'
+#' @examples
+#' generate_distribution(distribution = "triangular", theta = 1, min = 0, max = 2)
+#'
+#' @examples
+#' generate_distribution(distribution = "uniform")
+#'
+#' @examples
+#' generate_distribution(distribution = "weibull", alpha_shape = 1)#'
+#'
 #' @export
 
 generate_distribution <- function(distribution = c(
@@ -90,9 +128,9 @@ generate_distribution <- function(distribution = c(
       stop("Please make sure that both shape parameters have positive values.")
     }
 
-    sample <- stats::rbeta(n = n, shape1 = alpha_shape, shape2 = beta_shape)
+    sample <- suppressWarnings(stats::rbeta(n = n, shape1 = alpha_shape, shape2 = beta_shape))
 
-    stats <- MASS::fitdistr(sample, "beta", list(shape1 = alpha_shape, shape2 = beta_shape))
+    stats <- suppressWarnings(MASS::fitdistr(sample, "beta", list(shape1 = alpha_shape, shape2 = beta_shape)))
 
     summary <- matrix(
       c(
@@ -115,9 +153,9 @@ generate_distribution <- function(distribution = c(
 
     scale <- dplyr::if_else(is.null(scale), 1, scale_correction)
 
-    sample <- stats::rcauchy(n = n, location = location, scale = scale)
+    sample <- supressWarnings(stats::rcauchy(n = n, location = location, scale = scale))
 
-    stats <- MASS::fitdistr(sample, "cauchy")
+    stats <- suppressWarnings(MASS::fitdistr(sample, "cauchy"))
 
     summary <- matrix(
       c(
@@ -136,7 +174,7 @@ generate_distribution <- function(distribution = c(
       stop("Please provide the degrees of freedom (df).")
     }
 
-    sample <- stats::rchisq(n = n, df = df)
+    sample <- supressWarnings(stats::rchisq(n = n, df = df))
 
     neg_log_likelihood <- function(df, data) {
       -sum(stats::dchisq(data, df, log = TRUE))
@@ -158,9 +196,9 @@ generate_distribution <- function(distribution = c(
 
     rate <- dplyr::if_else(is.null(rate), 1, rate_correction)
 
-    sample <- stats::rexp(n = n, rate = rate)
+    sample <- suppressWarnings(stats::rexp(n = n, rate = rate))
 
-    stats <- MASS::fitdistr(sample, "exponential")
+    stats <- suppressWarnings(MASS::fitdistr(sample, "exponential"))
 
     summary <- matrix(
       c(
@@ -179,9 +217,9 @@ generate_distribution <- function(distribution = c(
       stop("Please provide both degrees of freedom (df, df2).")
     }
 
-    sample <- stats::rf(n = n, df1 = df, df2 = df2)
+    sample <- suppressWarnings(stats::rf(n = n, df1 = df, df2 = df2))
 
-    stats <- MASS::fitdistr(sample, densfun = "F", list(df1 = df, df2 = df2))
+    stats <- suppressWarnings(MASS::fitdistr(sample, densfun = "F", list(df1 = df, df2 = df2)))
 
     summary <- matrix(
       c(
@@ -204,9 +242,9 @@ generate_distribution <- function(distribution = c(
 
     rate <- dplyr::if_else(is.null(rate), 1, rate_correction)
 
-    sample <- stats::rgamma(n = n, shape = alpha_shape, rate = rate)
+    sample <- suppressWarnings(stats::rgamma(n = n, shape = alpha_shape, rate = rate))
 
-    stats <- MASS::fitdistr(sample, "gamma", list(shape = alpha_shape, rate = rate))
+    stats <- suppressWarnings(MASS::fitdistr(sample, "gamma", list(shape = alpha_shape, rate = rate)))
 
     summary <- matrix(
       c(
@@ -221,6 +259,14 @@ generate_distribution <- function(distribution = c(
   # laplace
 
   if (distribution == "laplace") {
+
+    if (!requireNamespace("fitdistrplus", quietly = TRUE)) {
+      stop(
+        "Package \"fitdistrplus\" must be installed to use this function.",
+        call. = FALSE
+      )
+    }
+
     location_correction <- if (is.null(location)) NA_real_ else location
 
     location <- dplyr::if_else(is.null(location), 0, location_correction)
@@ -229,9 +275,9 @@ generate_distribution <- function(distribution = c(
 
     scale <- dplyr::if_else(is.null(scale), 1, scale_correction)
 
-    sample <- VGAM::rlaplace(n = n, location = location, scale = scale)
+    sample <- suppressWarnings(VGAM::rlaplace(n = n, location = location, scale = scale))
 
-    stats <- MASS::fitdistr(sample, densfun = VGAM::dlaplace, list(location = location, scale = scale))
+    stats <- suppressWarnings(fitdistrplus::fitdist(sample, distr = "laplace", start = list(location = location, scale = scale)))
 
     summary <- matrix(
       c(
@@ -254,9 +300,9 @@ generate_distribution <- function(distribution = c(
 
     scale <- dplyr::if_else(is.null(scale), 1, scale_correction)
 
-    sample <- stats::rlogis(n = n, location = location, scale = scale)
+    sample <- suppressWarnings(stats::rlogis(n = n, location = location, scale = scale))
 
-    stats <- MASS::fitdistr(sample, "logistic", list(location = location, scale = scale))
+    stats <- suppressWarnings(MASS::fitdistr(sample, "logistic", list(location = location, scale = scale)))
 
     summary <- matrix(
       c(
@@ -279,9 +325,9 @@ generate_distribution <- function(distribution = c(
 
     sd_log <- dplyr::if_else(is.null(sd_log), 1, sd_log_correction)
 
-    sample <- stats::rlnorm(n = n, meanlog = mean_log, sdlog = sd_log)
+    sample <- suppressWarnings(stats::rlnorm(n = n, meanlog = mean_log, sdlog = sd_log))
 
-    stats <- MASS::fitdistr(sample, "lognormal")
+    stats <- suppressWarnings(MASS::fitdistr(sample, "lognormal"))
 
     summary <- matrix(
       c(
@@ -304,9 +350,9 @@ generate_distribution <- function(distribution = c(
 
     sd <- dplyr::if_else(is.null(sd), 1, sd_correction)
 
-    sample <- stats::rnorm(n = n, mean = mean, sd = sd)
+    sample <- suppressWarnings(stats::rnorm(n = n, mean = mean, sd = sd))
 
-    stats <- MASS::fitdistr(sample, "normal")
+    stats <- suppressWarnings(MASS::fitdistr(sample, "normal"))
 
     summary <- matrix(
       c(
@@ -325,9 +371,9 @@ generate_distribution <- function(distribution = c(
       stop("Please provide the degrees of freedom (df).")
     }
 
-    sample <- stats::rt(n = n, df = df)
+    sample <- suppressWarnings(stats::rt(n = n, df = df))
 
-    stats <- MASS::fitdistr(sample, "t")
+    stats <- suppressWarnings(MASS::fitdistr(sample, "t"))
 
     summary <- matrix(
       c(
@@ -354,9 +400,9 @@ generate_distribution <- function(distribution = c(
 
     max <- dplyr::if_else(is.null(max), 1, max_correction)
 
-    sample <- VGAM::rtriangle(n = n, theta = theta, lower = min, upper = max)
+    sample <- suppressWarnings(VGAM::rtriangle(n = n, theta = theta, lower = min, upper = max))
 
-    stats <- MASS::fitdistr(sample, densfun = VGAM::dtriangle, list(theta = theta, lower = min, upper = max))
+    stats <- suppressWarnings(MASS::fitdistr(sample, densfun = VGAM::dtriangle, list(theta = theta, lower = min, upper = max)))
 
     summary <- matrix(
       c(
@@ -379,7 +425,7 @@ generate_distribution <- function(distribution = c(
 
     max <- dplyr::if_else(is.null(max), 1, max_correction)
 
-    sample <- stats::runif(n = n, min = min, max = max)
+    sample <- suppressWarnings(stats::runif(n = n, min = min, max = max))
 
     summary <- matrix(
       c(
@@ -402,9 +448,9 @@ generate_distribution <- function(distribution = c(
 
     scale <- dplyr::if_else(is.null(scale), 1, scale_correction)
 
-    sample <- stats::rweibull(n = n, shape = alpha_shape, scale = scale)
+    sample <- suppressWarnings(stats::rweibull(n = n, shape = alpha_shape, scale = scale))
 
-    stats <- MASS::fitdistr(sample, "weibull", list(shape = alpha_shape, scale = scale))
+    stats <- suppressWarnings(MASS::fitdistr(sample, "weibull", list(shape = alpha_shape, scale = scale)))
 
     summary <- matrix(
       c(
