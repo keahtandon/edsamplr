@@ -1,3 +1,26 @@
+#' Generate samples of correlated quantitative data
+#'
+#' @description
+#' generate_correlated() is a function to generate samples of correlated quantitative data with specified first four moments and specified slope.
+#'
+#' @param n A numeric vector for the sample size. The default value is 100.
+#' @param mean A numeric vector for the population mean of the first variable. The default value is 0.
+#' @param var A numeric vector for the population variance of the first variable. The default value is 1.
+#' @param skew A numeric vector for the population skew of the variables. Separate values of skew can be entered. The default value is 0.
+#' @param kurt A numeric vector for the population kurtosis of the variables. Separate values of kurtosis can be entered. The default value is 0.
+#' @param slope A numeric vector for the slope of the regression line. The default value is 0.
+#' @param r A numeric vector for the correlation between the variables. The default value is 0.5
+#' @param summary A logical vector for whether the return should include summary statistics. The default value is TRUE.
+#' @param decimals A numeric vector for the number of decimals to round the sample data to. The default value is 3.
+#' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
+#'
+#' @return
+#' If summary=TRUE, a list containing the correlation of the sample, the slope of the sample, a data frame ("sample") with n rows and 2 columns, and a matrix ("summary") of the input parameters and descriptive statistics. If summary=FALSE, a data frame with n rows and 2 columns.
+#'
+#' @examples
+#' # example code
+#'
+#'
 #' @export
 
 generate_correlated <- function(n = 100, mean = 0, var = 1, skew = 0, kurt = 0,
