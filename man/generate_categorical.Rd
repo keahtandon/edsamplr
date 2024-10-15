@@ -33,10 +33,17 @@ A list containing a data frame ("sample") with n rows and k columns and a matrix
 generate_categorical() is function to generate k variables of sample categorical data with j groups.
 }
 \examples{
-generate_categorical(k = 2, groups = c(2, 3), group_prop = c(.3, .7, .2, .2, .6))
+generate_categorical()
 
-generate_categorical(k = 2, groups = 2, group_prop = c(.3, .7))
+generate_categorical(groups = 4)
+
+generate_categorical(groups = 4, group_names = ("freshman", "sophomore", "junior", "senior"))
 
 
+generate_categorical(groups = 4, group_prop = c(0.25, 0.5, 0.1, 0.15))
+
+generate_categorical(k = 2, groups = c(2, 3), group_prop = c(0.3, 0.7, 0.2, 0.2, 0.6))
+
+generate_categorical(k = 2, groups = 2, group_prop = c(0.3, 0.7))
 
 }

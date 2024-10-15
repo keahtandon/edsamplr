@@ -113,8 +113,7 @@ matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
     output <- vector("list", replication)
 
     for (i in 1:replication) {
-      dist <- headrick_method(
-        k = .data$k, n = n,
+      dist <- headrick_method(k = 2, n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
         skew = as.vector(moments$moments$skew),
@@ -135,8 +134,7 @@ matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
       output[[i]] <- inter_output
     }
   } else {
-    dist <- headrick_method(
-      k = .data$k, n = n,
+    dist <- headrick_method(k = 2, n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
       skew = as.vector(moments$moments$skew),
@@ -172,8 +170,7 @@ matched_no_summary <- function(n, mean, var, skew, kurt, effect_size,
     output <- vector("list", replication)
 
     for (i in 1:replication) {
-      dist <- headrick_method(
-        k = .data$k, n = n,
+      dist <- headrick_method(k = 2, n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
         skew = as.vector(moments$moments$skew),
@@ -188,8 +185,7 @@ matched_no_summary <- function(n, mean, var, skew, kurt, effect_size,
       output[[i]] <- inter_output
     }
   } else {
-    dist <- headrick_method(
-      k = .data$k, n = n,
+    dist <- headrick_method(k = 2, n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
       skew = as.vector(moments$moments$skew),
@@ -228,6 +224,8 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
         gam3 = NaN, gam4 = NaN
       )
 
+      dist <- round(dist, decimals)
+
       stats <- q_stats(k = 2, moments$moments, dist)
 
       cor <- round(cor(dist$X1, dist$X2), decimals)
@@ -249,6 +247,8 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
       corr = moments$r,
       gam3 = NaN, gam4 = NaN
     )
+
+    dist <- round(dist, decimals)
 
     stats <- q_stats(k = 2, moments$moments, dist)
 

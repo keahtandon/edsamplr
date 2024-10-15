@@ -137,7 +137,7 @@ q_stats <- function(k, moments, dist) {
   stats <- round(psych::describe(dist), 2) %>%
     dplyr::select(c(.data$mean, .data$sd, .data$skew, .data$kurtosis))
 
-  rownames(stats) <- paste("sample", 1:k)
+  rownames(stats) <- paste("k", 1:k)
 
   summary <- as.matrix(dplyr::bind_rows(purrr::map2(
     split(input, 1:nrow(input)),

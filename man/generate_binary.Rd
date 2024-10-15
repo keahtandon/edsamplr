@@ -18,13 +18,16 @@ generate_binary(k = 1, n = 100, p = 0.5, group_names = c(1:0), replication = 1)
 \item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
 }
 \value{
-xx
+A list containing a data frame ("sample") with n rows and k columns, a matrix ("summary") of the sample size, number of successes, proportion statistic, and proportion parameter for each variable, and a matrix ("freq.table") of the frequencies of successes and failures for each variable.
 }
 \description{
 generate_binary() is function to generate sample binary data.
 }
 \examples{
-# example code
+generate_binary()
 
+generate_binary(k = 2, p = c(0.5, 0.7))
+
+generate_binary(group_names = c("success", "fail"))#'
 
 }

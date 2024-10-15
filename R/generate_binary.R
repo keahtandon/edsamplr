@@ -9,11 +9,16 @@
 #' @param group_names An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.
 #' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
 #'
-#' @return xx
+#' @return A list containing a data frame ("sample") with n rows and k columns, a matrix ("summary") of the sample size, number of successes, proportion statistic, and proportion parameter for each variable, and a matrix ("freq.table") of the frequencies of successes and failures for each variable.
 #'
 #' @examples
-#' # example code
+#' generate_binary()
 #'
+#' @examples
+#' generate_binary(k = 2, p = c(0.5, 0.7))
+#'
+#' @examples
+#' generate_binary(group_names = c("success", "fail"))#'
 #'
 #' @export
 

@@ -13,13 +13,23 @@
 #' @return A list containing a data frame ("sample") with n rows and k columns and a matrix ("proportion_summary") of the input and sample proportions for each group and variable.
 #'
 #' @examples
-#' generate_categorical(k = 2, groups = c(2, 3), group_prop = c(.3, .7, .2, .2, .6))
+#' generate_categorical()
 #'
 #' @examples
-#' generate_categorical(k = 2, groups = 2, group_prop = c(.3, .7))
+#' generate_categorical(groups = 4)
+#'
+#' @examples
+#' generate_categorical(groups = 4, group_names = ("freshman", "sophomore", "junior", "senior"))
 #'
 #'
-# add more example code
+#' @examples
+#' generate_categorical(groups = 4, group_prop = c(0.25, 0.5, 0.1, 0.15))
+#'
+#' @examples
+#' generate_categorical(k = 2, groups = c(2, 3), group_prop = c(0.3, 0.7, 0.2, 0.2, 0.6))
+#'
+#' @examples
+#' generate_categorical(k = 2, groups = 2, group_prop = c(0.3, 0.7))
 #'
 #' @export
 
