@@ -45,7 +45,12 @@ If summary=TRUE, a list containing the correlation of the sample, the slope of t
 generate_correlated() is a function to generate samples of correlated quantitative data with specified first four moments and specified slope.
 }
 \examples{
-# example code
+generate_correlated()
 
+generate_correlated(skew = c(0.4, 0.25))
+
+generate_correlated(slope = 3, r = 0.8)
+
+generate_correlated(n = 10000, skew = c(0, 1), kurt = c(0, 1.5))
 
 }

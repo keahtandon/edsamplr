@@ -18,8 +18,16 @@
 #' If summary=TRUE, a list containing the correlation of the sample, the slope of the sample, a data frame ("sample") with n rows and 2 columns, and a matrix ("summary") of the input parameters and descriptive statistics. If summary=FALSE, a data frame with n rows and 2 columns.
 #'
 #' @examples
-#' # example code
+#' generate_correlated()
 #'
+#' @examples
+#' generate_correlated(skew = c(0.4, 0.25))
+#'
+#' @examples
+#' generate_correlated(slope = 3, r = 0.8)
+#'
+#' @examples
+#' generate_correlated(n = 10000, skew = c(0, 1), kurt = c(0, 1.5))
 #'
 #' @export
 

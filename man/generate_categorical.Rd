@@ -37,7 +37,7 @@ generate_categorical()
 
 generate_categorical(groups = 4)
 
-generate_categorical(groups = 4, group_names = ("freshman", "sophomore", "junior", "senior"))
+generate_categorical(groups = 4, group_names = c("freshman", "sophomore", "junior", "senior"))
 
 
 generate_categorical(groups = 4, group_prop = c(0.25, 0.5, 0.1, 0.15))

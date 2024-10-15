@@ -19,7 +19,7 @@
 #' generate_categorical(groups = 4)
 #'
 #' @examples
-#' generate_categorical(groups = 4, group_names = ("freshman", "sophomore", "junior", "senior"))
+#' generate_categorical(groups = 4, group_names = c("freshman", "sophomore", "junior", "senior"))
 #'
 #'
 #' @examples
