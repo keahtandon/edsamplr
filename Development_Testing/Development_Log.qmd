@@ -3,6 +3,16 @@ title: "Development Log"
 format: html
 ---
 
+### 9 December 2024
+
+-   I finished the documentation
+
+-   Starting to think about vignettes - need help
+
+-   In the space on vignettes, HW mentions that if you're using a complex algorithm in your code, a vignette is a good place to explain it and then suggests submitting the vignette to the Journal of Statistical Software or the R Journal. (I know we already decided against these.) It then goes on to say that if we want to "provide something lightweight so folks can easily cite our package," consider the Journal of Open Source Software, which has a "particularly speedy submission and review process" and where "welcome to the Tidyverse was published." This might be something for us to consider.
+
+https://joss.theoj.org/
+
 ### 3 September 2024
 
 Keah

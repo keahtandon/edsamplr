@@ -28,3 +28,7 @@ Imports:
     tidyr,
     tidyselect,
     VGAM
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
