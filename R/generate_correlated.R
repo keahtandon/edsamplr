@@ -1,7 +1,7 @@
 #' Generate samples of correlated quantitative data
 #'
 #' @description
-#' generate_correlated() is a function to generate samples of correlated quantitative data with specified first four moments and specified slope.
+#' `generate_correlated()` is a function to generate samples of correlated quantitative data with specified first four moments and specified slope.
 #'
 #' @param n A numeric vector for the sample size. The default value is 100.
 #' @param mean A numeric vector for the population mean of the first variable. The default value is 0.

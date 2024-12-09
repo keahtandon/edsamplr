@@ -1,71 +1,70 @@
 #' Generate sample data from named distributions
 #'
 #' @description
-#' generate_distribution() is a wrapper function for generating sample data from named continuous distributions.
+#' `generate_distribution()` is a wrapper function for generating sample data from named continuous distributions.
 #'
-#' The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull.
+#' The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull. See additional details below for distribution parameters and default values.
+#'
+#' @section Distributional Shapes & Default Values:
+#'
+#' The **beta** distribution requires the alpha and beta shape parameters. There are no default values for this distribution. See [stats::rbeta()] for more information.
+#'
+#' The **Cauchy** distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See [stats::rcauchy()] for more information.
+#'
+#' The **chi-squared** distribution requires the df parameter. There is no default value for this distribution. See [stats::rchisq()] for more information.
+#'
+#' The **exponential** distribution uses the rate parameter, which has a default value of 1. See [stats::rexp()] for more information.
+#'
+#' The **F** distribution requires the df and df2 parameters. There are no default values for this distribution. See [stats::rf()] for more information.
+#'
+#' The **gamma** distribution requires the alpha shape and rate parameter. There is no default value for alpha shape, but the default value for rate is 1. See [stats::rgamma()] for more information.
+#'
+#' The **Laplace** distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See [VGAM::rlaplace()] for more information.
+#'
+#' The **logistic** distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See [stats::rlogis()] for more information.
+#'
+#' The **log normal** distribution uses the mean log and sd log parameters. The default values are mean log = 0 and sd log = 1. See [stats::rlnorm()] for more information.
+#'
+#' The **normal** distribution uses the mean and sd parameters. The default values are mean = 0 and sd = 1. See [stats::rnorm()] for more information.
+#'
+#' The **t** distribution requires the df parameter. There is no default value for this distribution. See [stats::rt()] for more information.
+#'
+#' The **triangular** distribution requires the theta, min, and max parameters. There is no default value for theta, but the other default values are min = 0 and max = 1. See [VGAM::rtriangle()] for more information.
+#'
+#' The **uniform** distribution uses the min and max parameters. The default values are min = 0 and max = 1. See [stats::runif()] for more information.
+#'
+#' The **Weibull** distribution requires the alpha shape and scale parameter. There is no default value for alpha shape, but the default value for scale is 1. See [stats::rweibull()] for more information.
 #'
 #' @param distribution A character vector to identify which distributional shape to sample. Options include `beta,` `cauchy,` `chi-squared,` `exponential,` `f,` `gamma,` `laplace,` `logistic,` `log normal,` `normal,` `t,` `triangular,` `uniform,` and `weibull.`
 #' @param n A numeric vector for the sample size. The default value is 1000.
 #' @param seed An optional numeric vector to use in set.seed()
 #' @param alpha_shape A non-negative numeric vector required for the shape of the beta, gamma, and Weibull distributions.
 #' @param beta_shape A non-negative numeric vector required for the shape of the beta distribution.
-#' @param location A numeric vector for the location of the Cauchy, Laplace, and logistic distributions. The default value is 0.
-#' @param scale A numeric vector for the scale of the Cauchy, Laplace, logistic, and Weibull distributions. The default value is 1.
+#' @param location A numeric vector for the location of the Cauchy, Laplace, and logistic distributions.
+#' @param scale A numeric vector for the scale of the Cauchy, Laplace, logistic, and Weibull distributions.
 #' @param df A numeric vector required for the degrees of freedom of the chi-squared, F, and t distributions.
 #' @param df2 A numeric vector required for the degrees of freedom of the F distribution.
-#' @param rate A numeric vector for the rate of the exponential and gamma distributions. The default value is 1.
-#' @param mean_log A numeric vector for the mean (on the log scale) of the log normal distribution. The default value is 0.
-#' @param sd_log A numeric vector for the standard deviation (on the log scale) of the log normal distribution. The default value is 1.
-#' @param mean A numeric vector for the mean of the normal distribution. The default value is 0.
-#' @param sd A numeric vector for the standard deviation of the normal distribution. The default value is 1.
+#' @param rate A numeric vector for the rate of the exponential and gamma distributions.
+#' @param mean_log A numeric vector for the mean (on the log scale) of the log normal distribution.
+#' @param sd_log A numeric vector for the standard deviation (on the log scale) of the log normal distribution.
+#' @param mean A numeric vector for the mean of the normal distribution.
+#' @param sd A numeric vector for the standard deviation of the normal distribution.
 #' @param theta A numeric vector required for the theta of the triangular distribution.
-#' @param min A numeric vector for the minimum value of the triangular and uniform distributions. The default value is 0.
-#' @param max A numeric vector for the maximum value of the triangular and uniform distributions. The default value is 1.
+#' @param min A numeric vector for the minimum value of the triangular and uniform distributions.
+#' @param max A numeric vector for the maximum value of the triangular and uniform distributions.
 #'
-#' @return A list of `data:` a vector of length n containing the generated values, and `summary:` a descriptive matrix of input and sample values of the specified distribution's parameters.
-#'
-#' @examples
-#' generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
-#'
-#' @examples
-#' generate_distribution(distribution = "cauchy")
-#'
-#' @examples
-#' generate_distribution(distribution = "chi-squared", df = 3)
-#'
-#' @examples
-#' generate_distribution(distribution = "exponential")
-#'
-#' @examples
-#' generate_distribution(distribution = "f", df = 4, df2 = 30)
-#'
-#' @examples
-#' generate_distribution(distribution = "gamma", alpha_shape = 3)
+#' @return A list of
+#' * `data`, a vector of length n containing the generated values
+#' * `summary`, a descriptive matrix of input and sample values of the specified distribution's parameters
 #'
 #' @examples
 #' generate_distribution(distribution = "laplace")
 #'
 #' @examples
-#' generate_distribution(distribution = "logistic")
+#' generate_distribution(distribution = "gamma", alpha_shape = 3)
 #'
 #' @examples
-#' generate_distribution(distribution = "log normal")
-#'
-#' @examples
-#' generate_distribution(distribution = "normal")
-#'
-#' @examples
-#' generate_distribution(distribution = "t", df = 2)
-#'
-#' @examples
-#' generate_distribution(distribution = "triangular", theta = 1, min = 0, max = 2)
-#'
-#' @examples
-#' generate_distribution(distribution = "uniform")
-#'
-#' @examples
-#' generate_distribution(distribution = "weibull", alpha_shape = 1)#'
+#' generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
 #'
 #' @export
 

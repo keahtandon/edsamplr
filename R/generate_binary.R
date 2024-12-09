@@ -1,15 +1,18 @@
 #' Generate samples of binary data
 #'
 #' @description
-#' generate_binary() is function to generate sample binary data.
+#' `generate_binary()` is function to generate sample binary data.
 #'
 #' @param k A numeric vector for the number of variables. The default value is 1.
 #' @param n A numeric vector for the sample size. The default value is 100.
-#' @param p A numeric vector for the proportion of successes. The default value is 0.5. If k>1, you can provide separate proportion values for each k.
+#' @param p A numeric vector for the proportion of successes. The default value is 0.5. If k > 1, you can provide separate proportion values for each k.
 #' @param group_names An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.
 #' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
 #'
-#' @return A list containing a data frame ("sample") with n rows and k columns, a matrix ("summary") of the sample size, number of successes, proportion statistic, and proportion parameter for each variable, and a matrix ("freq.table") of the frequencies of successes and failures for each variable.
+#' @return A list containing
+#' * `sample`, a data frame with n rows and k columns
+#' * `summary`, a matrix of the sample size, number of successes, proportion statistic, and proportion parameter for each variable, and
+#' * `freq.table`, a matrix of the frequencies of successes and failures for each variable
 #'
 #' @examples
 #' generate_binary()
@@ -18,7 +21,7 @@
 #' generate_binary(k = 2, p = c(0.5, 0.7))
 #'
 #' @examples
-#' generate_binary(group_names = c("success", "fail"))#'
+#' generate_binary(group_names = c("success", "fail"))
 #'
 #' @export
 

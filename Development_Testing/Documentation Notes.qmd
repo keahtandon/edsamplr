@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-``` {r}
+```{r}
 
 k <- 1
 n <- 100
@@ -17,13 +17,24 @@ cor <- diag(1, k)
 test <- headrick_method(k = k, n = n, mean = mean, var = var, 
                 skew = skew, kurtosis = kurtosis)
 
-generate_correlated(n = n, mean = mean, var = var, skew = skew, kurt = kurtosis,
-                    replication = 2)
+generate_correlated(n = 1000, mean = 0, var = 1, 
+                    skew = 0, kurt = 0,
+                    replication = 1)
 
 ```
 
-``` {r}
+```{r}
 
 generate_distribution(distribution = "weibull", alpha_shape = 1)
 
 ```
+
+
+```{r}
+
+generate_correlated(n = 1000, mean = 0, var = 1, 
+                    skew = 0, kurt = 0,
+                    replication = 1)
+
+```
+

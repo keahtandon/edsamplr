@@ -37,65 +37,79 @@ generate_distribution(
 
 \item{beta_shape}{A non-negative numeric vector required for the shape of the beta distribution.}
 
-\item{location}{A numeric vector for the location of the Cauchy, Laplace, and logistic distributions. The default value is 0.}
+\item{location}{A numeric vector for the location of the Cauchy, Laplace, and logistic distributions.}
 
-\item{scale}{A numeric vector for the scale of the Cauchy, Laplace, logistic, and Weibull distributions. The default value is 1.}
+\item{scale}{A numeric vector for the scale of the Cauchy, Laplace, logistic, and Weibull distributions.}
 
 \item{df}{A numeric vector required for the degrees of freedom of the chi-squared, F, and t distributions.}
 
 \item{df2}{A numeric vector required for the degrees of freedom of the F distribution.}
 
-\item{rate}{A numeric vector for the rate of the exponential and gamma distributions. The default value is 1.}
+\item{rate}{A numeric vector for the rate of the exponential and gamma distributions.}
 
-\item{mean_log}{A numeric vector for the mean (on the log scale) of the log normal distribution. The default value is 0.}
+\item{mean_log}{A numeric vector for the mean (on the log scale) of the log normal distribution.}
 
-\item{sd_log}{A numeric vector for the standard deviation (on the log scale) of the log normal distribution. The default value is 1.}
+\item{sd_log}{A numeric vector for the standard deviation (on the log scale) of the log normal distribution.}
 
-\item{mean}{A numeric vector for the mean of the normal distribution. The default value is 0.}
+\item{mean}{A numeric vector for the mean of the normal distribution.}
 
-\item{sd}{A numeric vector for the standard deviation of the normal distribution. The default value is 1.}
+\item{sd}{A numeric vector for the standard deviation of the normal distribution.}
 
 \item{theta}{A numeric vector required for the theta of the triangular distribution.}
 
-\item{min}{A numeric vector for the minimum value of the triangular and uniform distributions. The default value is 0.}
+\item{min}{A numeric vector for the minimum value of the triangular and uniform distributions.}
 
-\item{max}{A numeric vector for the maximum value of the triangular and uniform distributions. The default value is 1.}
+\item{max}{A numeric vector for the maximum value of the triangular and uniform distributions.}
 }
 \value{
-A list of \verb{data:} a vector of length n containing the generated values, and \verb{summary:} a descriptive matrix of input and sample values of the specified distribution's parameters.
+A list of
+\itemize{
+\item \code{data}, a vector of length n containing the generated values
+\item \code{summary}, a descriptive matrix of input and sample values of the specified distribution's parameters
+}
 }
 \description{
-generate_distribution() is a wrapper function for generating sample data from named continuous distributions.
+\code{generate_distribution()} is a wrapper function for generating sample data from named continuous distributions.
 
-The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull.
+The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gamma, Laplace, logistic, log normal, normal, t, triangular, uniform, and Weibull. See additional details below for distribution parameters and default values.
 }
+\section{Distributional Shapes & Default Values}{
+
+
+The \strong{beta} distribution requires the alpha and beta shape parameters. There are no default values for this distribution. See \code{\link[stats:Beta]{stats::rbeta()}} for more information.
+
+The \strong{Cauchy} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[stats:Cauchy]{stats::rcauchy()}} for more information.
+
+The \strong{chi-squared} distribution requires the df parameter. There is no default value for this distribution. See \code{\link[stats:Chisquare]{stats::rchisq()}} for more information.
+
+The \strong{exponential} distribution uses the rate parameter, which has a default value of 1. See \code{\link[stats:Exponential]{stats::rexp()}} for more information.
+
+The \strong{F} distribution requires the df and df2 parameters. There are no default values for this distribution. See \code{\link[stats:Fdist]{stats::rf()}} for more information.
+
+The \strong{gamma} distribution requires the alpha shape and rate parameter. There is no default value for alpha shape, but the default value for rate is 1. See \code{\link[stats:GammaDist]{stats::rgamma()}} for more information.
+
+The \strong{Laplace} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[VGAM:laplaceUC]{VGAM::rlaplace()}} for more information.
+
+The \strong{logistic} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[stats:Logistic]{stats::rlogis()}} for more information.
+
+The \strong{log normal} distribution uses the mean log and sd log parameters. The default values are mean log = 0 and sd log = 1. See \code{\link[stats:Lognormal]{stats::rlnorm()}} for more information.
+
+The \strong{normal} distribution uses the mean and sd parameters. The default values are mean = 0 and sd = 1. See \code{\link[stats:Normal]{stats::rnorm()}} for more information.
+
+The \strong{t} distribution requires the df parameter. There is no default value for this distribution. See \code{\link[stats:TDist]{stats::rt()}} for more information.
+
+The \strong{triangular} distribution requires the theta, min, and max parameters. There is no default value for theta, but the other default values are min = 0 and max = 1. See \code{\link[VGAM:triangleUC]{VGAM::rtriangle()}} for more information.
+
+The \strong{uniform} distribution uses the min and max parameters. The default values are min = 0 and max = 1. See \code{\link[stats:Uniform]{stats::runif()}} for more information.
+
+The \strong{Weibull} distribution requires the alpha shape and scale parameter. There is no default value for alpha shape, but the default value for scale is 1. See \code{\link[stats:Weibull]{stats::rweibull()}} for more information.
+}
+
 \examples{
-generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
-
-generate_distribution(distribution = "cauchy")
-
-generate_distribution(distribution = "chi-squared", df = 3)
-
-generate_distribution(distribution = "exponential")
-
-generate_distribution(distribution = "f", df = 4, df2 = 30)
+generate_distribution(distribution = "laplace")
 
 generate_distribution(distribution = "gamma", alpha_shape = 3)
 
-generate_distribution(distribution = "laplace")
-
-generate_distribution(distribution = "logistic")
-
-generate_distribution(distribution = "log normal")
-
-generate_distribution(distribution = "normal")
-
-generate_distribution(distribution = "t", df = 2)
-
-generate_distribution(distribution = "triangular", theta = 1, min = 0, max = 2)
-
-generate_distribution(distribution = "uniform")
-
-generate_distribution(distribution = "weibull", alpha_shape = 1)#'
+generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
 
 }

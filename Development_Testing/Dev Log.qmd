@@ -4,6 +4,4 @@ format: html
 editor: visual
 ---
 
-examples and return for generate_binary()
 
-examples for generate_distribution()
