@@ -114,7 +114,7 @@ proportions_loop <- function(sample_rep, sample_n, sample_p,
 }
 
 categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
-                             sample_group_prop, sample_group_names, groups, k,
+                             sample_group_prop, sample_group_names, k, p,
                              replication) {
   if (replication > 1) {
     output <- vector("list", replication)
@@ -154,12 +154,12 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
       summary_rownames <- NULL
 
-      summary <- matrix(NA, nrow = 2 * k, ncol = max(groups) + 2)
+      summary <- matrix(NA, nrow = 2 * p, ncol = max(k) + 2)
 
       input_counter <- 1
       sample_counter <- 2
 
-      for (i in 1:k) {
+      for (i in 1:p) {
         freq_table <- table(data[, i])
 
         prop_table <- prop.table(freq_table)
@@ -180,7 +180,7 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
         summary[sample_counter, ] <- sample_row
 
-        summary_rownames <- c(summary_rownames, paste("input k", i), paste("sample k", i))
+        summary_rownames <- c(summary_rownames, paste0("input p", i), paste0("sample p", i))
 
         input_counter <- input_counter + 2
         sample_counter <- sample_counter + 2
@@ -188,7 +188,7 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
       rownames(summary) <- summary_rownames
 
-      colnames(summary) <- c("groups", "n", paste("group", seq(1:max(groups))))
+      colnames(summary) <- c("k", "n", paste0("k", seq(1:max(k))))
 
       inter_output <- list(sample = data, proportion_summary = summary)
 
@@ -229,12 +229,12 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
     summary_rownames <- NULL
 
-    summary <- matrix(NA, nrow = 2 * k, ncol = max(groups) + 2)
+    summary <- matrix(NA, nrow = 2 * p, ncol = max(k) + 2)
 
     input_counter <- 1
     sample_counter <- 2
 
-    for (i in 1:k) {
+    for (i in 1:p) {
       freq_table <- table(data[, i])
 
       prop_table <- prop.table(freq_table)
@@ -255,7 +255,7 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
       summary[sample_counter, ] <- sample_row
 
-      summary_rownames <- c(summary_rownames, paste("input k", i), paste("sample k", i))
+      summary_rownames <- c(summary_rownames, paste0("input p", i), paste0("sample p", i))
 
       input_counter <- input_counter + 2
       sample_counter <- sample_counter + 2
@@ -263,7 +263,7 @@ categorical_loop <- function(sample_rep, sample_group_rep, sample_n_rep,
 
     rownames(summary) <- summary_rownames
 
-    colnames(summary) <- c("groups", "n", paste("group", seq(1:max(groups))))
+    colnames(summary) <- c("k", "n", paste0("k", seq(1:max(k))))
 
     output <- list(sample = data, proportion_summary = summary)
   }

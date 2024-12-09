@@ -5,45 +5,44 @@
 \title{Generate samples of categorical data}
 \usage{
 generate_categorical(
-  k = 1,
+  p = 1,
   n = 100,
-  groups = 1,
-  group_prop = "equal",
-  group_names = "default",
+  k = 1,
+  k_prop = "equal",
+  k_names = "default",
   replication = 1
 )
 }
 \arguments{
-\item{k}{A numeric vector for the number of variables. The default value is 1.}
+\item{p}{A numeric vector for the number of variables. The default value is 1.}
 
 \item{n}{A numeric vector for the sample size. The default value is 100.}
 
-\item{groups}{A numeric vector for the number of groups within each variable. The default value is 1. If k>1, you can provide separate group numbers for each k.}
+\item{k}{A numeric vector for the number of groups within each variable. The default value is 1. If p>1, you can provide separate group numbers for each p.}
 
-\item{group_prop}{A vector for the proportion of each group in the population. The default value is "equal". For unequal proportions, provide a concatenated vector the same length as the number of groups. If k>1, you can provide separate sets of proportions for each k.}
+\item{k_prop}{A vector for the proportion of each group in the population. The default value is "equal". For unequal proportions, provide a concatenated vector the same length as the number of groups (k). If p>1, you can provide separate sets of proportions for each p.}
 
-\item{group_names}{An optional character vector for naming successes and failures. The default values are 1:groups.}
+\item{k_names}{An optional character vector for naming successes and failures. The default values are 1:k.}
 
 \item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
 }
 \value{
-A list containing a data frame ("sample") with n rows and k columns and a matrix ("proportion_summary") of the input and sample proportions for each group and variable.
+A list containing a data frame ("sample") with n rows and p columns and a matrix ("proportion_summary") of the input and sample proportions for each group and variable.
 }
 \description{
-\code{generate_categorical()} is function to generate k variables of sample categorical data with j groups.
+\code{generate_categorical()} is function to generate n variables of sample categorical data with k groups.
 }
 \examples{
 generate_categorical()
 
-generate_categorical(groups = 4)
+generate_categorical(k = 4)
 
-generate_categorical(groups = 4, group_names = c("freshman", "sophomore", "junior", "senior"))
+generate_categorical(k = 4, k_names = c("freshman", "sophomore", "junior", "senior"))
 
+generate_categorical(k = 4, k_prop = c(0.25, 0.5, 0.1, 0.15))
 
-generate_categorical(groups = 4, group_prop = c(0.25, 0.5, 0.1, 0.15))
+generate_categorical(p = 2, k = c(2, 3), k_prop = c(0.3, 0.7, 0.2, 0.2, 0.6))
 
-generate_categorical(k = 2, groups = c(2, 3), group_prop = c(0.3, 0.7, 0.2, 0.2, 0.6))
-
-generate_categorical(k = 2, groups = 2, group_prop = c(0.3, 0.7))
+generate_categorical(p = 2, k = 2, k_prop = c(0.3, 0.7))
 
 }

@@ -30,7 +30,7 @@ generate_correlated(
 
 \item{slope}{A numeric vector for the slope of the regression line. The default value is 0.}
 
-\item{r}{A numeric vector for the correlation between the variables. The default value is 0.5}
+\item{r}{A numeric vector for the correlation between the variables. The default value is 0.5.}
 
 \item{summary}{A logical vector for whether the return should include summary statistics. The default value is TRUE.}
 
@@ -39,10 +39,10 @@ generate_correlated(
 \item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
 }
 \value{
-If summary=TRUE, a list containing the correlation of the sample, the slope of the sample, a data frame ("sample") with n rows and 2 columns, and a matrix ("summary") of the input parameters and descriptive statistics. If summary=FALSE, a data frame with n rows and 2 columns.
+If summary = TRUE, a list containing the correlation of the sample, the slope of the sample, a data frame ("sample") with n rows and 2 columns, and a matrix ("summary") of the input parameters and descriptive statistics. If summary=FALSE, a data frame with n rows and 2 columns.
 }
 \description{
-generate_correlated() is a function to generate samples of correlated quantitative data with specified first four moments and specified slope.
+\code{generate_correlated()} is a function to generate samples of correlated quantitative data with specified first four moments and specified slope.
 }
 \examples{
 generate_correlated()

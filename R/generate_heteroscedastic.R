@@ -1,10 +1,24 @@
+#' Generate samples of heteroscedastic data
+#'
+#' @description
+#' `generate_heteroscedastic()` is a function to generate samples of data with specified degree of heteroscedasticity
+#'
+#' @param n A numeric vector for the sample size. The default value is 1000.
+#' @param degree A numeric vector for the degree of heteroscedasticity, in which 1 is homoscedastic and 5 is extremely heteroscedastic.
+#'
+#' @return A data frame with n rows and 2 columns
+#'
+#' @examples
+#' test <- generate_heteroscedastic(degree = 4)
+#' model <- lm(v2 ~ v1, data = test)
+#' plot(model, 2)
+#'
+#' @examples
+#' test <- generate_heteroscedastic(n = 20, degree = 2)
+#' model <- lm(v2 ~ v1, data = test)
+#' plot(model, 2)
+#'
 #' @export
-
-# This is a function to generate a two variable dataset that demonstrates the
-# spectrum of homoscedasticity to heteroscedasticity.
-
-# Degree of 1 is homoscedastic, 2 is very mildly heteroscedastic,
-# 3 is moderately heteroscedastic, 4 is very heteroscedastic, and 5 is extremely heteroscedastic.
 
 generate_heteroscedastic <- function(n = 1000, degree) {
   degree_range <- c(

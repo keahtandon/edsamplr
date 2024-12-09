@@ -4,7 +4,7 @@
 # This is a function to fill in moments for multiple samples as needed.
 # It exports to k_quantitative_H.
 
-moment_fill <- function(k, mean, var, skew, kurt, slope, r, effect_size, use_effect_size, use_slope) {
+moment_fill <- function(k, mean, var, skew, kurt, slope, r, effect_size, use_effect_size, use_slope, use_cor) {
   if (k > 1) {
     # Variance
 
@@ -56,7 +56,7 @@ moment_fill <- function(k, mean, var, skew, kurt, slope, r, effect_size, use_eff
 
     # Correlation
 
-    if (use_slope == TRUE) {
+    if (use_cor == TRUE) {
       if (length(r) == 1) {
         r_matrix <- diag(nrow = k)
 

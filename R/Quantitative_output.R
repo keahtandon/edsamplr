@@ -8,7 +8,8 @@ quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
                                use_effect_size, group_names, decimals, replication) {
   moments <- moment_fill(k, mean, var, skew, kurt,
     slope = NA, r = NA,
-    effect_size, use_effect_size, use_slope = FALSE
+    effect_size, use_effect_size, use_slope = FALSE,
+    use_cor = FALSE
   )
 
   if (replication > 1) {
@@ -61,7 +62,8 @@ quant_no_summary <- function(k, n, mean, var, skew, kurt, effect_size,
                              use_effect_size, group_names, decimals, replication) {
   moments <- moment_fill(k, mean, var, skew, kurt,
     slope = NA, r = NA,
-    effect_size, use_effect_size, use_slope = FALSE
+    effect_size, use_effect_size, use_slope = FALSE,
+    use_cor = FALSE
   )
 
   if (replication > 1) {
@@ -106,7 +108,8 @@ matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
                                  use_effect_size, decimals, replication) {
   moments <- moment_fill(
     k = 2, mean, var, skew, kurt, slope = NA, r,
-    effect_size, use_effect_size, use_slope = FALSE
+    effect_size, use_effect_size, use_slope = FALSE,
+    use_cor = TRUE
   )
 
   if (replication > 1) {
@@ -163,7 +166,8 @@ matched_no_summary <- function(n, mean, var, skew, kurt, effect_size,
                                r, use_effect_size, decimals, replication) {
   moments <- moment_fill(
     k = 2, mean, var, skew, kurt, slope = NA, r,
-    effect_size, use_effect_size, use_slope = FALSE
+    effect_size, use_effect_size, use_slope = FALSE,
+    use_cor = TRUE
   )
 
   if (replication > 1) {
@@ -208,7 +212,8 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
                                replication) {
   moments <- moment_fill(
     k = 2, mean, var, skew, kurt, slope, r,
-    use_effect_size = FALSE, use_slope = TRUE
+    use_effect_size = FALSE, use_slope = TRUE,
+    use_cor = TRUE
   )
 
   if (replication > 1) {
@@ -271,7 +276,8 @@ slope_no_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
                              replication) {
   moments <- moment_fill(
     k = 2, mean, var, skew, kurt, slope, r,
-    use_effect_size = FALSE, use_slope = TRUE
+    use_effect_size = FALSE, use_slope = TRUE,
+    use_cor = TRUE
   )
 
   if (replication > 1) {
