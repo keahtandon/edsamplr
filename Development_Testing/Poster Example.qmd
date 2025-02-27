@@ -1,0 +1,181 @@
+---
+title: "Poster Example"
+format: html
+---
+
+```{r}
+#| include: false
+
+rm(list = ls())
+
+library(devtools)
+library(tidyverse)
+library(gt)
+
+load_all()
+
+```
+
+
+```{r}
+#| fig-width: 14
+#| fig-height: 5
+
+test <- round(generate_heteroscedastic(degree = 5),2)
+test2 <- round(generate_heteroscedastic(degree = 5),2)
+test3 <- round(generate_heteroscedastic(degree = 5),2)
+
+test %>%
+  ggplot(aes(sample = v2)) +
+  stat_qq() +
+  stat_qq_line() +
+  theme_classic(base_size = 45) +
+  labs(x = "Theoretical",
+       y = "Sample")
+  
+
+```
+
+
+```{r}
+
+#library(edsamplr)
+#library(tidyverse)
+
+set.seed(12345)
+
+sample_data2 <- 
+  generate_quantitative(
+    k = 12, n = 50,
+    mean = c(12.0, 27.4, 7.0, 16.5, 5.0, 5.0, 
+             2.2, 5.6, 17.5, 17.4, 10.7, 10.0),
+    k_names = paste(rep(c("Control", "Experimental"), 
+                    times = 6), 
+                    rep(1:6, each = 2), 
+                    sep = "_"),
+                    decimals = 0,
+                    summary = FALSE) %>%
+  separate_wider_delim(Group, 
+                       delim = "_",
+                       names = c("Condition", 
+                                 "Grade")) %>%
+  rename(Gain = Value)
+
+```
+
+```{r}
+
+#library(edsamplr)
+#library(tidyverse)
+
+set.seed(12345)
+
+sample_data <- 
+  generate_quantitative(
+    k = 6, 
+    n = 50,
+    mean = c(12.0, 27.4, 7.0, 
+             16.5, 5.0, 5.0),
+    k_names = paste(
+      rep(c("Control", "Experimental"), 
+          times = 3), 
+      rep(1:3, each = 2), 
+      sep = "_"),
+    decimals = 0,
+    summary = FALSE) %>%
+  
+  separate_wider_delim(Group, 
+    delim = "_",
+    names = c("Condition", "Grade")) %>%
+  
+  rename(Gain = Value)
+
+```
+
+
+```{r}
+
+set.seed(15423)
+
+sample_data %>%
+  slice_sample(n = 8) %>%
+  arrange(Grade, Condition) %>%
+  gt() %>%
+  tab_header(title = md("Random Sample of Simulated<br>
+                        Data from Pygmalion Study"))
+
+
+```
+
+
+``` {r}
+
+sample_data %>%
+  group_by(Grade, Condition) %>%
+  summarise(Mean = mean(Gain),
+            .groups = "drop") %>%
+  pivot_wider(names_from = Condition, values_from = Mean) %>%
+  gt(rowname_col = "Grade") %>%
+  tab_header(title = md("Means of Simulated Data Based on <br>
+                        Pygmalion Study Mean Gain Scores <br>
+                        by Condition and Grade Level"))
+
+
+```
+
+```{r}
+
+library(DiagrammeR)
+
+grViz("
+      digraph vertical_workflow {
+      
+      # Define node shape and style     
+      
+      node [shape = box, style = filled, color = '#466a9f', fontcolor = white]
+      
+      # Define nodes
+      A [label = 'Search for articles containing a quantitative comparison of two groups']     
+      B [label = 'Check to see if any articles have full data available']
+
+      G [label = 'Provide student with authentic research data experiences']     
+      
+      node [shape = box, style = filled, color = '#ced318', fontcolor = '#363636']
+      
+      C [label = <<b><i>Yay! Data available</i></b><br /><br />Use existing data<br /> >]
+
+      node [shape = box, style = filled, color = '#cc2e40', fontcolor = white]
+      
+      D [label = <<b><i>No data readily available</i></b><br /><br />Use edsamplr to simulate data based on <br /> moments that match those in the article results>]     
+      
+      # Create edges between nodes     
+      A -> B -> C -> G [color = '#c7c7c7']
+      B -> D -> G [color = '#c7c7c7']
+      
+      # Make the layout vertical     
+      
+      rankdir=TB   
+      
+  }
+      
+")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

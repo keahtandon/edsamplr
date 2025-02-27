@@ -3,6 +3,43 @@ title: "Development Log"
 format: html
 ---
 
+In doing the Pygmalian data, I realized that I need to add an argument of unbalanced designs, right now can only do balanced
+
+
+Tasks - Dec 10 2024
+
+Goal
+
+-   roughly 50/50 stats ed and R dev (or 70/30)
+
+-   stats ed themes
+
+    -   "stats ed workflow" from Mike's initial draft
+    
+        -   give students access to "real-type" data and let them work with it (in context of study even if the data is made up)
+        -   maybe reference stats anxiety lit
+        
+    -   
+
+Keah
+
+-   process notes
+
+-   write main vignette
+
+-   look for thematic poster examples
+
+-   think about blocks to get across
+
+-   then we come together early Jan and merge
+
+-   email Kristin and Mike re funding
+
+Mike
+
+-   plan out "blocks to get across in our poster" due by Jan 3
+
+
 ### 9 December 2024
 
 -   I finished the documentation

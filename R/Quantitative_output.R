@@ -16,7 +16,7 @@ quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
     output <- vector("list", replication)
 
     for (i in 1:replication) {
-      dist <- headrick_method(
+      dist <- round(headrick_method(
         k = k, n = n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
@@ -24,7 +24,7 @@ quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
         kurtosis = as.vector(moments$moments$kurt),
         corr = moments$r,
         gam3 = NaN, gam4 = NaN
-      )
+      ), decimals)
 
       stats <- q_stats(k, moments$moments, dist)
 
@@ -35,7 +35,7 @@ quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
       output[[i]] <- inter_output
     }
   } else {
-    dist <- headrick_method(
+    dist <- round(headrick_method(
       k = k, n = n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
@@ -43,7 +43,7 @@ quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
       kurtosis = as.vector(moments$moments$kurt),
       corr = moments$r,
       gam3 = NaN, gam4 = NaN
-    )
+    ), decimals)
 
     stats <- q_stats(k, moments$moments, dist)
 
@@ -70,7 +70,7 @@ quant_no_summary <- function(k, n, mean, var, skew, kurt, effect_size,
     output <- vector("list", replication)
 
     for (i in 1:replication) {
-      dist <- headrick_method(
+      dist <- round(headrick_method(
         k = k, n = n,
         mean = as.vector(moments$moments$mean),
         var = as.vector(moments$moments$var),
@@ -78,14 +78,14 @@ quant_no_summary <- function(k, n, mean, var, skew, kurt, effect_size,
         kurtosis = as.vector(moments$moments$kurt),
         corr = moments$r,
         gam3 = NaN, gam4 = NaN
-      )
+      ), decimals)
 
       inter_output <- data_restructure(k, dist, group_names)
 
       output[[i]] <- inter_output
     }
   } else {
-    dist <- headrick_method(
+    dist <- round(headrick_method(
       k = k, n = n,
       mean = as.vector(moments$moments$mean),
       var = as.vector(moments$moments$var),
@@ -93,7 +93,7 @@ quant_no_summary <- function(k, n, mean, var, skew, kurt, effect_size,
       kurtosis = as.vector(moments$moments$kurt),
       corr = moments$r,
       gam3 = NaN, gam4 = NaN
-    )
+    ), decimals)
 
     output <- data_restructure(k, dist, group_names)
   }
