@@ -5,17 +5,39 @@
 # It exports to k_quantitative_H and provides summary statistics.
 
 quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
-                               use_effect_size, group_names, decimals, replication) {
+                               use_effect_size, group_names, decimals,
+                               seed, replication) {
   moments <- moment_fill(k, mean, var, skew, kurt,
     slope = NA, r = NA,
     effect_size, use_effect_size, use_slope = FALSE,
     use_cor = FALSE
   )
 
-  if (replication > 1) {
-    output <- vector("list", replication)
+  if (length(n) == 1) {
 
-    for (i in 1:replication) {
+    if (replication > 1) {
+      output <- vector("list", replication)
+
+      for (i in 1:replication) {
+        dist <- round(headrick_method(
+          k = k, n = n,
+          mean = as.vector(moments$moments$mean),
+          var = as.vector(moments$moments$var),
+          skew = as.vector(moments$moments$skew),
+          kurtosis = as.vector(moments$moments$kurt),
+          corr = moments$r,
+          gam3 = NaN, gam4 = NaN
+        ), decimals)
+
+        stats <- q_stats(k, n, moments$moments, dist)
+
+        dist <- data_restructure(k, dist, group_names)
+
+        inter_output <- list(summary = stats, sample = dist)
+
+        output[[i]] <- inter_output
+      }
+    } else {
       dist <- round(headrick_method(
         k = k, n = n,
         mean = as.vector(moments$moments$mean),
@@ -26,30 +48,88 @@ quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
         gam3 = NaN, gam4 = NaN
       ), decimals)
 
-      stats <- q_stats(k, moments$moments, dist)
+      stats <- q_stats(k, n, moments$moments, dist)
 
       dist <- data_restructure(k, dist, group_names)
 
-      inter_output <- list(summary = stats, sample = dist)
-
-      output[[i]] <- inter_output
+      output <- list(summary = stats, sample = dist)
     }
+
   } else {
-    dist <- round(headrick_method(
-      k = k, n = n,
-      mean = as.vector(moments$moments$mean),
-      var = as.vector(moments$moments$var),
-      skew = as.vector(moments$moments$skew),
-      kurtosis = as.vector(moments$moments$kurt),
-      corr = moments$r,
-      gam3 = NaN, gam4 = NaN
-    ), decimals)
 
-    stats <- q_stats(k, moments$moments, dist)
+    if (replication > 1) {
+      output <- vector("list", replication)
 
-    dist <- data_restructure(k, dist, group_names)
+      for (i in 1:replication) {
 
-    output <- list(summary = stats, sample = dist)
+        max_ln <- max(n)
+        dist_list <- list()
+
+        for (i in 1:length(n)) {
+
+          set.seed(seed)
+          inter_dist <- round(headrick_method(
+            k = k, n = n[i],
+            mean = as.vector(moments$moments$mean),
+            var = as.vector(moments$moments$var),
+            skew = as.vector(moments$moments$skew),
+            kurtosis = as.vector(moments$moments$kurt),
+            corr = moments$r,
+            gam3 = NaN, gam4 = NaN
+          ), decimals)
+
+          inter_dist <- inter_dist[[i]]
+
+          inter_dist_padded <- c(inter_dist, rep(NA, max_ln - length(inter_dist)))
+
+          dist_list[[paste0("X", i)]] <- inter_dist_padded
+
+          dist <- as.data.frame(dist_list)
+
+        }
+
+        stats <- q_stats(k, n, moments$moments, dist)
+
+        dist <- data_restructure(k, dist, group_names)
+
+        inter_output <- list(summary = stats, sample = dist)
+
+        output[[i]] <- inter_output
+      }
+    } else {
+      max_ln <- max(n)
+      dist_list <- list()
+
+      for (i in 1:length(n)) {
+
+        set.seed(seed)
+        inter_dist <- round(headrick_method(
+          k = k, n = n[i],
+          mean = as.vector(moments$moments$mean),
+          var = as.vector(moments$moments$var),
+          skew = as.vector(moments$moments$skew),
+          kurtosis = as.vector(moments$moments$kurt),
+          corr = moments$r,
+          gam3 = NaN, gam4 = NaN
+        ), decimals)
+
+        inter_dist <- inter_dist[[i]]
+
+        inter_dist_padded <- c(inter_dist, rep(NA, max_ln - length(inter_dist)))
+
+        dist_list[[paste0("X", i)]] <- inter_dist_padded
+
+        dist <- as.data.frame(dist_list)
+
+      }
+
+      stats <- q_stats(k, n, moments$moments, dist)
+
+      dist <- data_restructure(k, dist, group_names)
+
+      output <- list(summary = stats, sample = dist)
+    }
+
   }
 
   return(output)
@@ -59,17 +139,34 @@ quant_with_summary <- function(k, n, mean, var, skew, kurt, effect_size,
 # It exports to k_quantitative_H with just the sample data.
 
 quant_no_summary <- function(k, n, mean, var, skew, kurt, effect_size,
-                             use_effect_size, group_names, decimals, replication) {
+                             use_effect_size, group_names, decimals,
+                             seed, replication) {
   moments <- moment_fill(k, mean, var, skew, kurt,
-    slope = NA, r = NA,
-    effect_size, use_effect_size, use_slope = FALSE,
-    use_cor = FALSE
+                         slope = NA, r = NA,
+                         effect_size, use_effect_size, use_slope = FALSE,
+                         use_cor = FALSE
   )
 
-  if (replication > 1) {
-    output <- vector("list", replication)
+  if (length(n) == 1) {
+    if (replication > 1) {
+      output <- vector("list", replication)
 
-    for (i in 1:replication) {
+      for (i in 1:replication) {
+        dist <- round(headrick_method(
+          k = k, n = n,
+          mean = as.vector(moments$moments$mean),
+          var = as.vector(moments$moments$var),
+          skew = as.vector(moments$moments$skew),
+          kurtosis = as.vector(moments$moments$kurt),
+          corr = moments$r,
+          gam3 = NaN, gam4 = NaN
+        ), decimals)
+
+        inter_output <- data_restructure(k, dist, group_names)
+
+        output[[i]] <- inter_output
+      }
+    } else {
       dist <- round(headrick_method(
         k = k, n = n,
         mean = as.vector(moments$moments$mean),
@@ -80,29 +177,82 @@ quant_no_summary <- function(k, n, mean, var, skew, kurt, effect_size,
         gam3 = NaN, gam4 = NaN
       ), decimals)
 
-      inter_output <- data_restructure(k, dist, group_names)
-
-      output[[i]] <- inter_output
+      output <- data_restructure(k, dist, group_names)
     }
   } else {
-    dist <- round(headrick_method(
-      k = k, n = n,
-      mean = as.vector(moments$moments$mean),
-      var = as.vector(moments$moments$var),
-      skew = as.vector(moments$moments$skew),
-      kurtosis = as.vector(moments$moments$kurt),
-      corr = moments$r,
-      gam3 = NaN, gam4 = NaN
-    ), decimals)
 
-    output <- data_restructure(k, dist, group_names)
+    if (replication > 1) {
+      output <- vector("list", replication)
+
+      for (i in 1:replication) {
+        max_ln <- max(n)
+        dist_list <- list()
+
+        for (i in 1:length(n)) {
+
+          set.seed(seed)
+          inter_dist <- round(headrick_method(
+            k = k, n = n[i],
+            mean = as.vector(moments$moments$mean),
+            var = as.vector(moments$moments$var),
+            skew = as.vector(moments$moments$skew),
+            kurtosis = as.vector(moments$moments$kurt),
+            corr = moments$r,
+            gam3 = NaN, gam4 = NaN
+          ), decimals)
+
+          inter_dist <- inter_dist[[i]]
+
+          inter_dist_padded <- c(inter_dist, rep(NA, max_ln - length(inter_dist)))
+
+          dist_list[[paste0("X", i)]] <- inter_dist_padded
+
+          dist <- as.data.frame(dist_list)
+
+        }
+
+        inter_output <- data_restructure(k, dist, group_names)
+
+        output[[i]] <- inter_output
+      }
+    } else {
+      max_ln <- max(n)
+      dist_list <- list()
+
+      for (i in 1:length(n)) {
+
+        set.seed(seed)
+        inter_dist <- round(headrick_method(
+          k = k, n = n[i],
+          mean = as.vector(moments$moments$mean),
+          var = as.vector(moments$moments$var),
+          skew = as.vector(moments$moments$skew),
+          kurtosis = as.vector(moments$moments$kurt),
+          corr = moments$r,
+          gam3 = NaN, gam4 = NaN
+        ), decimals)
+
+        inter_dist <- inter_dist[[i]]
+
+        inter_dist_padded <- c(inter_dist, rep(NA, max_ln - length(inter_dist)))
+
+        dist_list[[paste0("X", i)]] <- inter_dist_padded
+
+        dist <- as.data.frame(dist_list)
+
+      }
+
+      output <- data_restructure(k, dist, group_names)
+    }
+
   }
 
   return(output)
 }
 
+
 # This is a matched pairs generation and processing function that uses rHeadrick.
-# It exports to matched_pairs_H and provides summary statistcs.
+# It exports to matched_pairs_H and provides summary statistics.
 
 matched_with_summary <- function(n, mean, var, skew, kurt, effect_size, r,
                                  use_effect_size, decimals, replication) {
@@ -231,7 +381,7 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
 
       dist <- round(dist, decimals)
 
-      stats <- q_stats(k = 2, moments$moments, dist)
+      stats <- q_stats(k = 2, n, moments$moments, dist)
 
       cor <- round(cor(dist$X1, dist$X2), decimals)
 
@@ -255,7 +405,7 @@ slope_with_summary <- function(k, n, mean, var, skew, kurt, slope, r, decimals,
 
     dist <- round(dist, decimals)
 
-    stats <- q_stats(k = 2, moments$moments, dist)
+    stats <- q_stats(k = 2, n, moments$moments, dist)
 
     cor <- round(cor(dist$X1, dist$X2), decimals)
 

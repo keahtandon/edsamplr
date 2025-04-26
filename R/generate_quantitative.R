@@ -8,12 +8,13 @@
 #' @param var A numeric vector for the population variance of the first variable. The default value is 1.
 #' @param skew A numeric vector for the population skew of the variables. Separate values of skew can be entered. The default value is 0.
 #' @param kurt A numeric vector for the population kurtosis of the variables. Separate values of kurtosis can be entered. The default value is 0.
-#' @param n A numeric vector for the sample size. The default value is 100.
+#' @param n A numeric vector for the sample size. Separate values of n can be entered for an unbalanced design. The default value is 100.
 #' @param effect_size An optional numeric vector for the standardized effect size between groups of data.
 #' @param k_names An optional character vector for naming successes and failures. The default values are 1:k.
 #' @param use_effect_size A logical vector to indicate whether to use a standardized effect size in generating data for k when k >= 2. The default value is FALSE.
 #' @param summary A logical vector for whether the return should include summary statistics. The default value is TRUE.
 #' @param decimals A numeric vector for the number of decimals to round the sample data to. The default value is 3.
+#' @param seed A numeric vector for use in generating unbalanced distributions. The default value is 1234.
 #' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
 #'
 #' @return If summary = TRUE, a list containing a matrix ("summary") of the input parameters and descriptive statistics and a data frame ("sample") with n rows and 2 columns. If summary = FALSE, a data frame with n rows and 2 columns.
@@ -27,12 +28,16 @@
 #' @examples
 #' generate_quantitative(k = 2, skew = c(0.4, 0.25))
 #'
+#' @examples
+#' generate_quantitative(k = 3, n = c(100, 150, 200))
+#'
+#'
 #' @export
 
 generate_quantitative <- function(k = 1, mean = 0, var = 1, skew = 0, kurt = 0,
                                   n = 100, effect_size = 0, k_names = seq(1:k),
                                   use_effect_size = FALSE, summary = TRUE, decimals = 3,
-                                  replication = 1) {
+                                  seed = 1234, replication = 1) {
   # Stop for missing/extraneous data
 
   if (length(k) > 1 | !(typeof(k) %in% c("double", "integer") | k != round(k))) {
@@ -91,13 +96,13 @@ generate_quantitative <- function(k = 1, mean = 0, var = 1, skew = 0, kurt = 0,
     output <- quant_with_summary(
       k, n, mean, var, skew, kurt,
       effect_size, use_effect_size, k_names, decimals,
-      replication
+      seed, replication
     )
   } else {
     output <- quant_no_summary(
       k, n, mean, var, skew, kurt,
       effect_size, use_effect_size, k_names, decimals,
-      replication
+      seed, replication
     )
   }
 

@@ -16,6 +16,7 @@ generate_quantitative(
   use_effect_size = FALSE,
   summary = TRUE,
   decimals = 3,
+  seed = 1234,
   replication = 1
 )
 }
@@ -30,7 +31,7 @@ generate_quantitative(
 
 \item{kurt}{A numeric vector for the population kurtosis of the variables. Separate values of kurtosis can be entered. The default value is 0.}
 
-\item{n}{A numeric vector for the sample size. The default value is 100.}
+\item{n}{A numeric vector for the sample size. Separate values of n can be entered for an unbalanced design. The default value is 100.}
 
 \item{effect_size}{An optional numeric vector for the standardized effect size between groups of data.}
 
@@ -41,6 +42,8 @@ generate_quantitative(
 \item{summary}{A logical vector for whether the return should include summary statistics. The default value is TRUE.}
 
 \item{decimals}{A numeric vector for the number of decimals to round the sample data to. The default value is 3.}
+
+\item{seed}{A numeric vector for use in generating unbalanced distributions. The default value is 1234.}
 
 \item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
 }
@@ -56,5 +59,8 @@ generate_quantitative()
 generate_quantitative(k = 2, effect_size = 0.3, use_effect_size = TRUE)
 
 generate_quantitative(k = 2, skew = c(0.4, 0.25))
+
+generate_quantitative(k = 3, n = c(100, 150, 200))
+
 
 }
