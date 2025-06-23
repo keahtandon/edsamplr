@@ -3,6 +3,35 @@ title: "Development Log"
 format: html
 ---
 
+**June 21**
+
+Vignette 1: Proportions of seen/unseen and 
+
+
+**June 19**
+
+other vignettes
+
+- article has no data
+
+- second example of article has no data
+
+- want to change some of data from article
+
+- conditions for valid inference not met
+
+    - showing students contrasting what happens when you have met the conditions and when you haven't
+    
+    - taking normal to skewed distribution
+
+    or - taking equal variances to unequal variances
+
+- have no article/starting from scratch
+    
+    
+Agenda on 30th
+- little odds and ends that need to be edited
+
 In doing the Pygmalian data, I realized that I need to add an argument of unbalanced designs, right now can only do balanced
 
 
