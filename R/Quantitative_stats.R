@@ -5,6 +5,8 @@
 
 q_stats <- function(k, n, moments, dist) {
 
+
+
   if (length(n) == 1) {
 
     input <- moments %>%

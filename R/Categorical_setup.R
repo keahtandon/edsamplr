@@ -8,9 +8,9 @@ sample_proportion <- function(p, k) {
   }
 }
 
-sample_n <- function(n, k) {
+sample_n <- function(n, p) {
   if (length(n) == 1) {
-    sample_n <- rep(n, k)
+    sample_n <- rep(n, p)
   } else {
     sample_n <- n
   }
@@ -26,23 +26,23 @@ sample_names <- function(group_names, k) {
   sample_names <- matrix(sample_names, nrow = k, byrow = TRUE)
 }
 
-sample_group_rep <- function(groups, k) {
-  if (length(groups) == 1) {
-    sample_group_rep <- rep(groups, k)
+sample_k_rep <- function(k, p) {
+  if (length(k) == 1) {
+    sample_k_rep <- rep(k, p)
   } else {
-    sample_group_rep <- groups
+    sample_k_rep <- k
   }
 }
 
-cat_group_names <- function(group_names, sample_group_rep, groups, k) {
+cat_group_names <- function(group_names, sample_k_rep, k, p) {
   if (length(group_names) == 1) {
     if (group_names == "default") {
       group_names <- "1"
     }
 
-    group_names <- as.vector(unlist(sapply(seq_along(sample_group_rep), function(i) rep(1:sample_group_rep[i]))))
+    group_names <- as.vector(unlist(sapply(seq_along(sample_k_rep), function(i) rep(1:sample_k_rep[i]))))
 
-    total_elements <- max(groups) * k
+    total_elements <- max(k) * p
 
     sample_group_names <- as.numeric(rep(NA, total_elements))
 
@@ -50,16 +50,16 @@ cat_group_names <- function(group_names, sample_group_rep, groups, k) {
 
     mid_counter <- 1
 
-    for (i in 1:length(sample_group_rep)) {
-      sample_group_names[final_counter:(final_counter + sample_group_rep[i] - 1)] <- group_names[mid_counter:(mid_counter + sample_group_rep[i] - 1)]
-      final_counter <- final_counter + max(groups)
-      mid_counter <- mid_counter + sample_group_rep[i]
+    for (i in 1:length(sample_k_rep)) {
+      sample_group_names[final_counter:(final_counter + sample_k_rep[i] - 1)] <- group_names[mid_counter:(mid_counter + sample_k_rep[i] - 1)]
+      final_counter <- final_counter + max(k)
+      mid_counter <- mid_counter + sample_k_rep[i]
     }
 
 
-    sample_group_names <- matrix(sample_group_names, nrow = k, ncol = max(groups), byrow = TRUE)
+    sample_group_names <- matrix(sample_group_names, nrow = p, ncol = max(k), byrow = TRUE)
   } else {
-    total_elements <- max(groups) * k
+    total_elements <- max(k) * p
 
     sample_group_names <- as.numeric(rep(NA, total_elements))
 
@@ -67,75 +67,75 @@ cat_group_names <- function(group_names, sample_group_rep, groups, k) {
 
     mid_counter <- 1
 
-    for (i in 1:length(groups)) {
-      sample_group_names[final_counter:(final_counter + groups[i] - 1)] <- group_names[mid_counter:(mid_counter + groups[i] - 1)]
-      final_counter <- final_counter + max(groups)
-      mid_counter <- mid_counter + groups[i]
+    for (i in 1:length(k)) {
+      sample_group_names[final_counter:(final_counter + k[i] - 1)] <- group_names[mid_counter:(mid_counter + k[i] - 1)]
+      final_counter <- final_counter + max(k)
+      mid_counter <- mid_counter + k[i]
     }
 
 
-    sample_group_names <- matrix(sample_group_names, nrow = k, ncol = max(groups), byrow = TRUE)
+    sample_group_names <- matrix(sample_group_names, nrow = p, ncol = max(k), byrow = TRUE)
   }
 }
 
-cat_group_prop_division <- function(group_prop, groups, k) {
-  group_prop_division <- NULL
+cat_k_prop_division <- function(k_prop, k, p) {
+  k_prop_division <- NULL
 
-  if (length(group_prop) == 1) {
+  if (length(k_prop) == 1) {
 
-    if (group_prop != "equal") {
+    if (k_prop != "equal") {
       stop("Please ensure that the proportions are listed for each group.")
-    } else if (group_prop == "equal" & length(groups) == 1) {
-        group_prop_division <- 1 / groups
+    } else if (k_prop == "equal" & length(k) == 1) {
+        k_prop_division <- 1 / k
 
-        group_prop <- rep(group_prop_division, groups)
+        k_prop <- rep(k_prop_division, k)
 
-        sample_group_prop <- matrix(rep(group_prop, k), nrow = k, byrow = TRUE)
-    } else if (group_prop == "equal" & length(groups) == k) {
-        group_prop <- rep(1 / groups, times = groups)
+        sample_k_prop <- matrix(rep(k_prop, p), nrow = p, byrow = TRUE)
+    } else if (k_prop == "equal" & length(k) == p) {
+        k_prop <- rep(1 / k, times = k)
 
-        total_elements <- max(groups) * k
+        total_elements <- max(k) * p
 
-        sample_group_prop <- as.numeric(rep(NA, total_elements))
+        sample_k_prop <- as.numeric(rep(NA, total_elements))
 
         final_counter <- 1
 
         mid_counter <- 1
 
-        for (i in 1:length(groups)) {
-          sample_group_prop[final_counter:(final_counter + groups[i] - 1)] <- group_prop[mid_counter:(mid_counter + groups[i] - 1)]
-          final_counter <- final_counter + max(groups)
-          mid_counter <- mid_counter + groups[i]
+        for (i in 1:length(k)) {
+          sample_k_prop[final_counter:(final_counter + k[i] - 1)] <- k_prop[mid_counter:(mid_counter + k[i] - 1)]
+          final_counter <- final_counter + max(k)
+          mid_counter <- mid_counter + k[i]
         }
 
-        sample_group_prop <- matrix(sample_group_prop, nrow = k, ncol = max(groups), byrow = TRUE)
+        sample_k_prop <- matrix(sample_k_prop, nrow = p, ncol = max(k), byrow = TRUE)
     }
-  }  else if (length(group_prop) == sum(groups) &
-             length(groups) %in% c(1, k) & sum(group_prop) == length(groups)) {
+  }  else if (length(k_prop) == sum(k) &
+             length(k) %in% c(1, p) & sum(k_prop) == length(k)) {
 
-               if (length(groups) == 1) {
+               if (length(k) == 1) {
 
-                 if (length(group_prop) == groups) {
-                   group_prop <- rep(group_prop, max(groups, k))
+                 if (length(k_prop) == k) {
+                   k_prop <- rep(k_prop, max(k, p))
                  }
-                  groups <- sample_group_rep(groups, k)
+                  k <- sample_k_rep(k, p)
                }
 
-      total_elements <- max(groups) * k
+      total_elements <- max(k) * p
 
-      sample_group_prop <- as.numeric(rep(NA, total_elements))
+      sample_k_prop <- as.numeric(rep(NA, total_elements))
 
       final_counter <- 1
 
       mid_counter <- 1
 
-      for (i in 1:length(groups)) {
-        sample_group_prop[final_counter:(final_counter + groups[i] - 1)] <- group_prop[mid_counter:(mid_counter + groups[i] - 1)]
-        final_counter <- final_counter + max(groups)
-        mid_counter <- mid_counter + groups[i]
+      for (i in 1:length(k)) {
+        sample_k_prop[final_counter:(final_counter + k[i] - 1)] <- k_prop[mid_counter:(mid_counter + k[i] - 1)]
+        final_counter <- final_counter + max(k)
+        mid_counter <- mid_counter + k[i]
       }
 
-    sample_group_prop <- matrix(sample_group_prop, nrow = k, ncol = max(groups), byrow = TRUE)
+    sample_k_prop <- matrix(sample_k_prop, nrow = p, ncol = max(k), byrow = TRUE)
   }
 
 

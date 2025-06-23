@@ -44,7 +44,7 @@ generate_matched(
 @return If summary = TRUE, a list containing a vector ("correlation") with the correlation between the pairs, a matrix ("summary") of the input parameters and descriptive statistics, and a data frame ("sample") with n rows and 3 columns (values from each set of the pair and the difference of X2 and X1). If summary = FALSE, a data frame with n rows and 3 columns.}
 }
 \description{
-\code{generate_matched()} is a function to generate samples of quantitative matched pair data with specified first four moments, correlation, and optional standardized effect size
+\code{generate_matched()} is a function to generate one-group samples of quantitative matched pair data with specified first four moments, correlation, and optional standardized effect size
 }
 \examples{
 generate_matched()

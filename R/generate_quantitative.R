@@ -92,19 +92,9 @@ generate_quantitative <- function(k = 1, mean = 0, var = 1, skew = 0, kurt = 0,
 
   # Generate the data/stats
 
-  if (summary == TRUE) {
-    output <- quant_with_summary(
-      k, n, mean, var, skew, kurt,
-      effect_size, use_effect_size, k_names, decimals,
-      seed, replication
-    )
-  } else {
-    output <- quant_no_summary(
-      k, n, mean, var, skew, kurt,
-      effect_size, use_effect_size, k_names, decimals,
-      seed, replication
-    )
-  }
+  output <- quantitative_output(k, n, mean, var, skew, kurt, effect_size,
+                                use_effect_size, k_names, decimals,
+                                seed, summary, replication)
 
   return(output)
 }

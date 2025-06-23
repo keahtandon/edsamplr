@@ -4,14 +4,20 @@
 \alias{generate_binary}
 \title{Generate samples of binary data}
 \usage{
-generate_binary(k = 1, n = 100, p = 0.5, group_names = c(1:0), replication = 1)
+generate_binary(
+  p = 1,
+  n = 100,
+  prop = 0.5,
+  group_names = c(1:0),
+  replication = 1
+)
 }
 \arguments{
-\item{k}{A numeric vector for the number of variables. The default value is 1.}
+\item{p}{A numeric vector for the number of variables. The default value is 1.}
 
 \item{n}{A numeric vector for the sample size. The default value is 100.}
 
-\item{p}{A numeric vector for the proportion of successes. The default value is 0.5. If k > 1, you can provide separate proportion values for each k.}
+\item{prop}{A numeric vector for the proportion of successes. The default value is 0.5. If k > 1, you can provide separate proportion values for each k.}
 
 \item{group_names}{An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.}
 
@@ -31,7 +37,7 @@ A list containing
 \examples{
 generate_binary()
 
-generate_binary(k = 2, p = c(0.5, 0.7))
+generate_binary(p = 2, prop = c(0.5, 0.7))
 
 generate_binary(group_names = c("success", "fail"))
 

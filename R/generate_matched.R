@@ -1,7 +1,7 @@
 #' Generate samples of quantitative matched pair data with correlation and optional standardized effect
 #'
 #' @description
-#' `generate_matched()` is a function to generate samples of quantitative matched pair data with specified first four moments, correlation, and optional standardized effect size
+#' `generate_matched()` is a function to generate one-group samples of quantitative matched pair data with specified first four moments, correlation, and optional standardized effect size
 #' @param n A numeric vector for the sample size. The default value is 100.
 #' @param mean A numeric vector for the population mean of the first variable. The default value is 0.
 #' @param var A numeric vector for the population variance of the first variable. The default value is 1.
