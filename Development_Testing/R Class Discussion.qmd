@@ -1,0 +1,97 @@
+---
+title: "R Class Sample"
+author: "Keah Tandon"
+format: html
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(ggplot2)
+
+```
+
+
+## Components of a Package
+
+- Functions
+
+- Documentation
+
+- Vignettes
+
+
+
+## Steps for Working on a Package
+
+```{r}
+
+#library(devtools)
+
+load_all()
+
+#check()
+
+#document()
+
+```
+
+```{r}
+
+?generate_correlated
+
+n <- 100
+mean <- 0
+var <- 1
+skew <- 0
+kurt <- 0
+slope <- 1
+r <- 0.5
+summary <- TRUE
+decimals <- 3
+replication <- 1
+
+output <- generate_correlated(n = n, mean = mean, var = var,
+                              skew = skew, kurt = kurt,
+                              slope = slope, r = r,
+                              summary = summary, decimals = decimals,
+                              replication = replication)
+
+output
+
+```
+
+```{r}
+
+data <- output$sample
+
+data %>%
+  ggplot(aes(x = X1, y = X2)) +
+  geom_point() +
+  geom_abline()
+
+```
+
+```{r}
+
+model <- lm(X2 ~ X1, data)
+
+summary(model)
+
+cor(data$X1, data$X2)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
