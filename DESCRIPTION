@@ -25,10 +25,12 @@ Imports:
     purrr,
     rlang,
     stats (>= 4.3.3),
+    stringr,
     tidyr,
     tidyselect,
     VGAM
 Suggests: 
+    gt,
     knitr,
     rmarkdown
 VignetteBuilder: knitr

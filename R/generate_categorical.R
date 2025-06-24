@@ -9,6 +9,7 @@
 #' @param k_prop A vector for the proportion of each group in the population. The default value is "equal". For unequal proportions, provide a concatenated vector the same length as the number of groups (k). If p>1, you can provide separate sets of proportions for each p.
 #' @param k_names An optional character vector for naming successes and failures (or other group types). The default values are 1:k. If you want to use the separate argument, name your groups with underscores separating the place to split.
 #' @param separate A logical vector for indicating whether to split the groups into separate columns after simulating. This only works if p = 1. The default value is FALSE.
+#' @param summary A logical vector for indicating whether to return summary statistics. The default value is TRUE.
 #' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
 #'
 #' @return A list containing a data frame ("sample") with n rows and p columns and a matrix ("proportion_summary") of the input and sample proportions for each group and variable.
@@ -34,7 +35,9 @@
 #' generate_categorical(p = 2, k = 2, k_prop = c(0.3, 0.7))
 #'
 #' @examples
-#' generate_categorical(p = 1, k = 4, k_prop = c(0.2, 0.3, 0.4, 0.1), k_names = c("freshman_female", "freshman_male", "sophomore_female", "sophomore_male"), separate = TRUE)
+#' generate_categorical(p = 1, k = 4, k_prop = c(0.2, 0.3, 0.4, 0.1),
+#' k_names = c("freshman_female", "freshman_male", "sophomore_female", "sophomore_male"),
+#' separate = TRUE)
 #'
 #'
 #' @export

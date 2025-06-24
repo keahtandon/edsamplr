@@ -10,19 +10,25 @@ generate_categorical(
   k = 1,
   k_prop = "equal",
   k_names = "default",
+  separate = FALSE,
+  summary = TRUE,
   replication = 1
 )
 }
 \arguments{
 \item{p}{A numeric vector for the number of variables. The default value is 1.}
 
-\item{n}{A numeric vector for the sample size. The default value is 100.}
+\item{n}{A numeric vector for the sample size. Separate values of n can be entered for an unbalanced design. The default value is 100.}
 
 \item{k}{A numeric vector for the number of groups within each variable. The default value is 1. If p>1, you can provide separate group numbers for each p.}
 
 \item{k_prop}{A vector for the proportion of each group in the population. The default value is "equal". For unequal proportions, provide a concatenated vector the same length as the number of groups (k). If p>1, you can provide separate sets of proportions for each p.}
 
-\item{k_names}{An optional character vector for naming successes and failures. The default values are 1:k.}
+\item{k_names}{An optional character vector for naming successes and failures (or other group types). The default values are 1:k. If you want to use the separate argument, name your groups with underscores separating the place to split.}
+
+\item{separate}{A logical vector for indicating whether to split the groups into separate columns after simulating. This only works if p = 1. The default value is FALSE.}
+
+\item{summary}{A logical vector for indicating whether to return summary statistics. The default value is TRUE.}
 
 \item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
 }
@@ -44,5 +50,10 @@ generate_categorical(k = 4, k_prop = c(0.25, 0.5, 0.1, 0.15))
 generate_categorical(p = 2, k = c(2, 3), k_prop = c(0.3, 0.7, 0.2, 0.2, 0.6))
 
 generate_categorical(p = 2, k = 2, k_prop = c(0.3, 0.7))
+
+generate_categorical(p = 1, k = 4, k_prop = c(0.2, 0.3, 0.4, 0.1),
+k_names = c("freshman_female", "freshman_male", "sophomore_female", "sophomore_male"),
+separate = TRUE)
+
 
 }

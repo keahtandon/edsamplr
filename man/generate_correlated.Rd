@@ -12,6 +12,7 @@ generate_correlated(
   kurt = 0,
   slope = 1,
   r = 0.5,
+  use_slope = TRUE,
   summary = TRUE,
   decimals = 3,
   replication = 1
@@ -22,15 +23,17 @@ generate_correlated(
 
 \item{mean}{A numeric vector for the population mean of the first variable. The default value is 0.}
 
-\item{var}{A numeric vector for the population variance of the first variable. The default value is 1.}
+\item{var}{A numeric vector for the population variance of the first variable (or both variables if you do not want to enter a slope). The default value is 1.}
 
 \item{skew}{A numeric vector for the population skew of the variables. Separate values of skew can be entered. The default value is 0.}
 
 \item{kurt}{A numeric vector for the population kurtosis of the variables. Separate values of kurtosis can be entered. The default value is 0.}
 
-\item{slope}{A numeric vector for the slope of the regression line. The default value is 0.}
+\item{slope}{An optional numeric vector for the slope of the regression line. Either enter a slope or two variances. The default value is 1.}
 
 \item{r}{A numeric vector for the correlation between the variables. The default value is 0.5.}
+
+\item{use_slope}{A logical vector for whether you are entering two variances or one variance and a slope. The defaule value is TRUE.}
 
 \item{summary}{A logical vector for whether the return should include summary statistics. The default value is TRUE.}
 

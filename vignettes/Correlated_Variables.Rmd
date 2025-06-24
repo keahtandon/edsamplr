@@ -1,0 +1,137 @@
+---
+title: "Simulating Correlated Data"
+output: rmarkdown::html_vignette
+bibliography: Correlated.bib
+csl: apa
+vignette: >
+  %\VignetteIndexEntry{Correlated_Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+``` {r, include = FALSE}
+
+devtools::load_all()
+require(gt)
+require(tidyverse)
+
+```
+
+```{r setup}
+#library(edsamplr)
+#library(tidyverse)
+#library(gt)
+
+```
+
+### Introduction
+
+Imagine you are teaching your students about working with correlated data. You want to give your students a real-life example from published research, but the article that you have readily available involves interaction. You decide that you are going to simulate data based on one of the explanatory variables and the response variable instead of searching for a different article.
+
+### Article Abstract
+
+The first objective of this study was to investigate the association between work-home interaction (a process in which functioning in one of the two domains is positively or negatively influenced by the other domain) and teachers’ life satisfaction. The second objective was to test the moderating role of teachers’ core-self evaluations (self-esteem, self-efficacy, locus of control, and neuroticism) in the relationship between work-home interaction and life satisfaction. A cross-sectional study was conducted on a sample of 168 Romanian teachers. Results indicated that positive work-home interactions (situations in which aspects from work facilitate functioning at home and vice versa) are positively related to life satisfaction only for teachers with low core-self evaluations. Negative work-home interactions (situations in which aspects from work interfere with functioning at home and vice versa) were negatively related with teachers’ life satisfaction, but core self-evaluations did not moderate these relationships. Theoretical and practical implications are discussed. [@nastasa2020]
+
+### Selected Variables to Sample From
+
+Nastasa and colleagues [-@nastasa2020] had multiple research questions and a much more complex design than you need for your class, so after looking at their descriptive statistics table (Table 1), you decide to focus on self-evaluation and life satisfaction.
+
+\
+
+```{r, echo = FALSE}
+table1 <- data.frame(Variable = c("1. Core self-evaluations", 
+                                  "2. Work negatively influencing home", 
+                                  "3. Home negatively influencing work", 
+                                  "4. Work positively influencing home", 
+                                  "5. Home positively influencing work", 
+                                  "6. Satisfaction with life"),
+                     Mean = c(4.07, 0.73, 0.27, 1.54, 1.77, 5.64),
+                     SD = c(0.48, 0.43, 0.45, 0.64, 0.73, 0.87),
+                     v1 = c("(0.78)", "-0.34**", "-0.24**", 
+                              "0.17**", "0.18*", "0.58**"),
+                     v2 = c(NA, "(0.86)", "0.34**", 
+                              "-0.11", "-0.07", "-0.28**"),
+                     v3 = c(NA, NA, "(0.89)", 
+                              "-0.02", "-0.05", "-0.22**"),
+                     v4 = c(NA, NA, NA, 
+                              "(0.84)", "0.71**", "0.13"),
+                     v5 = c(NA, NA, NA, 
+                              NA, "(0.88)", "0.19*"),
+                     v6 = c(NA, NA, NA,
+                              NA, NA, "(0.87)"))
+
+table1 %>%
+  gt::gt(rowname_col = "Variable") %>%
+  gt::sub_missing(missing_text = "") %>%
+  gt::tab_header(title = gt::md("**Table 1. Means, Standard Deviations, Reliabilities, and Correlations Among Study Variables (*N* = 186)**")) %>%
+  gt::tab_footnote(gt::md("*Note*: Cronbach's alpha reliabilities are in parentheses on the diagonal, `*` *p*<.05, `**` *p*<.01."))
+
+```
+
+*Note*: Cronbach's alpha reliabilities are in parentheses on the diagonal, /**p*<.05, /*/**p*<.01. [@nastasa2020]
+
+
+\
+
+**Explanatory variable**: Self-evaluation
+
+**Response variable**: Life satisfaction
+
+``` {r}
+selected_vars <- data.frame(Variable = c("Self-Evaluation", "Life Satisfaction"),
+                            N = c(186, 186),
+                            Mean = c(4.08, 5.64),
+                            Var = c(0.48^2, 0.87^2),
+                            Cor = c(0.58, NA))
+
+selected_vars
+
+```
+
+You can use the generate_correlated() function to simulate data that will resemble this.
+
+Since I already created a data frame with the selected variable information, I can plug that in. Because we have variances for both variables, we want to make sure to indicate use_slope = FALSE.
+
+```{r}
+output <- generate_correlated(n = selected_vars$N[1],
+                              mean = selected_vars$Mean,
+                              var = selected_vars$Var,
+                              r = selected_vars$Cor[1],
+                              use_slope = FALSE)
+
+```
+
+With the default summary argument (TRUE), our output provides a list with four elements:
+
+- The correlation of the simulated sample
+
+- The slope of the simulated sample
+
+- The summary statistics of our input "parameters" (statistics from the study) and the resulting sample
+
+- The sample data
+
+``` {r}
+data <- output$sample
+
+output$correlation
+output$slope
+output$summary
+
+```
+
+If we just want the sample data, we can turn off the summary and just get a data frame with the simulated data.
+
+If you're happy with the final product, you're ready to export the data for your students. If you'd like to try to get it closer to the original data, you can rerun the function.
+
+
+### References

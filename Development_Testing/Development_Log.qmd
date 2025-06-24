@@ -5,7 +5,9 @@ format: html
 
 **June 21**
 
-Vignette 1: Proportions of seen/unseen and 
+Vignette 1: Proportions of condition/result from article with no data
+
+Vignette 2: 
 
 
 **June 19**

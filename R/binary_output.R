@@ -73,7 +73,7 @@ binary_summary <- function(data, sample_rep, sample_n, sample_prop,
 
 
 binary_output <- function(sample_rep, sample_n, sample_prop,
-                          sample_names, k, summary, replication) {
+                          sample_names, p, summary, replication) {
 
   # summary, 1 rep
 

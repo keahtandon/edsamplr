@@ -17,17 +17,15 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, include = FALSE}
-#library(edsamplr)
-library(tidyverse)
+require(tidyverse)
 
 devtools::load_all()
 
 ```
 
 ``` {r}
-
-#library(edsamplr)
-#library(tidyverse)
+# library(edsamplr)
+# library(tidyverse)
 
 ```
 
@@ -79,7 +77,7 @@ staring_counts
 We can turn that into a proportion table.
 
 ``` {r}
-staring_props <- round(staring_counts/sum(staring_counts),3)
+staring_props <- round(staring_counts/sum(staring_counts), 3)
 
 staring_props
 

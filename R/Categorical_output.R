@@ -1,5 +1,6 @@
 #' @importFrom rlang .data
 #' @importFrom magrittr %>%
+#' @importFrom stringr str_count
 
 categorical_data <- function(sample_rep, sample_k_rep, sample_n_rep,
                              sample_k_prop, sample_group_names, k, p, separate) {
@@ -38,15 +39,15 @@ categorical_data <- function(sample_rep, sample_k_rep, sample_n_rep,
 
     num_conditions <- stringr::str_count(sample_group_names, "_")
 
-    if (n_distinct(num_conditions) > 1) {
+    if (dplyr::n_distinct(num_conditions) > 1) {
       stop("All group names should have the same number of underscores.")
     }
 
     condition_names <- c(paste("Condition", seq(1:min(num_conditions))), "Result")
 
     data <- data %>%
-      dplyr::mutate(v1 = as.character(v1)) %>%
-      tidyr::separate_wider_delim(v1, names = condition_names, delim = "_") %>%
+      dplyr::mutate(v1 = as.character(.data$v1)) %>%
+      tidyr::separate_wider_delim(.data$v1, names = condition_names, delim = "_") %>%
       dplyr::mutate(dplyr::across(dplyr::everything(), ~ factor(.)))
 
   }
@@ -128,7 +129,7 @@ categorical_summary <- function(data, sample_rep, sample_k_rep, sample_n_rep,
 
       summary[input_counter, ] <- input_row
 
-      sample_row <- c(nlevels(pull(data[, i])), sample_n_rep[i], unname(round(prop_table, 2)))
+      sample_row <- c(nlevels(dplyr::pull(data[, i])), sample_n_rep[i], unname(round(prop_table, 2)))
 
       if (length(sample_row) < ncol(summary)) {
         sample_row <- c(sample_row, rep(NA, ncol(summary) - length(sample_row)))

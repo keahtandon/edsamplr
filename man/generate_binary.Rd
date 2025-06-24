@@ -9,6 +9,7 @@ generate_binary(
   n = 100,
   prop = 0.5,
   group_names = c(1:0),
+  summary = TRUE,
   replication = 1
 )
 }
@@ -21,15 +22,19 @@ generate_binary(
 
 \item{group_names}{An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.}
 
+\item{summary}{A logical vector for whether the return should include summary statistics. The default value is TRUE.}
+
 \item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
 }
 \value{
-A list containing
+If summary = TRUE, a list containing
 \itemize{
 \item \code{sample}, a data frame with n rows and k columns
 \item \code{summary}, a matrix of the sample size, number of successes, proportion statistic, and proportion parameter for each variable, and
 \item \code{freq.table}, a matrix of the frequencies of successes and failures for each variable
 }
+
+If summary = FALSE, a data frame with n rows and 1 column.
 }
 \description{
 \code{generate_binary()} is function to generate sample binary data.
