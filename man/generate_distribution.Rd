@@ -23,7 +23,8 @@ generate_distribution(
   sd = NULL,
   theta = NULL,
   min = NULL,
-  max = NULL
+  max = NULL,
+  summary = TRUE
 )
 }
 \arguments{
@@ -60,6 +61,8 @@ generate_distribution(
 \item{min}{A numeric vector for the minimum value of the triangular and uniform distributions.}
 
 \item{max}{A numeric vector for the maximum value of the triangular and uniform distributions.}
+
+\item{summary}{A logical vector for whether the return should include summary statistics. The default value is TRUE.}
 }
 \value{
 A list of

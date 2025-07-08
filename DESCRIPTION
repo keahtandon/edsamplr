@@ -30,7 +30,10 @@ Imports:
     tidyselect,
     VGAM
 Suggests: 
+    devtools,
+    ggplot2,
     gt,
     knitr,
-    rmarkdown
+    rmarkdown,
+    tidyverse
 VignetteBuilder: knitr

@@ -170,7 +170,7 @@ quantitative_output <- function(k, n, mean, var, skew, kurt, effect_size,
 
   }
 
-  else if(summary == FALSE & replication > 1) {
+  else if (summary == FALSE & replication > 1) {
 
     output <- replicate(replication, expr = {
 

@@ -6,6 +6,7 @@ csl: apa
 vignette: >
   %\VignetteIndexEntry{Correlated_Variables}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends: tidyverse, gt
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -97,7 +98,7 @@ selected_vars
 
 ```
 
-You can use the generate_correlated() function to simulate data that will resemble this.
+You can use the `generate_correlated()` function to simulate data that will resemble this.
 
 Since I already created a data frame with the selected variable information, I can plug that in. Because we have variances for both variables, we want to make sure to indicate use_slope = FALSE.
 

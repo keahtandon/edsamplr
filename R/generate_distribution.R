@@ -52,6 +52,7 @@
 #' @param theta A numeric vector required for the theta of the triangular distribution.
 #' @param min A numeric vector for the minimum value of the triangular and uniform distributions.
 #' @param max A numeric vector for the maximum value of the triangular and uniform distributions.
+#' @param summary A logical vector for whether the return should include summary statistics. The default value is TRUE.
 #'
 #' @return A list of
 #' * `data`, a vector of length n containing the generated values
@@ -99,7 +100,8 @@ generate_distribution <- function(distribution = c(
                                   sd = NULL,
                                   theta = NULL,
                                   min = NULL,
-                                  max = NULL) {
+                                  max = NULL,
+                                  summary = TRUE) {
   if (is.null(distribution)) {
     stop("Please provide the distribution.")
   }
@@ -131,7 +133,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "beta", list(shape1 = alpha_shape, shape2 = beta_shape)))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         alpha_shape, beta_shape,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -156,7 +158,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "cauchy"))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         location, scale,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -182,7 +184,7 @@ generate_distribution <- function(distribution = c(
     # Optimize the negative log-likelihood and get the df stat
     stats <- stats::optimize(neg_log_likelihood, interval = c(0.01, (mean(sample) * 5)), data = sample)
 
-    summary <- matrix(c(df, round(stats$minimum[[1]], 2)),
+    stats_table <- matrix(c(df, round(stats$minimum[[1]], 2)),
       nrow = 2, ncol = 1,
       byrow = TRUE, dimnames = list(c("input", "sample"), c("df"))
     )
@@ -199,7 +201,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "exponential"))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         rate,
         round(stats$estimate[[1]], 2)
@@ -220,7 +222,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, densfun = "F", list(df1 = df, df2 = df2)))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         df, df2,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -245,7 +247,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "gamma", list(shape = alpha_shape, rate = rate)))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         alpha_shape, rate,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -272,7 +274,7 @@ generate_distribution <- function(distribution = c(
     stats <- suppressWarnings(MASS::fitdistr(sample, VGAM::dlaplace,
                                              start = list(location = location, scale = scale)))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         location, scale,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -297,7 +299,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "logistic", list(location = location, scale = scale)))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         location, scale,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -322,7 +324,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "lognormal"))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         mean_log, sd_log,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -347,7 +349,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "normal"))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         mean, sd,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -368,7 +370,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "t"))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         df,
         round(stats$estimate[[3]], 2)
@@ -397,7 +399,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, densfun = VGAM::dtriangle, list(theta = theta, lower = min, upper = max)))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         theta, min, max,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2), round(stats$estimate[[3]], 2)
@@ -420,7 +422,7 @@ generate_distribution <- function(distribution = c(
 
     sample <- suppressWarnings(stats::runif(n = n, min = min, max = max))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         min, max,
         round(min(sample), 2), round(max(sample), 2)
@@ -445,7 +447,7 @@ generate_distribution <- function(distribution = c(
 
     stats <- suppressWarnings(MASS::fitdistr(sample, "weibull", list(shape = alpha_shape, scale = scale)))
 
-    summary <- matrix(
+    stats_table <- matrix(
       c(
         alpha_shape, scale,
         round(stats$estimate[[1]], 2), round(stats$estimate[[2]], 2)
@@ -455,5 +457,15 @@ generate_distribution <- function(distribution = c(
     )
   }
 
-  return(list(data = sample, summary = summary))
+  if (summary == TRUE) {
+
+    output <- list(data = sample, summary = stats_table)
+
+  } else {
+
+    output <- sample
+
+  }
+
+  return(output)
 }

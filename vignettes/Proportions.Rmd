@@ -6,6 +6,7 @@ csl: apa
 vignette: >
   %\VignetteIndexEntry{Proportions}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends: tidyverse
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -60,7 +61,7 @@ staring_outcomes
 
 ```
 
-You can use the generate_categorical() function to simulate data that will resemble this.
+You can use the `generate_categorical()` function to simulate data that will resemble this.
 
 We have two variables with two conditions each, so this is what our frequency table looks like:
 

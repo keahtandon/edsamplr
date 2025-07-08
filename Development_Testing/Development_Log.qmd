@@ -7,7 +7,15 @@ format: html
 
 Vignette 1: Proportions of condition/result from article with no data
 
-Vignette 2: 
+Vignette 2: $t$ test from article with no data
+
+Vignette 3: Correlated variables
+
+Vignette 4: Unequal Variances
+
+Vignette 5: Central Limit Theorem
+
+
 
 
 **June 19**

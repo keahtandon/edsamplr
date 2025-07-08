@@ -111,7 +111,7 @@ categorical_summary <- function(data, sample_rep, sample_k_rep, sample_n_rep,
       dplyr::group_by(data[1]) %>%
       dplyr::count() %>%
       dplyr::ungroup() %>%
-      dplyr::pull(n)
+      dplyr::pull(.data$n)
 
     summary <- matrix(NA, nrow = 2 * p, ncol = max(k) + 2)
 
