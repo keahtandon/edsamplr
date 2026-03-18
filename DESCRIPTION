@@ -16,7 +16,7 @@ Description: A tool for statistics educators to generate simulated data for all
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports: 
     dplyr (>= 1.1.4),
     magrittr,
@@ -26,6 +26,7 @@ Imports:
     rlang,
     stats (>= 4.3.3),
     stringr,
+    tibble,
     tidyr,
     tidyselect,
     VGAM
@@ -34,6 +35,8 @@ Suggests:
     ggplot2,
     gt,
     knitr,
+    mirt,
     rmarkdown,
+    statmod,
     tidyverse
 VignetteBuilder: knitr

@@ -36,7 +36,7 @@ generate_categorical(
 A list containing a data frame ("sample") with n rows and p columns and a matrix ("proportion_summary") of the input and sample proportions for each group and variable.
 }
 \description{
-\code{generate_categorical()} is function to generate n variables of sample categorical data with k groups.
+\code{generate_categorical()} is a function to generate n variables of sample categorical data with k groups.
 }
 \examples{
 generate_categorical()

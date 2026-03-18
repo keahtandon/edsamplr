@@ -1,7 +1,7 @@
 #' Generate samples of categorical data
 #'
 #' @description
-#' `generate_categorical()` is function to generate n variables of sample categorical data with k groups.
+#' `generate_categorical()` is a function to generate n variables of sample categorical data with k groups.
 #'
 #' @param p A numeric vector for the number of variables. The default value is 1.
 #' @param n A numeric vector for the sample size. Separate values of n can be entered for an unbalanced design. The default value is 100.
