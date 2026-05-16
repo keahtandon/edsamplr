@@ -17,19 +17,32 @@
 #' @param seed A numeric vector for use in generating unbalanced distributions. The default value is 1234.
 #' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
 #'
-#' @return If summary = TRUE, a list containing a matrix ("summary") of the input parameters and descriptive statistics and a data frame ("sample") with n rows and 2 columns. If summary = FALSE, a data frame with n rows and 2 columns.
+#' @return If summary = TRUE, a list containing a matrix ("summary") of the input parameters and descriptive statistics and a data frame ("sample") with n rows and 2 columns.
+#'
+#' If summary = FALSE, a data frame with n rows and 2 columns.
+#'
+#' @details
+#' This function generates sample data based on specified mean, variance, skew, and kurtosis parameters for one or multiple groups. The default values are from a standard normal distribution. If generating samples for multiple groups, the options include specifying parameters for each of the groups or specifying a standardized effect size. If specifying a standardized effect size, then the distribution of values of the subsequent groups are shifted by that much. The data is sampled from the specified proportions as a parameter, so the output statistics will not be an exact match to the parameters.
+#'
+#' Because the output is a sample, the summary argument allows for summary statistics to be generated with the sample data. This allows the user to easily compare the simulation statistics to the specified parameters.
+#'
+#' This is useful for teaching statistics because it allows for generating data that can be used for teaching both parametric and nonparametric tests with 2-k groups and for demonstrating the effect of an intervention. The replication argument is useful when teaching about sampling distributions or the data dependence of statistics.
 #'
 #' @examples
 #' generate_quantitative()
 #'
 #' @examples
-#' generate_quantitative(k = 2, effect_size = 0.3, use_effect_size = TRUE)
+#' generate_quantitative(k = 2,
+#'                       effect_size = 0.3,
+#'                       use_effect_size = TRUE)
 #'
 #' @examples
-#' generate_quantitative(k = 2, skew = c(0.4, 0.25))
+#' generate_quantitative(k = 2,
+#'                       skew = c(0.4, 0.25))
 #'
 #' @examples
-#' generate_quantitative(k = 3, n = c(100, 150, 200))
+#' generate_quantitative(k = 3,
+#'                       n = c(100, 150, 200))
 #'
 #'
 #' @export

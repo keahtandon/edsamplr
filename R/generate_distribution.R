@@ -62,10 +62,13 @@
 #' generate_distribution(distribution = "laplace")
 #'
 #' @examples
-#' generate_distribution(distribution = "gamma", alpha_shape = 3)
+#' generate_distribution(distribution = "gamma",
+#'                       alpha_shape = 3)
 #'
 #' @examples
-#' generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
+#' generate_distribution(distribution = "beta",
+#'                       alpha_shape = 2,
+#'                       beta_shape = 2)
 #'
 #' @export
 

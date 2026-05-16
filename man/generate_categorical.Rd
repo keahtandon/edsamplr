@@ -38,22 +38,42 @@ A list containing a data frame ("sample") with n rows and p columns and a matrix
 \description{
 \code{generate_categorical()} is a function to generate n variables of sample categorical data with k groups.
 }
+\details{
+This function is an extension of \code{generate_binary()}. It is used to generate one or more columns of data with values based on specified proportions. The default return of the function uses numeric values for the different groups, but there is an optional argument to label the groups with specified strings. The data is sampled from the specified proportions as a parameter, so the output statistics will not be an exact match to the parameters.
+
+Because the output is a sample, the summary argument allows for summary statistics to be generated with the sample data. This allows the user to easily compare the simulation statistics to the specified parameters.
+
+This is useful for teaching statistics because it allows for the user to create samples of categorical data without having to calculate the n associated with each proportion and then call \code{rep()} to generate the data.
+
+It is also useful for creating proportions that cross multiple variables, demonstrated in the final example, below. This function can accommodate users who are interested in creating a data frame that contains a combination of two separate demographics with the proportion at the combination level rather than the individual demographic level. This is done through calling the function as if there was one variable, specifying the proportions of that variable, naming the groups with the level of each variable separated with an underscore, and using the separate argument. This will simulate the data and then split it into separate columns.
+}
 \examples{
 generate_categorical()
 
 generate_categorical(k = 4)
 
-generate_categorical(k = 4, k_names = c("freshman", "sophomore", "junior", "senior"))
+generate_categorical(k = 4,
+                     k_names = c("freshman", "sophomore",
+                                 "junior", "senior"))
 
-generate_categorical(k = 4, k_prop = c(0.25, 0.5, 0.1, 0.15))
+generate_categorical(k = 4,
+                     k_prop = c(0.25, 0.5, 0.1, 0.15))
 
-generate_categorical(p = 2, k = c(2, 3), k_prop = c(0.3, 0.7, 0.2, 0.2, 0.6))
+generate_categorical(p = 2,
+                     k = c(2, 3),
+                     k_prop = c(0.3, 0.7, 0.2, 0.2, 0.6))
 
-generate_categorical(p = 2, k = 2, k_prop = c(0.3, 0.7))
+generate_categorical(p = 2,
+                     k = 2,
+                     k_prop = c(0.3, 0.7))
 
-generate_categorical(p = 1, k = 4, k_prop = c(0.2, 0.3, 0.4, 0.1),
-k_names = c("freshman_female", "freshman_male", "sophomore_female", "sophomore_male"),
-separate = TRUE)
-
+generate_categorical(p = 1,
+                     k = 4,
+                     k_prop = c(0.2, 0.3, 0.4, 0.1),
+                     k_names = c("freshman_female",
+                                 "freshman_male",
+                                 "sophomore_female",
+                                 "sophomore_male"),
+                     separate = TRUE)
 
 }

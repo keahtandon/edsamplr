@@ -79,40 +79,43 @@ The distributional shapes include beta, Cauchy, chi-squared, exponential, F, gam
 \section{Distributional Shapes & Default Values}{
 
 
-The \strong{beta} distribution requires the alpha and beta shape parameters. There are no default values for this distribution. See \code{\link[stats:Beta]{stats::rbeta()}} for more information.
+The \strong{beta} distribution requires the alpha and beta shape parameters. There are no default values for this distribution. See \code{\link[stats:rbeta]{stats::rbeta()}} for more information.
 
-The \strong{Cauchy} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[stats:Cauchy]{stats::rcauchy()}} for more information.
+The \strong{Cauchy} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[stats:rcauchy]{stats::rcauchy()}} for more information.
 
-The \strong{chi-squared} distribution requires the df parameter. There is no default value for this distribution. See \code{\link[stats:Chisquare]{stats::rchisq()}} for more information.
+The \strong{chi-squared} distribution requires the df parameter. There is no default value for this distribution. See \code{\link[stats:rchisq]{stats::rchisq()}} for more information.
 
-The \strong{exponential} distribution uses the rate parameter, which has a default value of 1. See \code{\link[stats:Exponential]{stats::rexp()}} for more information.
+The \strong{exponential} distribution uses the rate parameter, which has a default value of 1. See \code{\link[stats:rexp]{stats::rexp()}} for more information.
 
-The \strong{F} distribution requires the df and df2 parameters. There are no default values for this distribution. See \code{\link[stats:Fdist]{stats::rf()}} for more information.
+The \strong{F} distribution requires the df and df2 parameters. There are no default values for this distribution. See \code{\link[stats:rf]{stats::rf()}} for more information.
 
-The \strong{gamma} distribution requires the alpha shape and rate parameter. There is no default value for alpha shape, but the default value for rate is 1. See \code{\link[stats:GammaDist]{stats::rgamma()}} for more information.
+The \strong{gamma} distribution requires the alpha shape and rate parameter. There is no default value for alpha shape, but the default value for rate is 1. See \code{\link[stats:rgamma]{stats::rgamma()}} for more information.
 
-The \strong{Laplace} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[VGAM:laplaceUC]{VGAM::rlaplace()}} for more information.
+The \strong{Laplace} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[VGAM:rlaplace]{VGAM::rlaplace()}} for more information.
 
-The \strong{logistic} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[stats:Logistic]{stats::rlogis()}} for more information.
+The \strong{logistic} distribution uses the location and scale parameters. The default values are location = 0 and scale = 1. See \code{\link[stats:rlogis]{stats::rlogis()}} for more information.
 
-The \strong{log normal} distribution uses the mean log and sd log parameters. The default values are mean log = 0 and sd log = 1. See \code{\link[stats:Lognormal]{stats::rlnorm()}} for more information.
+The \strong{log normal} distribution uses the mean log and sd log parameters. The default values are mean log = 0 and sd log = 1. See \code{\link[stats:rlnorm]{stats::rlnorm()}} for more information.
 
-The \strong{normal} distribution uses the mean and sd parameters. The default values are mean = 0 and sd = 1. See \code{\link[stats:Normal]{stats::rnorm()}} for more information.
+The \strong{normal} distribution uses the mean and sd parameters. The default values are mean = 0 and sd = 1. See \code{\link[stats:rnorm]{stats::rnorm()}} for more information.
 
-The \strong{t} distribution requires the df parameter. There is no default value for this distribution. See \code{\link[stats:TDist]{stats::rt()}} for more information.
+The \strong{t} distribution requires the df parameter. There is no default value for this distribution. See \code{\link[stats:rt]{stats::rt()}} for more information.
 
-The \strong{triangular} distribution requires the theta, min, and max parameters. There is no default value for theta, but the other default values are min = 0 and max = 1. See \code{\link[VGAM:triangleUC]{VGAM::rtriangle()}} for more information.
+The \strong{triangular} distribution requires the theta, min, and max parameters. There is no default value for theta, but the other default values are min = 0 and max = 1. See \code{\link[VGAM:rtriangle]{VGAM::rtriangle()}} for more information.
 
-The \strong{uniform} distribution uses the min and max parameters. The default values are min = 0 and max = 1. See \code{\link[stats:Uniform]{stats::runif()}} for more information.
+The \strong{uniform} distribution uses the min and max parameters. The default values are min = 0 and max = 1. See \code{\link[stats:runif]{stats::runif()}} for more information.
 
-The \strong{Weibull} distribution requires the alpha shape and scale parameter. There is no default value for alpha shape, but the default value for scale is 1. See \code{\link[stats:Weibull]{stats::rweibull()}} for more information.
+The \strong{Weibull} distribution requires the alpha shape and scale parameter. There is no default value for alpha shape, but the default value for scale is 1. See \code{\link[stats:rweibull]{stats::rweibull()}} for more information.
 }
 
 \examples{
 generate_distribution(distribution = "laplace")
 
-generate_distribution(distribution = "gamma", alpha_shape = 3)
+generate_distribution(distribution = "gamma",
+                      alpha_shape = 3)
 
-generate_distribution(distribution = "beta", alpha_shape = 2, beta_shape = 2)
+generate_distribution(distribution = "beta",
+                      alpha_shape = 2,
+                      beta_shape = 2)
 
 }

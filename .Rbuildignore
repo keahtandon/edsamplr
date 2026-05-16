@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^Development_Testing$
+^\.positai$
+^\.claude$
+^^docs$$

@@ -33,7 +33,7 @@ generate_correlated(
 
 \item{r}{A numeric vector for the correlation between the variables. The default value is 0.5.}
 
-\item{use_slope}{A logical vector for whether you are entering two variances or one variance and a slope. The defaule value is TRUE.}
+\item{use_slope}{A logical vector for whether you are entering two variances or one variance and a slope. The default value is TRUE.}
 
 \item{summary}{A logical vector for whether the return should include summary statistics. The default value is TRUE.}
 
@@ -42,18 +42,30 @@ generate_correlated(
 \item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
 }
 \value{
-If summary = TRUE, a list containing the correlation of the sample, the slope of the sample, a data frame ("sample") with n rows and 2 columns, and a matrix ("summary") of the input parameters and descriptive statistics. If summary=FALSE, a data frame with n rows and 2 columns.
+If summary = TRUE, a list containing the correlation of the sample, the slope of the sample, a data frame ("sample") with n rows and 2 columns, and a matrix ("summary") of the input parameters and descriptive statistics.
+
+If summary = FALSE, a data frame with n rows and 2 columns.
 }
 \description{
 \code{generate_correlated()} is a function to generate samples of correlated quantitative data with specified first four moments and specified slope.
+}
+\details{
+This function generates a sample of bivariate quantitative data based on either a specified slope or specified correlation and specified mean, variance, skew, and kurtosis parameters. The data is sampled from the specified proportions as a parameter, so the output statistics will not be an exact match to the parameters.
+
+Because the output is a sample, the summary argument allows for summary statistics to be generated with the sample data. This allows the user to easily compare the simulation statistics to the specified parameters.
+
+This is useful for teaching about scatterplots and simple linear regression. The replication argument is useful for teaching about sampling distributions.
 }
 \examples{
 generate_correlated()
 
 generate_correlated(skew = c(0.4, 0.25))
 
-generate_correlated(slope = 3, r = 0.8)
+generate_correlated(slope = 3,
+                    r = 0.8)
 
-generate_correlated(n = 10000, skew = c(0, 1), kurt = c(0, 1.5))
+generate_correlated(n = 10000,
+                    skew = c(0, 1),
+                    kurt = c(0, 1.5))
 
 }

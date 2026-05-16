@@ -17,6 +17,14 @@
 #'
 #' If summary = FALSE, a data frame with n rows and 1 column.
 #'
+#' @details
+#' This function generates samples of binary data based on specified proportions. It can generate a single column or multiple columns of data with different proportions specified for each. The data is sampled from the specified proportions as a parameter, so the output statistics will not be an exact match to the parameters.
+#'
+#' Because the output is a sample, the summary argument allows for summary statistics to be generated with the sample data. This allows the user to easily compare the simulation statistics to the specified parameters.
+#'
+#' This is useful for introducing students to the basics of probability, proportion tests, and chi square tests without having to call two (or more) separate `rbinom()` functions. If you are interested in using binary data for sample student test responses, consider using `generate_2PL()`, which simulates binary response data based on specified difficulty and discrimination parameters.
+#'
+#'
 #' @examples
 #' generate_binary()
 #'

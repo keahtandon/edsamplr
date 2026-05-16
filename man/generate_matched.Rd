@@ -39,18 +39,28 @@ generate_matched(
 
 \item{decimals}{A numeric vector for the number of decimals to round the sample data to. The default value is 3.}
 
-\item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.
+\item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
+}
+\value{
+If summary = TRUE, a list containing a vector ("correlation") with the correlation between the pairs, a matrix ("summary") of the input parameters and descriptive statistics, and a data frame ("sample") with n rows and 3 columns (values from each set of the pair and the difference of X2 and X1).
 
-@return If summary = TRUE, a list containing a vector ("correlation") with the correlation between the pairs, a matrix ("summary") of the input parameters and descriptive statistics, and a data frame ("sample") with n rows and 3 columns (values from each set of the pair and the difference of X2 and X1). If summary = FALSE, a data frame with n rows and 3 columns.}
+If summary = FALSE, a data frame with n rows and 3 columns.
 }
 \description{
 \code{generate_matched()} is a function to generate one-group samples of quantitative matched pair data with specified first four moments, correlation, and optional standardized effect size
+}
+\details{
+This function is an extension of \code{generate_quantitative()} that generates matched pair data based on specified mean, variance, skew, and kurtosis parameters. The user can also specify a standardized effect size difference between the two variables as well as the correlation between them. The data is sampled from the specified proportions as a parameter, so the output statistics will not be an exact match to the parameters.
+
+Because the output is a sample, the summary argument allows for summary statistics to be generated with the sample data. This allows the user to easily compare the simulation statistics to the specified parameters.
+
+This is useful for teaching about paired \emph{t} tests, confounding variables, and conditions for valid inference.
 }
 \examples{
 generate_matched()
 
 generate_matched(use_effect_size = FALSE)
 
-generate_matched(skew = c(0.4, 0.25))#'
+generate_matched(skew = c(0.4, 0.25))
 
 }

@@ -8,6 +8,11 @@
 #'
 #' @return A data frame with n rows and 2 columns
 #'
+#' @details
+#' This function was designed to help teach students about heteroscedasticity and what it looks like. The function allows for degrees of severity to help show the differences. This is useful for students who have recently been introduced to it and may not see the nuance in a real data set.
+#'
+#' It can also be used as a data set for demonstrating the consequences of violating the equal variances assumption in linear regression. While the ASA recommends the use of real data as a best practice, finding published data sets that demonstrate heteroscedasticity is more challenging than for other educational topics.
+#'
 #' @examples
 #' test <- generate_heteroscedastic(degree = 4)
 #' model <- lm(v2 ~ v1, data = test)
