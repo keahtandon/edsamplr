@@ -1,0 +1,124 @@
+---
+title: "Development Log"
+format: html
+---
+
+**June 21**
+
+Vignette 1: Proportions of condition/result from article with no data
+
+Vignette 2: $t$ test from article with no data
+
+Vignette 3: Correlated variables
+
+Vignette 4: Unequal Variances
+
+Vignette 5: Central Limit Theorem
+
+
+
+
+**June 19**
+
+other vignettes
+
+- article has no data
+
+- second example of article has no data
+
+- want to change some of data from article
+
+- conditions for valid inference not met
+
+    - showing students contrasting what happens when you have met the conditions and when you haven't
+    
+    - taking normal to skewed distribution
+
+    or - taking equal variances to unequal variances
+
+- have no article/starting from scratch
+    
+    
+Agenda on 30th
+- little odds and ends that need to be edited
+
+In doing the Pygmalian data, I realized that I need to add an argument of unbalanced designs, right now can only do balanced
+
+
+Tasks - Dec 10 2024
+
+Goal
+
+-   roughly 50/50 stats ed and R dev (or 70/30)
+
+-   stats ed themes
+
+    -   "stats ed workflow" from Mike's initial draft
+    
+        -   give students access to "real-type" data and let them work with it (in context of study even if the data is made up)
+        -   maybe reference stats anxiety lit
+        
+    -   
+
+Keah
+
+-   process notes
+
+-   write main vignette
+
+-   look for thematic poster examples
+
+-   think about blocks to get across
+
+-   then we come together early Jan and merge
+
+-   email Kristin and Mike re funding
+
+Mike
+
+-   plan out "blocks to get across in our poster" due by Jan 3
+
+
+### 9 December 2024
+
+-   I finished the documentation
+
+-   Starting to think about vignettes - need help
+
+-   In the space on vignettes, HW mentions that if you're using a complex algorithm in your code, a vignette is a good place to explain it and then suggests submitting the vignette to the Journal of Statistical Software or the R Journal. (I know we already decided against these.) It then goes on to say that if we want to "provide something lightweight so folks can easily cite our package," consider the Journal of Open Source Software, which has a "particularly speedy submission and review process" and where "welcome to the Tidyverse was published." This might be something for us to consider.
+
+https://joss.theoj.org/
+
+### 3 September 2024
+
+Keah
+
+- make actual notes of what I have done throughout the process (including the changes of Headrick's method code)
+
+- documentation
+
+Mike
+
+- find out about creating packages/repos
+
+- revise manuscript
+
+### 2 September 2024
+
+- renamed files
+
+- renamed functions
+
+- cleaned up functions with styler package
+
+- process
+
+  - load_all()
+  
+  - document()
+  
+  - check()
+  
+- cleaned up all the warnings and notes from the check except documentation
+
+- next step is documentation

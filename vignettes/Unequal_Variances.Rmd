@@ -1,0 +1,141 @@
+---
+title: "Unequal_Variances"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Unequal_Variances}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends: tidyverse, ggplot2, gt
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+``` {r, include = FALSE}
+
+devtools::load_all()
+require(tidyverse)
+require(ggplot2)
+require(gt)
+```
+
+```{r setup}
+# library(edsamplr)
+# library(tidyverse)
+# library(ggplot2)
+# library(gt)
+```
+
+
+While it is nice to use real research to demonstrate concepts for students, not all concepts are found in published articles. For instance, you may want to teach your students about what happens when we do not meet conditions for valid inference. In an introductory statistics class, you are introducing students to these conditions, possibly for the first time. I am sure you try to impress on them the importance of meeting the conditions, but it can be beneficial to show the consequences of not meeting them.
+
+For example, you might want to teach about not having equal variances. For this, we can use two edsamplr functions: `generate_heteroscedastic()` and `generate_correlated()`. For the first set of data with unequal variances, you can simulate data with your preferred degree of heteroscedasticity. I picked a very high degree for this example because I remember needing that extreme view when I was an introductory statistics student.
+
+
+``` {r}
+
+unequal_var_data <- generate_heteroscedastic(n = 200, degree = 4)
+
+```
+
+For this sample, I selected a sample size of 200. Here are the summary statistics for both variables and a scatterplot.
+
+``` {r}
+
+unequal_var_data %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  group_by(Variable) %>%
+  summarize(min = round(min(Value),2),
+            q1 = round(quantile(Value, 0.25),2),
+            median = round(median(Value),2),
+            q3 = round(quantile(Value, 0.75),2),
+            max = round(max(Value),2),
+            mean = round(mean(Value),2),
+            sd = round(sd(Value),2)) %>%
+  gt(rowname_col = "Variable")
+
+unequal_var_data %>%
+  ggplot(aes(x = v1, y = v2)) +
+  geom_point()
+
+```
+
+I then did a simple linear regression and plotted the residual-fit plot and the QQ plot. You can see the clearly see the heteroscedasticity.
+
+``` {r}
+
+unequal_var_model <- lm(v2 ~ v1, data = unequal_var_data)
+summary(unequal_var_model)
+
+unequal_var_model %>%
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_point() +
+  labs(title = "Residuals vs Fitted",
+       x = "Fitted Values",
+       y = "Residuals")
+
+unequal_var_model %>%
+  ggplot(aes(sample = v2)) +
+  stat_qq() +
+  stat_qq_line() +
+  labs(title = "QQ Plot",
+       x = "Theoretical Quantiles",
+       y = "Standardized Residuals")
+  
+```
+
+\
+
+In comparison, we have another sample with equal variances. I have replicated everything from above except that I used the `generate_correlated()` function. 
+
+``` {r}
+
+equal_var_data <- generate_correlated(n = 200, r = 0.67, 
+                                      slope = 0.7, summary = FALSE)
+
+equal_var_data %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  group_by(Variable) %>%
+  summarize(min = round(min(Value),2),
+            q1 = round(quantile(Value, 0.25),2),
+            median = round(median(Value),2),
+            q3 = round(quantile(Value, 0.75),2),
+            max = round(max(Value),2),
+            mean = round(mean(Value),2),
+            sd = round(sd(Value),2)) %>%
+  gt(rowname_col = "Variable")
+
+equal_var_data %>%
+  ggplot(aes(x = X1, y = X2)) +
+  geom_point()
+
+```
+
+
+``` {r}
+
+equal_var_model <- lm(X2 ~ X1, data = equal_var_data)
+summary(equal_var_model)
+
+equal_var_model %>%
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_point() +
+  labs(title = "Residuals vs Fitted",
+       x = "Fitted Values",
+       y = "Residuals")
+
+equal_var_model %>%
+  ggplot(aes(sample = X2)) +
+  stat_qq() +
+  stat_qq_line() +
+  labs(title = "QQ Plot",
+       x = "Theoretical Quantiles",
+       y = "Standardized Residuals")
+  
+```
+
+You (or your students!) can replicate this simulation or change up the values in the arguments to test different scenarios. You can also have them plug in various values of X to see how accurate the models' predictions are.

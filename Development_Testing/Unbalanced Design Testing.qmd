@@ -1,0 +1,149 @@
+---
+title: "Unbalanced Design Testing"
+format: html
+editor: visual
+---
+
+```{r}
+
+k <- 3
+n <- c(100, 150, 200)
+mean <- 0
+var <- 1
+skew <- 0
+kurt <- 0
+slope <- 1
+cor <- 0.5
+effect_size <- c(0.3, 0.3)
+
+moments <- moment_fill(k = k, mean = mean, var = var,
+            skew = skew, kurt = kurt, slope = slope,
+            r = cor, effect_size = effect_size,
+            use_effect_size = TRUE, use_slope = FALSE,
+            use_cor = FALSE)
+
+moments$moments
+
+
+
+```
+
+```{r}
+
+generate_quantitative(k = 2, n = c(100, 150))
+
+```
+
+```{r}
+
+mvrnorm(n = 150, mu = rep(0, k), Sigma = inter.corr)
+
+```
+
+``` {r}
+
+set.seed(1234)
+
+
+dist <- data.frame(generate_headrick_data(k, n, mean = moments$moments$mean, 
+                                          var = moments$moments$var, coeff,
+                                          inter.corr = inter_corr))
+
+
+n1 <- 100
+n2 <- 150
+
+set.seed(1234)
+dist1 <- data.frame(generate_headrick_data(k, n = n1, mean = moments$moments$mean, 
+                                          var = moments$moments$var, coeff,
+                                          inter.corr = inter_corr))
+set.seed(1234)
+dist2 <- data.frame(generate_headrick_data(k, n = n2, mean = moments$moments$mean, 
+                                          var = moments$moments$var, coeff,
+                                          inter.corr = inter_corr))
+
+max_ln <- max(n1, n2) 
+final <- data.frame(X1 = c(dist1$X1, rep(NA, max_ln - n1)),
+                    X2 = c(dist2$X2, rep(NA, max_ln - n2)))
+
+```
+
+```{r}
+
+seed <- 53409
+
+max_ln <- max(n)
+dist_list <- list()
+
+for (i in 1:length(n)) {
+  
+  set.seed(seed)
+  inter_dist <- round(headrick_method(
+          k = k, n = n[i],
+          mean = as.vector(moments$moments$mean),
+          var = as.vector(moments$moments$var),
+          skew = as.vector(moments$moments$skew),
+          kurtosis = as.vector(moments$moments$kurt),
+          corr = moments$r,
+          gam3 = NaN, gam4 = NaN
+        ), decimals)
+  
+  inter_dist <- inter_dist[[i]]
+  
+  inter_dist_padded <- c(inter_dist, rep(NA, max_ln - length(inter_dist)))
+  
+  dist_list[[paste0("X", i)]] <- inter_dist_padded
+  
+  dist <- as.data.frame(dist_list)
+  
+}
+
+
+
+
+
+max_ln <- max(n_test) 
+final <- data.frame(X1 = c(dist1$X1, rep(NA, max_ln - n1)),
+                    X2 = c(dist2$X2, rep(NA, max_ln - n2)))
+
+test3 <- headrick_method(k = 3, n = 100, mean = rep(0, 3), var = rep(1, 3), skew = rep(0, 3), kurtosis = rep(0, 3))
+
+test3[i]
+
+```
+
+
+
+``` {r}
+
+final_long <- dist %>%
+  pivot_longer(everything(), names_to = "k", values_to = "score") 
+
+#%>%
+#  mutate(k = if_else(k == "X1", "Control", "Experimental")) 
+
+final_long %>%
+  group_by(k) %>%
+  summarize(n = sum(!is.na(score)),
+            mean = mean(score, na.rm = TRUE),
+            sd = sd(score, na.rm = TRUE),
+            var = sd^2)
+
+#library(ggplot2)
+
+final_long %>%
+  ggplot(aes(x = k, y = score)) +
+  geom_boxplot()
+
+
+```
+
+
+we pull one sample. we need to have arguments for the number of independent variables and the number of levels in each condition
+
+it currently only handles 1 independent variable. I don't think that I can get to multiple independent variables yet. that is a 711 concept anyway.
+
+
+
+
+

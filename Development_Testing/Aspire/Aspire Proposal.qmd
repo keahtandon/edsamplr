@@ -1,0 +1,26 @@
+---
+title: "Simulating Data for Training Pre-Service Teachers in Classroom Assessment"
+author: "Principal Investigator: Michael A. Seaman"
+format: 
+  typst:
+    papersize: us-letter
+    theme: theme.scss
+    css: theme.scss
+    margin: 
+      x: 0.5in
+      y: 0.5in
+    fontsize: 11pt
+editor: visual
+---
+
+Research Type: Applied
+
+Budget Requested: \$15,000
+
+Area: AI Education
+
+Summary: *write a few sentences about what we will do and how we will implement it*
+
+{{< pagebreak >}}
+
+## Narrative

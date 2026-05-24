@@ -1,0 +1,117 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+
+library(tidyverse)
+
+```
+
+
+item difficulty
+
+$$p = \frac{R}{T}$$
+
+item discrimination
+
+$$D = p_h - p_l$$
+
+``` {r}
+
+items <- 13
+students <- 30
+hl_group_prop <- 0.33
+stud_group <- students * hl_group_prop 
+
+disc <- 0.2
+diff <- 0.57
+
+```
+
+```{r}
+
+disc_eq <- (hi_c/stud_group) - (low_c/stud_group) == disc
+
+diff_eq <- (all_c)/students == diff
+
+```
+
+```{r}
+simulate_test_matrix <- function(n, i, target_difficulties, target_discriminations, seed = NULL) {
+  if (!is.null(seed)) set.seed(seed)
+  stopifnot(length(target_difficulties) == i,
+            length(target_discriminations) == i)
+  
+  # Step 1: Simulate student ability
+  ability <- rnorm(n)
+  
+  # Step 2: Simulate item responses using 2PL model (logistic function)
+  response_matrix <- matrix(0, nrow = n, ncol = i)
+  for (item in 1:i) {
+    a <- target_discriminations[item] * 3  # discrimination (slope)
+    p <- target_difficulties[item]
+    b <- qlogis(p)  # item intercept for desired average correct rate
+    probs <- 1 / (1 + exp(-(a * ability - b)))
+    response_matrix[, item] <- rbinom(n, 1, probs)
+  }
+  
+  # Step 3: Calculate total test scores
+  total_scores <- rowSums(response_matrix)
+  
+  # Step 4: Compute actual item difficulty and discrimination
+  actual_difficulty <- colMeans(response_matrix)
+  
+  # Top and bottom thirds based on total score
+  score_order <- order(total_scores, decreasing = TRUE)
+  top_indices <- score_order[1:floor(n / 3)]
+  bottom_indices <- score_order[(n - floor(n / 3) + 1):n]
+  
+  actual_discrimination <- sapply(1:i, function(j) {
+    mean(response_matrix[top_indices, j]) - mean(response_matrix[bottom_indices, j])
+  })
+  
+  # Step 5: Return list
+  return(list(
+    response_matrix = response_matrix,
+    ability = ability,
+    total_scores = total_scores,
+    item_difficulty = actual_difficulty,
+    item_discrimination = actual_discrimination
+  ))
+}
+
+```
+
+
+```{r}
+
+set.seed(123)
+n <- 30
+i <- 5
+target_difficulties <- c(0.8, 0.6, 0.4, 0.7, 0.5)
+target_discriminations <- c(0.4, 0.3, 0.2, 0.5, 0.35)
+
+result <- simulate_test_matrix(n, i, target_difficulties, target_discriminations)
+
+result_data <- as.data.frame(result$response_matrix) %>%
+  rowid_to_column("ID") %>%
+  mutate(Score = V1 + V2 + V3 + V4 + V5) %>%
+  arrange(desc(Score)) %>%
+  mutate(Group = case_when(row_number() <= n() / 3 ~ "High",
+                   row_number() >= (n() / 3) * 2 ~ "Low",
+      TRUE ~ "Other"))
+
+mean(result_data$V1)
+
+mean(result_data$V1[result_data$Group == "High"])
+mean(result_data$V1[result_data$Group == "Low"])
+
+```
+
+
+
+
+
