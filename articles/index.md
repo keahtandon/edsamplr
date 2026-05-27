@@ -9,7 +9,7 @@
 - [edsamplr](https://keahtandon.github.io/edsamplr/articles/edsamplr.md):
 - [Simulating Data with
   Proportions](https://keahtandon.github.io/edsamplr/articles/Proportions.md):
-- [Teaching Independent Samples \*t\*
+- [Teaching Independent Samples t
   Test](https://keahtandon.github.io/edsamplr/articles/t_test.md):
 - [Teaching About Unequal
   Variances](https://keahtandon.github.io/edsamplr/articles/Unequal_Variances.md):

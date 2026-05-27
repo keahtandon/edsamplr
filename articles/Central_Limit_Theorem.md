@@ -3,19 +3,8 @@
 ``` r
 
 #library(edsamplr)
-library(tidyverse)
-#> ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-#> ✔ dplyr     1.2.1     ✔ readr     2.2.0
-#> ✔ forcats   1.0.1     ✔ stringr   1.6.0
-#> ✔ ggplot2   4.0.3     ✔ tibble    3.3.1
-#> ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-#> ✔ purrr     1.2.2     
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter()   masks stats::filter()
-#> ✖ dplyr::lag()      masks stats::lag()
-#> ✖ dplyr::sample_n() masks edsamplr::sample_n()
-#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-library(ggplot2)
+#library(tidyverse)
+#library(ggplot2)
 ```
 
 ### Introduction
@@ -100,7 +89,7 @@ skewed, you decide to simulate sample data from a gamma distribution
 with various sample sizes to help you make a decision about what your
 sample size should be.
 
-/
+  
 
 You start with 12 since that was the sample size of the preliminary
 survey and simulate 1,000 samples.

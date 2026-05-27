@@ -123,8 +123,6 @@ unequal_var_model %>%
 
 ![](Unequal_Variances_files/figure-html/unnamed-chunk-5-2.png)
 
-  
-
 In comparison, we have another sample with equal variances. I have
 replicated everything from above except that I used the
 [`generate_correlated()`](https://keahtandon.github.io/edsamplr/reference/generate_correlated.md)

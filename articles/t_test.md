@@ -1,4 +1,4 @@
-# Teaching Independent Samples \*t\* Test
+# Teaching Independent Samples t Test
 
 ``` r
 
@@ -41,11 +41,10 @@ but their first analysis in their first study was an independent samples
 $`t`$ test. The authors compared processing fluency in tweets that
 contained emojis and text and those that just contained text and found
 that there was a statistically significant difference between the two
-groups (Deng and McShane 2025)
+groups (Deng and McShane 2025).
 ``` math
 M_{emoji} = 5.86 \text{ vs. } M_{text} = 6.27, t(247) = 2.73, p = 0.003
 ```
-.
 
   
 
