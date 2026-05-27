@@ -1,8 +1,8 @@
 ---
-title: "Central_Limit_Theorem"
+title: "Teaching the Central Limit Theorem"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Central_Limit_Theorem}
+  %\VignetteIndexEntry{Teaching the Central Limit Theorem}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends: devtools, tidyverse, ggplot2
   %\VignetteEncoding{UTF-8}

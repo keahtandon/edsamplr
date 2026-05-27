@@ -1,5 +1,5 @@
 ---
-title: "Correlated_Variables"
+title: "Simulating Data with Correlated Variables"
 output: 
   rmarkdown::html_vignette:
     csl: apa.csl
@@ -7,7 +7,7 @@ bibliography: Correlated.bib
 resource_files:
   - apa.csl
 vignette: >
-  %\VignetteIndexEntry{Correlated_Variables}
+  %\VignetteIndexEntry{Simulating Data with Correlated Variables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends: tidyverse, gt
   %\VignetteEncoding{UTF-8}

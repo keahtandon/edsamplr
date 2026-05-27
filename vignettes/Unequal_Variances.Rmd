@@ -1,8 +1,8 @@
 ---
-title: "Unequal_Variances"
+title: "Teaching About Unequal Variances"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Unequal_Variances}
+  %\VignetteIndexEntry{Teaching About Unequal Variances}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends: tidyverse, ggplot2, gt
   %\VignetteEncoding{UTF-8}

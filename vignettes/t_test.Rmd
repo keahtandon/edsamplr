@@ -1,5 +1,5 @@
 ---
-title: "t_test"
+title: "Teaching Independent Samples *t* Test"
 output: 
   rmarkdown::html_vignette:
     csl: apa.csl
@@ -7,7 +7,7 @@ bibliography: t_test.bib
 resource_files:
   - apa.csl
 vignette: >
-  %\VignetteIndexEntry{t_test}
+  %\VignetteIndexEntry{Teaching Independent Samples *t* Test}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends: tidyverse
   %\VignetteEncoding{UTF-8}

@@ -1,5 +1,5 @@
 ---
-title: "Proportions"
+title: "Simulating Data with Proportions"
 output: 
   rmarkdown::html_vignette:
     csl: apa.csl
@@ -7,7 +7,7 @@ bibliography: Proportions.bib
 resource_files:
   - apa.csl
 vignette: >
-  %\VignetteIndexEntry{Proportions}
+  %\VignetteIndexEntry{Simulating Data with Proportions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends: tidyverse
   %\VignetteEncoding{UTF-8}
