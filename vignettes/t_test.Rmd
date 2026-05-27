@@ -1,8 +1,11 @@
 ---
 title: "t_test"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    csl: apa.csl
 bibliography: t_test.bib
-csl: apa
+resource_files:
+  - apa.csl
 vignette: >
   %\VignetteIndexEntry{t_test}
   %\VignetteEngine{knitr::rmarkdown}
