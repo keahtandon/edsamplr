@@ -1,8 +1,11 @@
 ---
 title: "Correlated_Variables"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    csl: apa.csl
 bibliography: Correlated.bib
-csl: apa
+resource_files:
+  - apa.csl
 vignette: >
   %\VignetteIndexEntry{Correlated_Variables}
   %\VignetteEngine{knitr::rmarkdown}
