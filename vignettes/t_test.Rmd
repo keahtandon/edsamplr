@@ -1,5 +1,5 @@
 ---
-title: "Teaching Independent Samples *t* Test"
+title: "Teaching Independent Samples t Test"
 output: 
   rmarkdown::html_vignette:
     csl: apa.csl
@@ -7,7 +7,7 @@ bibliography: t_test.bib
 resource_files:
   - apa.csl
 vignette: >
-  %\VignetteIndexEntry{Teaching Independent Samples *t* Test}
+  %\VignetteIndexEntry{Teaching Independent Samples t Test}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends: tidyverse
   %\VignetteEncoding{UTF-8}
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, include = FALSE}
-devtools::load_all()
+library(edsamplr)
 require(tidyverse)
 
 ```
@@ -41,7 +41,7 @@ Contributing to a burgeoning area of research on the nuanced effects of emojis i
 
 ### Selected Findings to Sample From
 
-Deng and McShane [-@deng2025] had multiple studies and a more complex design, but their first analysis in their first study was an independent samples $t$ test. The authors compared processing fluency in tweets that contained emojis and text and those that just contained text and found that there was a statistically significant difference between the two groups [@deng2025] $$M_{emoji} = 5.86 \text{ vs. } M_{text} = 6.27, t(247) = 2.73, p = 0.003$$.
+Deng and McShane [-@deng2025] had multiple studies and a more complex design, but their first analysis in their first study was an independent samples $t$ test. The authors compared processing fluency in tweets that contained emojis and text and those that just contained text and found that there was a statistically significant difference between the two groups [@deng2025]. $$M_{emoji} = 5.86 \text{ vs. } M_{text} = 6.27, t(247) = 2.73, p = 0.003$$
 
 \
 

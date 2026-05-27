@@ -21,10 +21,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, include = FALSE}
-require(tidyverse)
-
-devtools::load_all()
-
+library(edsamplr)
+library(tidyverse)
 ```
 
 ``` {r}

@@ -23,8 +23,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ``` {r, include = FALSE}
-
-devtools::load_all()
+library(edsamplr)
 require(gt)
 require(tidyverse)
 

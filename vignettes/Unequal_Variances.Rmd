@@ -16,11 +16,10 @@ knitr::opts_chunk$set(
 ```
 
 ``` {r, include = FALSE}
-
-devtools::load_all()
-require(tidyverse)
-require(ggplot2)
-require(gt)
+library(edsamplr)
+library(tidyverse)
+library(ggplot2)
+library(gt)
 ```
 
 ```{r setup}
@@ -87,8 +86,6 @@ unequal_var_model %>%
        y = "Standardized Residuals")
   
 ```
-
-\
 
 In comparison, we have another sample with equal variances. I have replicated everything from above except that I used the `generate_correlated()` function. 
 
