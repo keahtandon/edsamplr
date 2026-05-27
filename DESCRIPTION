@@ -40,3 +40,4 @@ Suggests:
     tidyverse
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.0.0
+URL: https://keahtandon.github.io/edsamplr/

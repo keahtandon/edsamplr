@@ -1,5 +1,5 @@
 ---
-title: "Simulating Correlated Data"
+title: "Correlated_Variables"
 output: rmarkdown::html_vignette
 bibliography: Correlated.bib
 csl: apa

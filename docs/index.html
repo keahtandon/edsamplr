@@ -45,6 +45,30 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/Central_Limit_Theorem.html">Central_Limit_Theorem</a>
+    </li>
+    <li>
+      <a href="articles/Correlated_Variables.html">Simulating Correlated Data</a>
+    </li>
+    <li>
+      <a href="articles/Proportions.html">Simulating Proportions Data</a>
+    </li>
+    <li>
+      <a href="articles/t_test.html">t_test</a>
+    </li>
+    <li>
+      <a href="articles/Unequal_Variances.html">Unequal_Variances</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -58,7 +82,34 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-A tool for statistics educators to generate simulated data for all the major concepts in a first-semester statistics course. Functions include generating K groups/samples for binary, categorical, and quantitative data, matched pairs quantitative data with specified parameters and/or moments. There is also a function for correlated quantitative data with specified moments, slope, and correlation coefficient. The quantitative variables are produced using Fleishman's power transformation method. You provide the parameters, and we provide the data.
+<div class="section level1">
+<div class="page-header"><h1 id="edsamplr">edsamplr<a class="anchor" aria-label="anchor" href="#edsamplr"></a>
+</h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
+<p>The goal of edsamplr is to enable users to generate sample data for use in statistics education. It has a variety of functions that should cover all topics in a first-semester statistics course. The functions are designed for users to specify parameters about a distribution and relationships between variables, which are then used for sampling data. The functions also have optional summary statistics to compare the output to the original parameters.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of edsamplr from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"keahtandon/edsamplr"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>This is a basic example that shows you how to generate a sample (n=100) from a standard normal distribution with summary statistics:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">edsamplr</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#generate_quantitative()</span></span></code></pre></div>
+<p>This is another basic example that generates another sample (n=100) of categorical data with four unequal groups, also with summary statstics:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#generate_categorical(k = 4, k_prop = c(0.25, 0.5, 0.1, 0.15))</span></span></code></pre></div>
+<p>For more information on the package and its uses, check out the vignettes.</p>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -81,8 +132,8 @@ A tool for statistics educators to generate simulated data for all the major con
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Keah Tandon <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0009-0009-2320-3082" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Michael Seaman <br><small class="roles"> Author </small>  </li>
+<li>Keah Tandon <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0009-0009-2320-3082" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Michael Seaman <br><small class="roles"> Author </small>   </li>
 </ul>
 </div>
 
@@ -99,7 +150,7 @@ A tool for statistics educators to generate simulated data for all the major con
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>

@@ -6,3 +6,7 @@
 ^\.claude$
 ^^docs$$
 ^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
