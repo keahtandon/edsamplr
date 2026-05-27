@@ -1,0 +1,14 @@
+pandoc: 3.8.3
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles:
+  Central_Limit_Theorem: Central_Limit_Theorem.html
+  Correlated_Variables: Correlated_Variables.html
+  edsamplr: edsamplr.html
+  Proportions: Proportions.html
+  t_test: t_test.html
+  Unequal_Variances: Unequal_Variances.html
+last_built: 2026-05-27T17:42Z
+urls:
+  reference: https://keahtandon.github.io/edsamplr/reference
+  article: https://keahtandon.github.io/edsamplr/articles

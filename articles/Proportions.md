@@ -1,0 +1,150 @@
+# Proportions
+
+``` r
+
+# library(edsamplr)
+# library(tidyverse)
+```
+
+### Introduction
+
+Imagine you are teaching your students about proportions. You want to
+give your students a real-life example from published research, so you
+search around and find an experimental article on scopaesthesia
+(Sheldrake and Penraeth 2024).
+
+Unfortunately, you cannot find the original data and you do not have
+have time to contact the authors. Fortunately, you can use the
+statistics from the article as parameters for simulating sample data.
+
+### Article Abstract
+
+Scopaesthesia, also known as the sense of being stared at, is widely
+reported and supported by controlled experiments showing detection rates
+significantly above chance when blindfolded subjects are observed
+directly by starers who are physically present. By contrast, indirect
+observation by remote starers through CCTV has demonstrated effects
+detectable physiologically by changes in electrodermal activity, but
+which do not reach conscious awareness. Further to explore indirect
+scopaesthesia, we tested whether people could tell when they were being
+watched on computer or phone screens. Participants worked in pairs. In
+each randomized trial, the starer either saw a live video of the staree,
+or a ‘distraction’ photograph. Starees then reported if they felt stared
+at or not. We analysed our results statistically for the overall hit
+rate, and for variables such as feedback, observer-subject relationship,
+and distance. Across 6,050 trials, the overall hit rate was 49.9%,
+almost exactly at the 50% chance level. The chance-level outcome was not
+affected by feedback, gender of starers and starees, distance between
+starers and starees, or multiple starers compared with single starers.
+Thus, scopaesthesia was undetectable consciously when people were stared
+at indirectly via screens. (Sheldrake and Penraeth 2024)
+
+### Selected Findings to Sample From
+
+Sheldrake and Penraeth (2024) had a much more complex design than you
+need for your class, so you decide to focus on the hit proportion for
+the ‘looking’ condition.
+
+  
+
+**Explanatory variable**: ‘Looking’ condition
+
+**Response variable**: Successful identification of staring
+
+``` r
+
+staring_outcomes <- data.frame(Trials = c(2914, 2926),
+                               Hits = c(1654, 1255),
+                               Hit_Rate = c(56.8, 42.9),
+                               row.names = c("Seen", "Unseen"))
+
+staring_outcomes
+#>        Trials Hits Hit_Rate
+#> Seen     2914 1654     56.8
+#> Unseen   2926 1255     42.9
+```
+
+You can use the
+[`generate_categorical()`](https://keahtandon.github.io/edsamplr/reference/generate_categorical.md)
+function to simulate data that will resemble this.
+
+We have two variables with two conditions each, so this is what our
+frequency table looks like:
+
+``` r
+
+staring_counts <- data.frame(Hits = staring_outcomes$Hits,
+                             Misses = staring_outcomes$Trials - staring_outcomes$Hits,
+                             row.names = c("Seen", "Unseen"))
+
+staring_counts
+#>        Hits Misses
+#> Seen   1654   1260
+#> Unseen 1255   1671
+```
+
+We can turn that into a proportion table.
+
+``` r
+
+staring_props <- round(staring_counts/sum(staring_counts), 3)
+
+staring_props
+#>         Hits Misses
+#> Seen   0.283  0.216
+#> Unseen 0.215  0.286
+```
+
+In this situation, we want to get a sample of data that matches this
+proportion table. It may seem counter intuitive to run
+generate_categorical() with one variable and 4 groups, but we are not
+trying to simulate two separate categorical variables, rather 4
+cross-conditions.
+
+I like to define my arguments prior to calling the function so that I
+can make sure everything lines up. When using the separate argument,
+make sure that you put the explanatory variable first, then the result
+variable.
+
+``` r
+
+p <- 1
+n <- 5840
+k <- 4
+k_prop <- c(0.283, 0.216, 
+            0.215, 0.286)
+k_names <- c("Seen_Hit", "Seen_Miss", 
+           "Unseen_Hit", "Unseen_Miss")
+
+output <- generate_categorical(p = p, 
+                               n = n, 
+                               k = k, 
+                               k_prop = k_prop,
+                               k_names = k_names,
+                               separate = TRUE)
+```
+
+Our output provides both the simulated data and a descriptive summary
+comparing the inputs to the simulated data.
+
+``` r
+
+data <- output$sample
+
+output$proportion_summary
+#>           k    n   k1   k2
+#> input p1  2 2922 0.28 0.22
+#> sample p1 2 2922 0.50 0.50
+#> input p2  2 2918 0.22 0.29
+#> sample p2 2 2918 0.50 0.50
+```
+
+If you’re happy with the final product, you’re ready to export the data
+for your students. If you’d like to try to get it closer to the original
+data, you can rerun the function.
+
+### References
+
+Sheldrake, Rupert, and Sebastian Penraeth. 2024. “Can People Tell When
+They Are Being Stared at Live on Video?” *Journal of the Society for
+Psychical Research* 88: 129–46.

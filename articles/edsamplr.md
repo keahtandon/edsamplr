@@ -1,0 +1,98 @@
+# edsamplr
+
+`edsamplr` is an R package designed to aid in teaching statistics
+through data simulation. The overall design of the package is that users
+specify parameters about the distribution of the data and variable
+relationships, as appropriate, and then data is sampled from that
+simulated distribution. Because the output is a sample taken from the
+specified parameters, functions have optional summary statistics to
+compare the output to the original parameters.
+
+## Types of data
+
+The package’s eight main functions (all starting with “generate\_” in
+the name) should cover all the main topics taught in a first semester
+statistics course.
+
+The data that can be simulated includes:
+
+- *p* variables of binary data
+
+- *p* variables of categorical data with *k* groups
+
+- *k* groups of continuous data (with optional specified standardized
+  effect size)
+
+- 2 variables of correlated continuous data with specified slope for 1
+  group
+
+- Matched pairs continuous data with specified correlation (and optional
+  specified standardized effect size) for 1 group
+
+- Heteroscedastic continuous data with specified degree of
+  heteroscedasticity for 1 group
+
+- Named continuous distributions: beta, Cauchy, chi-square, exponential,
+  f, gamma, Laplace, logistic, log normal, normal, t, triangular,
+  uniform, weibull
+
+- Binary response data from a 2PL IRT model
+
+  
+
+## How to use
+
+### 1. Identify a concept.
+
+First, identify the concept that you want to teach and determine what
+type of data you need for teaching that concept.
+
+### 2. Decide what numbers to use as input parameters.
+
+If you have found a published article that demonstrates this concept but
+doesn’t have the associated data available, you can use the sample
+statistics that the authors provided as parameters to simulate from.
+Your resultant data will not match the article’s statistics exactly, but
+it will be pretty close.
+
+If you haven’t found an article that demonstrates the concept (or don’t
+have time to look), you can select any numbers to use as parameters to
+simulate data from. We recommend developing a short scenario to go along
+with the data so that your students can better connect to the data and
+make meaning from the lesson.
+
+### 3. Simulate data.
+
+Use the function that will simulate the data that you need for your
+concept. Use the input parameters that you decided upon in the previous
+step in the appropriate argument.
+
+The functions contain optional summary table arguments. If you enable
+this, the output will contain the input parameters and summary
+statistics for the sample that was simulated to show how closely the
+sample resembles the parameters. If it is not close enough for your
+liking, you can re-run the code to simulate a new sample.
+
+The functions also have an optional argument for naming the variable(s).
+You can use this to pre-name the output columns according to your
+article/scenario.
+
+### 4. Present to students.
+
+Whether your plan is to use this in class as part of your lesson,
+outside of class for a homework assignment, or as part of an assessment,
+you’re ready to share with your students. If you based the data sample
+on a published article, make sure to clarify for your students that this
+is data sampled with the article’s statistics as parameters and is not
+the original data.
+
+  
+
+## Additional resources
+
+Questions about the package can be sent to Keah Tandon
+(<tandonk@mailbox.sc.edu>). Bugs and feature requests should be
+submitted to the issues page in GitHub
+(<https://github.com/keahtandon/edsamplr/issues>).
+
+For specific examples, check out the other vignettes.
