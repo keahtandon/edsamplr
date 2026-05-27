@@ -43,5 +43,6 @@ categorical data with four unequal groups, also with summary statstics:
 #generate_categorical(k = 4, k_prop = c(0.25, 0.5, 0.1, 0.15))
 ```
 
-For more information on the package and its uses, check out the
-vignettes.
+For more information on the package and its uses, check out the Get
+Started tab. Individual function documentation available under
+References and articles about various use cases are available as well.
