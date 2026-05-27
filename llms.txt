@@ -1,12 +1,11 @@
 # edsamplr
 
-The goal of edsamplr is to enable users to generate sample data for use
-in statistics education. It has a variety of functions that should cover
-all topics in a first-semester statistics course. The functions are
-designed for users to specify parameters about a distribution and
-relationships between variables, which are then used for sampling data.
-The functions also have optional summary statistics to compare the
-output to the original parameters.
+The edsamplr package supports introductory statistics instruction with
+functions for generating sample data to illustrate many of the topics in
+a first-semester statistics course. Users can specify parameters of
+univariate or bivariate distributions when obtaining sample data. The
+functions also calculate summary statistics for illustrating sampling
+variation from population parameters.
 
 ## Installation
 
@@ -18,6 +17,25 @@ You can install the development version of edsamplr from
 # install.packages("pak")
 pak::pak("keahtandon/edsamplr")
 ```
+
+Because this is a source package, users must also install Rtools in
+order to install the package. You can install Rtools from
+[CRAN](https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html).
+
+You can check to see if you already have Rtools installed with
+`pkgbuild`:
+
+``` r
+
+# install.packages("pkgbuild")
+pkgbuild::has_rtools(install_rtools = TRUE)
+```
+
+*Note*: In both of the above code chunks, the
+[`install.packages()`](https://rdrr.io/r/utils/install.packages.html)
+line is commented out. If you do not have either of these packages
+installed, you will need to remove the comment symbol (#) before running
+the code.
 
 ## Example
 
@@ -32,12 +50,19 @@ library(edsamplr)
 ```
 
 This is another basic example that generates another sample (n=100) of
-categorical data with four unequal groups, also with summary statstics:
+categorical data with four unequal groups, also with summary statistics:
 
 ``` r
 
 #generate_categorical(k = 4, k_prop = c(0.25, 0.5, 0.1, 0.15))
 ```
+
+*Note*: Both of these examples have the code commented out to prevent
+having the output directly on this description page. To run either
+function, you will need to remove the comment symbol (#) before running
+the code.
+
+## More Information
 
 For more information on the package and its uses, check out the Get
 Started tab. Individual function documentation available under
