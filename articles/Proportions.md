@@ -1,4 +1,4 @@
-# Proportions
+# Simulating Data with Proportions
 
 ``` r
 

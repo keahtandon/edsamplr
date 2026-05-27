@@ -1,4 +1,4 @@
-# t_test
+# Teaching Independent Samples \*t\* Test
 
 ``` r
 

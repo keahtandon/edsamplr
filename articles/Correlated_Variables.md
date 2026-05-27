@@ -1,4 +1,4 @@
-# Correlated_Variables
+# Simulating Data with Correlated Variables
 
 ``` r
 

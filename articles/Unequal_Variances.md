@@ -1,4 +1,4 @@
-# Unequal_Variances
+# Teaching About Unequal Variances
 
 ``` r
 

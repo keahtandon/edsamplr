@@ -1,4 +1,4 @@
-# Central_Limit_Theorem
+# Teaching the Central Limit Theorem
 
 ``` r
 
