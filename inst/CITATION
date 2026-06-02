@@ -2,8 +2,8 @@
 bibentry(
   bibtype = "Manual",
   title = "edsamplr: First Semester Statistics Course Data Simulator",
-  author = c(person("Keah", "Tandon"),
-             person("Michael", "Seaman", middle = "A.")),
+  author = c(person(given = "Keah", family = "Tandon"),
+             person(given = "Michael A.", family = "Seaman"),
   year = "2026",
   note = paste0("R package version ", packageVersion("edsamplr")),
   url = "https://keahtandon.github.io/edsamplr/",

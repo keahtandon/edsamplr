@@ -2,9 +2,9 @@ Package: edsamplr
 Title: First Semester Statistics Course Data Simulator
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Keah", "Tandon", , "tandonk@mailbox.sc.edu", role = c("aut", "cre"),
+    person(given = "Keah", family = "Tandon", email = "tandonk@mailbox.sc.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0009-2320-3082")),
-    person("Michael", "Seaman", middle = "A.", "mseaman@sc.edu", role = "aut"))
+    person(given = "Michael A.", family = "Seaman", email = "mseaman@sc.edu", role = "aut"))
 Description: A tool for statistics educators to generate simulated data for all
     the major concepts in a first-semester statistics course. Functions include
     generating K groups/samples for binary, categorical, and quantitative data, 
