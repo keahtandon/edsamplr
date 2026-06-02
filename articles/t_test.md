@@ -110,7 +110,7 @@ sample$summary
 #> input 1 171 5.86 1.20  0.00     0.00
 #> k 1     171 5.96 1.17 -0.18     0.57
 #> input 2  78 6.27 1.01  0.00     0.00
-#> k 2      78 6.07 1.00  0.79     0.34
+#> k 2      78 6.06 1.00  0.78     0.21
 ```
 
 Just to check to see, here is a $`t`$ with the resulting data. We were
@@ -124,13 +124,13 @@ t.test(Value ~ Group, data = data, var.equal = TRUE)
 #>  Two Sample t-test
 #> 
 #> data:  Value by Group
-#> t = -0.71111, df = 247, p-value = 0.4777
+#> t = -0.65978, df = 247, p-value = 0.51
 #> alternative hypothesis: true difference in means between group emoji and group text is not equal to 0
 #> 95 percent confidence interval:
-#>  -0.4104865  0.1927092
+#>  -0.4019664  0.2002403
 #> sample estimates:
 #> mean in group emoji  mean in group text 
-#>            5.963175            6.072064
+#>            5.963175            6.064038
 ```
 
 If you’re happy with the final product, you’re ready to export the data
