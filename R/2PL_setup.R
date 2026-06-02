@@ -31,7 +31,7 @@ p_to_d <- function(p, a, quadpts = 121) {
 
 }
 
-identifying_groups <- function(df, pct_in_group = 0.27) {
+identifying_groups <- function(df, pct_in_group = c(0.27, 0.27)) {
 
   N <- nrow(df)
 
@@ -42,12 +42,13 @@ identifying_groups <- function(df, pct_in_group = 0.27) {
     dplyr::mutate(Total = round(sum(dplyr::across(tidyselect::everything()))/num_items, 2) * 100) %>%
     dplyr::ungroup()
 
-  n_group <- ceiling(N * pct_in_group)
+  n_group_low <- ceiling(N * pct_in_group[2])
+  n_group_high <- ceiling(N * pct_in_group[1])
 
   total_w_group <- output_w_total %>%
     dplyr::arrange(dplyr::desc(.data$Total)) %>%
-    dplyr::mutate(Group = dplyr::case_when(dplyr::row_number() <= n_group ~ "High",
-                                           (dplyr::n() - dplyr::row_number()) < n_group ~ "Low",
+    dplyr::mutate(Group = dplyr::case_when(dplyr::row_number() <= n_group_high ~ "High",
+                                           (dplyr::n() - dplyr::row_number()) < n_group_low ~ "Low",
                                            TRUE ~ "Middle"))
 
   return(output = total_w_group)
