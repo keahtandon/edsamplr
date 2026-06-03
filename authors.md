@@ -9,7 +9,7 @@
 
 ## Citation
 
-Tandon K, Seaman M (2026). *edsamplr: First Semester Statistics Course
+Tandon K, Seaman MA (2026). *edsamplr: First Semester Statistics Course
 Data Simulator*. R package version 0.0.0.9000,
 <https://keahtandon.github.io/edsamplr/>.
 
