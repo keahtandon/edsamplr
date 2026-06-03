@@ -9,6 +9,8 @@ binary_data <- function(sample_rep, sample_n, sample_prop,
   x <- NULL
   new_names <- NULL
 
+  sample_name_type <- is.numeric(sample_names)
+
   for (i in sample_rep) {
     v <- stats::rbinom(sample_n[i], 1, sample_prop[i])
 
@@ -33,7 +35,15 @@ binary_data <- function(sample_rep, sample_n, sample_prop,
     names(data) <- new_names
 
     data[, i] <- factor(data[, i], levels = 1:0, labels = sample_names[i, ])
+
+    if (sample_name_type == TRUE) {
+
+      data[, i] <- as.numeric(as.character(data[ ,i]))
+
+    }
   }
+
+
 
   return(data)
 

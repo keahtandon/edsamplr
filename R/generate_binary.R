@@ -3,19 +3,19 @@
 #' @description
 #' `generate_binary()` is function to generate sample binary data.
 #'
-#' @param p A numeric vector for the number of variables. The default value is 1.
-#' @param n A numeric vector for the sample size. The default value is 100.
+#' @param p A positive integer for the number of variables. The default value is 1.
+#' @param n A positive integer for the sample size. The default value is 100.
 #' @param prop A numeric vector for the proportion of successes. The default value is 0.5. If k > 1, you can provide separate proportion values for each k.
-#' @param group_names An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.
-#' @param summary A logical vector for whether the return should include summary statistics. The default value is TRUE.
-#' @param replication A numeric vector for the number of times to replicate the sampling. The default value is 1.
+#' @param group_names An optional character or numeric vector for naming successes and failures. The default values are 1 for success and 0 for failure.
+#' @param summary A logical scalar for whether the return should include summary statistics. The default value is TRUE.
+#' @param replication A positive integer for the number of times to replicate the sampling. The default value is 1.
 #'
 #' @return If summary = TRUE, a list containing
 #' * `sample`, a data frame with n rows and k columns
 #' * `summary`, a matrix of the sample size, number of successes, proportion statistic, and proportion parameter for each variable, and
 #' * `freq.table`, a matrix of the frequencies of successes and failures for each variable
 #'
-#' If summary = FALSE, a data frame with n rows and 1 column.
+#' If summary = FALSE, a data frame with n rows and p columns.
 #'
 #' @details
 #' This function generates samples of binary data based on specified proportions. It can generate a single column or multiple columns of data with different proportions specified for each. The data is sampled from the specified proportions as a parameter, so the output statistics will not be an exact match to the parameters.
