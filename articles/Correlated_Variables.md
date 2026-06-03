@@ -104,15 +104,15 @@ with four elements:
 data <- output$sample
 
 output$correlation
-#> [1] 0.68
+#> [1] 0.674
 output$slope
-#> [1] 1.29
+#> [1] 1.267
 output$summary
 #>         mean   sd  skew kurtosis
 #> input 1 4.08 0.48  0.00     0.00
 #> k 1     4.07 0.51 -0.13    -0.25
 #> input 2 5.64 0.87  0.00     0.00
-#> k 2     5.59 0.96  0.15     0.17
+#> k 2     5.59 0.96  0.10    -0.07
 ```
 
 If we just want the sample data, we can turn off the summary and just
