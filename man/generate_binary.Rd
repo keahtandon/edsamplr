@@ -9,22 +9,25 @@ generate_binary(
   n = 100,
   prop = 0.5,
   group_names = c(1:0),
+  output_type = "factor",
   summary = TRUE,
   replication = 1
 )
 }
 \arguments{
-\item{p}{A numeric vector for the number of variables. The default value is 1.}
+\item{p}{A positive integer for the number of variables. The default value is 1.}
 
-\item{n}{A numeric vector for the sample size. The default value is 100.}
+\item{n}{A positive integer for the sample size. The default value is 100.}
 
-\item{prop}{A numeric vector for the proportion of successes. The default value is 0.5. If k > 1, you can provide separate proportion values for each k.}
+\item{prop}{A numeric vector for the proportion of successes. The default value is 0.5. If p > 1, you can provide separate proportion values for each p.}
 
-\item{group_names}{An optional character vector for naming successes and failures. The default values are 1 for success and 0 for failure.}
+\item{group_names}{An optional character or numeric vector for naming successes and failures. The default values are 1 for success and 0 for failure.}
 
-\item{summary}{A logical vector for whether the return should include summary statistics. The default value is TRUE.}
+\item{output_type}{A character vector for output type. The options are "character" or "numeric." If p > 1, you can provide separate output types for each p.}
 
-\item{replication}{A numeric vector for the number of times to replicate the sampling. The default value is 1.}
+\item{summary}{A logical scalar for whether the return should include summary statistics. The default value is TRUE.}
+
+\item{replication}{A positive integer for the number of times to replicate the sampling. The default value is 1.}
 }
 \value{
 If summary = TRUE, a list containing
@@ -34,7 +37,9 @@ If summary = TRUE, a list containing
 \item \code{freq.table}, a matrix of the frequencies of successes and failures for each variable
 }
 
-If summary = FALSE, a data frame with n rows and 1 column.
+If summary = FALSE, a data frame with n rows and p columns.
+
+The output type can be changed depending on one's need. Each column will return as a factor or as numeric values depending on argument selection.
 }
 \description{
 \code{generate_binary()} is function to generate sample binary data.
@@ -48,6 +53,8 @@ This is useful for introducing students to the basics of probability, proportion
 }
 \examples{
 generate_binary()
+
+generate_binary(output_type = "numeric")
 
 generate_binary(p = 2, prop = c(0.5, 0.7))
 

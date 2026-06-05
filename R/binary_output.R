@@ -2,14 +2,12 @@
 #' @importFrom magrittr %>%
 
 binary_data <- function(sample_rep, sample_n, sample_prop,
-                             sample_names) {
+                             sample_names, sample_types) {
 
   data <- NULL
   p_hat <- NULL
   x <- NULL
   new_names <- NULL
-
-  sample_name_type <- is.numeric(sample_names)
 
   for (i in sample_rep) {
     v <- stats::rbinom(sample_n[i], 1, sample_prop[i])
@@ -36,7 +34,7 @@ binary_data <- function(sample_rep, sample_n, sample_prop,
 
     data[, i] <- factor(data[, i], levels = 1:0, labels = sample_names[i, ])
 
-    if (sample_name_type == TRUE) {
+    if (sample_types[i] == "numeric") {
 
       data[, i] <- as.numeric(as.character(data[ ,i]))
 
@@ -54,7 +52,8 @@ binary_summary <- function(data, sample_rep, sample_n, sample_prop,
                                 sample_names, p) {
 
   x <- data %>%
-    dplyr::mutate(dplyr::across(dplyr::everything(), ~ as.integer(. == levels(.)[1]))) %>%
+    dplyr::mutate(dplyr::across(#dplyr::everything()
+      tidyselect::where(is.factor), ~ as.integer(. == levels(.)[1]))) %>%
     dplyr::summarise(dplyr::across(dplyr::everything(), sum)) %>%
     tidyr::pivot_longer(dplyr::everything(), names_to = "var", values_to = "x") %>%
     dplyr::pull(x)
@@ -83,14 +82,14 @@ binary_summary <- function(data, sample_rep, sample_n, sample_prop,
 
 
 binary_output <- function(sample_rep, sample_n, sample_prop,
-                          sample_names, p, summary, replication) {
+                          sample_names, sample_types, p, summary, replication) {
 
   # summary, 1 rep
 
   if (summary == TRUE & replication == 1) {
 
     data <- binary_data(sample_rep, sample_n, sample_prop,
-                        sample_names)
+                        sample_names, sample_types)
 
     summary <- binary_summary(data, sample_rep, sample_n, sample_prop,
                               sample_names, p)
@@ -104,7 +103,7 @@ binary_output <- function(sample_rep, sample_n, sample_prop,
   else if (summary == FALSE & replication == 1) {
 
     data <- binary_data(sample_rep, sample_n, sample_prop,
-                        sample_names)
+                        sample_names, sample_types)
 
     output <- data
 
@@ -116,7 +115,7 @@ binary_output <- function(sample_rep, sample_n, sample_prop,
 
     output <- replicate(replication, expr = {
       data <- binary_data(sample_rep, sample_n, sample_prop,
-                          sample_names)
+                          sample_names, sample_types)
 
       summary <- binary_summary(data, sample_rep, sample_n, sample_prop,
                                 sample_names, p)
@@ -133,7 +132,7 @@ binary_output <- function(sample_rep, sample_n, sample_prop,
 
     output <- replicate(replication, expr = {
       data <- binary_data(sample_rep, sample_n, sample_prop,
-                          sample_names)
+                          sample_names, sample_types)
 
       output <- data
     },

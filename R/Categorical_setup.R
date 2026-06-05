@@ -26,6 +26,14 @@ sample_names <- function(group_names, k) {
   sample_names <- matrix(sample_names, nrow = k, byrow = TRUE)
 }
 
+sample_types <- function(output_type, k) {
+  if (length(output_type) == 1) {
+    sample_types <- rep(output_type, k)
+  } else {
+    sample_types <- output_type
+  }
+}
+
 sample_k_rep <- function(k, p) {
   if (length(k) == 1) {
     sample_k_rep <- rep(k, p)
