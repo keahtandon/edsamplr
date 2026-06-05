@@ -18,6 +18,18 @@ You can install the development version of edsamplr from
 pak::pak("keahtandon/edsamplr")
 ```
 
+If you plan to use the generate_2PL() function, which generates data to
+exemplify measurement concepts related to the two parameter logistic
+model, you should include an argument to install the optional packages
+required for this function at the same time you install the development
+version of edsamplr:
+
+``` r
+
+# install.packages("pak")
+pak::pak("keahtandon/edsamplr", dependencies = TRUE)
+```
+
 Because this is a source package, users must also install Rtools in
 order to install the package. You can install Rtools from
 [CRAN](https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html).

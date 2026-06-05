@@ -6,7 +6,9 @@ specify parameters about the distribution of the data and variable
 relationships, as appropriate, and then data is sampled from that
 simulated distribution. Because the output is a sample taken from the
 specified parameters, functions have optional summary statistics to
-compare the output to the original parameters.
+compare the output to the original parameters. When including the
+summary statistics, the output will be in list format, whereas it will
+be in data frame format without summary statistics.
 
 ## Types of data
 
